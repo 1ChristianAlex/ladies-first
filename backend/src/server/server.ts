@@ -1,34 +1,25 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import cors from 'cors';
-import envLocal from '../config/local';
 import { routes } from './routes';
-
+import sequelize from '../config/database';
 class Server {
-  public express: express.Application;
+  public Express: express.Application;
 
   constructor() {
-    this.init();
+    this.Init();
   }
-  private database() {
-    mongoose.connect(`mongodb://${envLocal.HOSTNAME}:${envLocal.DB_PORT}/${envLocal.DB_NAME}`, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-      // auth: {
-      //   user: envLocal.DB_USER,
-      //   password: envLocal.DB_PW
-      // }
-    });
+  private Database() {
+    sequelize.sync();
   }
-  private middleware() {
-    this.express.use(express.json());
-    this.express.use(cors());
-    this.express.use(routes);
+  private Middleware() {
+    this.Express.use(express.json());
+    this.Express.use(cors());
+    this.Express.use(routes);
   }
-  private init() {
-    this.database();
-    this.express = express();
-    this.middleware();
+  private Init() {
+    this.Database();
+    this.Express = express();
+    this.Middleware();
   }
 }
-export default new Server().express;
+export default new Server().Express;

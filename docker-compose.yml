@@ -1,13 +1,10 @@
-version: '3'
+version: '3.3'
 
 services:
-  ladies_first_db:
-    container_name: ladies_first
-    image: mongo
-    restart: always
+  social_woman_db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: 'diana'
+      MYSQL_ROOT_PASSWORD: 'social_woman_4_woman'
     ports:
-      - '27017:27017'
-    # environment:
-    # MONGO_INITDB_ROOT_USERNAME: root
-    # MONGO_INITDB_ROOT_PASSWORD: ladies_first_una!
-    # MONGO_INITDB_DATABASE: diana
+      - '3306:3306'
