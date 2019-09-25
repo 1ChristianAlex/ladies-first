@@ -1,11 +1,11 @@
 import { Sequelize } from 'sequelize';
-import env from './local';
+import localEnv from './local';
 
 const sequelize = new Sequelize({
-  username: env.DB_USER,
-  password: env.DB_PW,
-  database: env.DB_NAME,
-  host: env.HOSTNAME,
+  username: localEnv.DB_USER,
+  password: localEnv.DB_PW,
+  database: localEnv.DB_NAME,
+  host: localEnv.HOSTNAME,
   dialect: 'mysql',
   logging: true
 });

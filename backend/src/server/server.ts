@@ -17,8 +17,8 @@ class Server {
     this.Express.use(routes);
   }
   private Init() {
-    this.Database();
     this.Express = express();
+    this.Database();
     this.Middleware();
   }
 }
