@@ -2,7 +2,7 @@ import React from "react";
 
 import { Container } from "./styles";
 
-const Perifl = () => {
+const Perfil = () => {
   return (
     <Container>
       <h1>Perfil</h1>
@@ -13,4 +13,4 @@ const Perifl = () => {
   );
 };
 
-export default Perifl;
+export default Perfil;
