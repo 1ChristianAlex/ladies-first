@@ -1,12 +1,10 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
-import education from './education';
-import skills from './skills';
-import postSocial from './postSocial';
+import jobs from './jobs';
 
-export default class User extends Model {}
+export default class Company extends Model {}
 
-User.init(
+Company.init(
   {
     name: {
       type: DataTypes.STRING
@@ -23,10 +21,7 @@ User.init(
     birthday: {
       type: DataTypes.STRING
     },
-    cpf: {
-      type: DataTypes.STRING
-    },
-    current_company: {
+    cnpj: {
       type: DataTypes.STRING
     },
     short_description: {
@@ -42,12 +37,9 @@ User.init(
       type: DataTypes.STRING
     }
   },
-  { sequelize }
+  {
+    sequelize
+  }
 );
 
-User.belongsTo(education);
-User.belongsTo(skills);
-User.belongsTo(postSocial);
-
-// lista de educação
-// lista de skill
+Company.belongsTo(jobs);

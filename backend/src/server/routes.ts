@@ -1,10 +1,9 @@
-import { Router } from 'express';
+import { TokenVerify } from '../app/middleware/JsonWebTokenMiddle';
+import { UserMiddleware } from '../app/middleware/UserMiddleware';
 
-import { User } from '../app/models/user';
+import { Router } from 'express';
 
 export const routes = Router();
 
-routes.get('/', (req, res, next) => {
-  res.json({ mensage: 'alive' });
-  next();
-});
+routes.use('/api/', TokenVerify);
+routes.use(UserMiddleware);
