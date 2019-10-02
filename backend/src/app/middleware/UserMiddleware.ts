@@ -3,12 +3,17 @@ import { Router } from 'express';
 import LoginController from '../controllers/LoginControler';
 
 export const UserMiddleware = Router();
+
+// Caminho de rotas de usuário em formato de constante
+
 const userRouterPath = '/api/user/:id?';
 const loginRouterPath = '/login';
 const registerRouterPath = '/register';
 
 const UserC = new UserController();
 const UserLogin = new LoginController();
+
+// CRUD de usuário
 
 UserMiddleware.route(userRouterPath)
   .get(async (req, res, next) => {
@@ -38,7 +43,7 @@ UserMiddleware.route(userRouterPath)
       res.status(406).json({ mensage: 'Not deleted' });
     }
   });
-
+// Rota de registro
 UserMiddleware.post(registerRouterPath, async (req, res, next) => {
   try {
     let { user } = req.body;
@@ -49,6 +54,8 @@ UserMiddleware.post(registerRouterPath, async (req, res, next) => {
     res.status(400).json({ mensage: 'Bad Request' });
   }
 });
+
+// Rota de Login
 UserMiddleware.post(loginRouterPath, async (req, res, next) => {
   try {
     let { email, password } = req.body;

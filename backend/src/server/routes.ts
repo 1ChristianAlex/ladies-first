@@ -5,5 +5,5 @@ import { Router } from 'express';
 
 export const routes = Router();
 
-routes.use('/api/', TokenVerify);
-routes.use(UserMiddleware);
+routes.use('/api/', TokenVerify); //Middleware de verificação de token para as rotas privadas /api/
+routes.use(UserMiddleware); //Middleware de usuário

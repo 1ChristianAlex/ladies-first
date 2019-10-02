@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import LoginControler from '../controllers/LoginControler';
 
+// Função de verificação de token para o middleware
+
 export const TokenVerify = async (req: Request, res: Response, next: NextFunction) => {
   let loginControl = new LoginControler();
   console.log(req.headers);
