@@ -1,5 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
+import User from './user';
 
 export default class Skills extends Model {}
 
@@ -14,3 +15,5 @@ Skills.init(
   },
   { sequelize }
 );
+
+Skills.belongsTo(User);

@@ -1,8 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
-import education from './education';
-import skills from './skills';
-import postSocial from './postSocial';
 
 export default class User extends Model {}
 
@@ -44,10 +41,6 @@ User.init(
   },
   { sequelize }
 );
-
-User.belongsTo(education);
-User.belongsTo(skills);
-User.belongsTo(postSocial);
 
 // lista de educação
 // lista de skill

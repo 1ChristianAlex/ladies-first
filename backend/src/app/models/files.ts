@@ -1,21 +1,17 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
 
-export default class PostSocial extends Model {}
-
-PostSocial.init(
+export default class Files extends Model {}
+Files.init(
   {
-    image_path: {
+    name: {
       type: DataTypes.STRING
     },
-    content: {
+    path: {
       type: DataTypes.STRING
     },
-    likes: {
-      type: DataTypes.INTEGER
-    },
-    shares: {
-      type: DataTypes.INTEGER
+    size: {
+      type: DataTypes.STRING
     }
   },
   { sequelize }
