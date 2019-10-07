@@ -3,7 +3,7 @@ import { IPostType } from '../../types/IPostType';
 import { FileController } from './FileController';
 import { IFIle } from '../../types/IFile';
 
-export class PostFeedController {
+export class PostController {
   private FileC = new FileController();
 
   public async CreatePost(post: IPostType, userId: string) {

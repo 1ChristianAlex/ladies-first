@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "dev": "nodemon ./app.ts"
+    "dev": "nodemon ./app.ts",
+    "refreshDb": "sucrase-node ./src/bin"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
