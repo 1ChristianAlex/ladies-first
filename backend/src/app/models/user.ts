@@ -1,5 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
+import Posts from './postFeed';
 
 export default class User extends Model {}
 

@@ -1,7 +1,11 @@
 export interface IFIle {
   id?: string;
-  name?: string;
+  fieldname?: string;
+  originalname?: string;
+  encoding?: string;
+  mimetype?: string;
+  destination?: string;
+  filename?: string;
   path?: string;
-  size?: string;
-  type?: string;
+  size?: number;
 }

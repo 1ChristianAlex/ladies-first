@@ -1,10 +1,10 @@
-import ImageModel from '../../models/files';
+import FileModel from '../../models/files';
 import { IFIle } from '../../types/IFile';
 
 export class FileController {
-  public async SaveFile(file: IFIle) {
+  public async SaveFile(file: IFIle, UserId = null, PostFeedId = null) {
     try {
-      let fileQuery = await ImageModel.create(file).then(fileResult => fileResult.toJSON());
+      let fileQuery = await FileModel.create({ ...file, UserId, PostFeedId }).then(fileResult => fileResult.toJSON());
 
       return fileQuery;
     } catch (error) {
@@ -13,7 +13,7 @@ export class FileController {
   }
 
   public async UpdateImage(id: string, file: IFIle) {
-    let fileQuery = await ImageModel.update(file, {
+    let fileQuery = await FileModel.update(file, {
       where: { id }
     });
 
@@ -21,13 +21,13 @@ export class FileController {
   }
 
   public async FindFile(id: string) {
-    let fileQuery: IFIle = await ImageModel.findByPk(id).then(file => file.toJSON());
+    let fileQuery: IFIle = await FileModel.findByPk(id).then(file => file.toJSON());
 
     return fileQuery;
   }
   public async DeleteFile(id: string) {
     try {
-      await ImageModel.destroy({
+      await FileModel.destroy({
         where: { id }
       });
 

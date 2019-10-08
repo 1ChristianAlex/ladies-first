@@ -5,7 +5,6 @@ import LoginControler from '../controllers/LoginControler';
 
 export const TokenVerify = async (req: Request, res: Response, next: NextFunction) => {
   let loginControl = new LoginControler();
-  console.log(req.headers);
   let token;
   if (req.headers['leaf-access-token']) {
     token = req.headers['leaf-access-token'];
@@ -18,7 +17,7 @@ export const TokenVerify = async (req: Request, res: Response, next: NextFunctio
 
   let userAuth = await loginControl.IsLoged(token);
 
-  if (userAuth != false) {
+  if (userAuth) {
     req.body = {
       user: userAuth,
       ...bodyResponse

@@ -24,3 +24,5 @@ yarn-error.log*
 
 #secret
 # .env
+
+backend/src/public/*

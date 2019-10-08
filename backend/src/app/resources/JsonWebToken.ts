@@ -10,7 +10,11 @@ export default class JsonWebToken {
     return { token };
   }
   public VerifyToken(token) {
-    let verifyResult = JsonToken.verify(token, this.Secret);
-    return verifyResult ? verifyResult : false;
+    try {
+      let verifyResult = JsonToken.verify(token, this.Secret);
+      return verifyResult;
+    } catch (error) {
+      return { mensage: 'JWT Error' };
+    }
   }
 }
