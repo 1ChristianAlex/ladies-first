@@ -2,10 +2,9 @@ import FileModel from '../../models/files';
 import { IFIle } from '../../types/IFile';
 
 export class FileController {
-  public async SaveFile(file: IFIle, UserId = null, PostFeedId = null) {
+  public async SaveFile(file: IFIle, user_id = null, post_id = null) {
     try {
-      let fileQuery = await FileModel.create({ ...file, UserId, PostFeedId }).then(fileResult => fileResult.toJSON());
-
+      let fileQuery = await FileModel.create({ ...file, userId: user_id.toString(), post_id }).then(fileResult => fileResult.toJSON());
       return fileQuery;
     } catch (error) {
       return { mensage: 'Error on Save file' };

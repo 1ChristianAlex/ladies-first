@@ -2,7 +2,7 @@ import UserController from '../controllers/UserController';
 import { Router } from 'express';
 import LoginController from '../controllers/LoginControler';
 
-export const UserMiddleware = Router();
+export const UserRoute = Router();
 
 // Caminho de rotas de usuário em formato de constante
 
@@ -15,7 +15,7 @@ const UserLogin = new LoginController();
 
 // CRUD de usuário
 
-UserMiddleware.route(userRouterPath)
+UserRoute.route(userRouterPath)
   .get(async (req, res, next) => {
     try {
       let { id } = req.params;
@@ -44,7 +44,7 @@ UserMiddleware.route(userRouterPath)
     }
   });
 // Rota de registro
-UserMiddleware.post(registerRouterPath, async (req, res, next) => {
+UserRoute.post(registerRouterPath, async (req, res, next) => {
   try {
     let { user } = req.body;
     let result = await UserC.CreateUser(user);
@@ -56,7 +56,7 @@ UserMiddleware.post(registerRouterPath, async (req, res, next) => {
 });
 
 // Rota de Login
-UserMiddleware.post(loginRouterPath, async (req, res, next) => {
+UserRoute.post(loginRouterPath, async (req, res, next) => {
   try {
     let { email, password } = req.body;
     let loginResult = await UserLogin.Login(email, password);

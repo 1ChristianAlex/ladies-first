@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import { PostController } from '../controllers/Feed/PostController';
 
-export const PostMiddleware = Router();
+export const PostRoute = Router();
 const postCrudRoute = '/api/post/:id?';
 const PostFeedCtrl = new PostController();
 
-PostMiddleware.route(postCrudRoute).post(async (req, res, next) => {
+PostRoute.route(postCrudRoute).post(async (req, res, next) => {
   try {
     let {
       post,

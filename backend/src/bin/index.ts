@@ -2,6 +2,7 @@ import sequelize from '../config/database';
 
 const RefreshDB = async () => {
   await sequelize.truncate();
+  await sequelize.dropAllSchemas({ logging: true });
   console.log('Data base was droped');
   await sequelize.sync();
   sequelize.close();
@@ -9,5 +10,5 @@ const RefreshDB = async () => {
 };
 
 (async () => {
-  RefreshDB();
+  await RefreshDB();
 })();

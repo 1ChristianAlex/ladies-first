@@ -1,6 +1,11 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
 import Posts from './postFeed';
+import Files from './files';
+import Jobs from './jobs';
+import Skills from './skills';
+import Company from './company';
+import Education from './education';
 
 export default class User extends Model {}
 
@@ -40,8 +45,15 @@ User.init(
       type: DataTypes.STRING
     }
   },
-  { sequelize }
+  { sequelize, underscored: true, modelName: 'users' }
 );
+
+User.hasMany(Posts);
+User.hasMany(Files);
+User.hasMany(Jobs);
+User.hasMany(Skills);
+User.hasMany(Company);
+User.hasMany(Education);
 
 // lista de educação
 // lista de skill

@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
-import User from './user';
+import Files from './files';
 
 export default class PostFeed extends Model {}
 
@@ -16,7 +16,7 @@ PostFeed.init(
       type: DataTypes.INTEGER
     }
   },
-  { sequelize }
+  { sequelize, underscored: true, modelName: 'posts' }
 );
 
-PostFeed.belongsTo(User);
+PostFeed.hasMany(Files);

@@ -1,10 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
-import Posts from '../models/postFeed';
-import User from './user';
 
-export default class Files extends Model {}
-Files.init(
+export default class File extends Model {}
+File.init(
   {
     fieldname: {
       type: DataTypes.STRING
@@ -28,8 +26,5 @@ Files.init(
       type: DataTypes.INTEGER
     }
   },
-  { sequelize }
+  { sequelize, underscored: true, modelName: 'files' }
 );
-
-Files.belongsTo(Posts);
-Files.belongsTo(User);

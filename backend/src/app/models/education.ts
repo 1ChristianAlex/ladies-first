@@ -1,6 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
-import User from './user';
 
 export default class Education extends Model {}
 
@@ -22,7 +21,5 @@ Education.init(
       type: DataTypes.STRING
     }
   },
-  { sequelize, modelName: 'education' }
+  { sequelize, modelName: 'educations', underscored: true }
 );
-
-Education.belongsTo(User);

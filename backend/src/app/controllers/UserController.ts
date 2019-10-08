@@ -1,4 +1,5 @@
 import UserModel from '../models/user';
+import FilesModel from '../models/files';
 import { IUser } from '../types/IUser';
 import Crypfy from '../resources/cryptfy';
 import { User } from '../classes/User';
@@ -33,7 +34,13 @@ export default class UserController {
     let userQuery = await UserModel.findOne({
       where: {
         id
-      }
+      },
+      include: [
+        {
+          model: FilesModel,
+          limit: 1
+        }
+      ]
     }).then(result => result.toJSON());
 
     let userObj = new User(userQuery);

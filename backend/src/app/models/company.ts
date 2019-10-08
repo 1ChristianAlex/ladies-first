@@ -38,8 +38,8 @@ Company.init(
     }
   },
   {
-    sequelize
+    sequelize,
+    underscored: true,
+    modelName: 'companys'
   }
 );
-
-Company.belongsTo(jobs);

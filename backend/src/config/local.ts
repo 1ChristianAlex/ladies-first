@@ -12,5 +12,4 @@ const envolvriment = {
   DB_NAME: process.env.DB_NAME,
   SECRET: process.env.SECRET_TOKEN
 };
-console.log(envolvriment);
 export default envolvriment;

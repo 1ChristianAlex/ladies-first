@@ -2,9 +2,9 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
 import User from './user';
 
-export default class Skills extends Model {}
+export default class Skill extends Model {}
 
-Skills.init(
+Skill.init(
   {
     name: {
       type: DataTypes.STRING
@@ -13,7 +13,5 @@ Skills.init(
       type: DataTypes.STRING
     }
   },
-  { sequelize }
+  { sequelize, underscored: true, modelName: 'skill' }
 );
-
-Skills.belongsTo(User);

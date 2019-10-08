@@ -28,6 +28,8 @@ Jobs.init(
     }
   },
   {
-    sequelize
+    sequelize,
+    underscored: true,
+    modelName: 'jobs'
   }
 );

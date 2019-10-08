@@ -8,4 +8,6 @@ export interface IFIle {
   filename?: string;
   path?: string;
   size?: number;
+  post_id?: number;
+  user_id?: number;
 }

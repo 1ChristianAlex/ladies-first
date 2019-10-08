@@ -1,5 +1,3 @@
-import { IJobs } from './IJobs';
-
 export interface ICompany {
   id: string;
   name?: string;
@@ -12,5 +10,4 @@ export interface ICompany {
   description?: string;
   personal_link?: string;
   tel?: string;
-  jobs: [IJobs];
 }
