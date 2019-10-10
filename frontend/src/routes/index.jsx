@@ -1,11 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
-import PublicRoute from "./PublicRoute";
-import PrivateRoute from "./PrivateRoute";
+import React from 'react';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
 
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Perfil from "../pages/Perfil";
+import { Home, Login, Perfil } from '../pages';
 
 const Routes = () => (
   <Router>
