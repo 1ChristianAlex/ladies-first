@@ -1,6 +1,4 @@
-import React from 'react';
 import styled from 'styled-components';
-import { images } from 'assets';
 
 export const TitleLogo = styled.h1`
   font-family: Pacifico, sans-serif;
@@ -13,18 +11,9 @@ export const TitleLogo = styled.h1`
   position: relative;
 `;
 
-const Leaf = styled.img`
+export const Leaf = styled.img`
   width: 50px;
   height: 50px;
   position: absolute;
   bottom: 45px;
 `;
-
-const Logo = () => (
-  <TitleLogo>
-    Leaf
-    <Leaf src={images.leaf} />
-  </TitleLogo>
-);
-
-export default Logo;

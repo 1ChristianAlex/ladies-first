@@ -17,7 +17,7 @@ export const Container = styled.div`
     display: block;
     width: 100%;
     height: 100%;
-    background-color: #fbfbfb90;
+    background-color: #fbfbfb60;
     position: absolute;
   }
 
