@@ -1,15 +1,16 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Colors } from 'styles';
 
 export const StyledButton = styled(Link)`
-  background-color: #2cbfa5;
-  color: white;
+  background-color: ${Colors.primary};
+  color: ${Colors.white};
   border-radius: 50px;
   padding: 12px 20px;
   font-family: Roboto, sans-serif;
   font-weight: bold;
   font-size: 18px;
-  border: 3px solid #2cbfa5;
+  border: 3px solid ${Colors.primary};
   position: relative;
   transition: opacity 0.2s ease-in-out;
 
@@ -20,20 +21,20 @@ export const StyledButton = styled(Link)`
   ${props =>
     props.active &&
     css`
-      background-color: white;
-      color: #2cbfa5;
+      background-color: ${Colors.white};
+      color: ${Colors.primary};
     `}
 
   ${props =>
     props.bigger &&
     css`
-      padding: 12px 80px;
+      pafding: 12px 80px;
 
       ::after {
         content: '';
         position: absolute;
         width: 80%;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid ${Colors.white};
         bottom: 14px;
         left: 50%;
         transform: translateX(-50%);

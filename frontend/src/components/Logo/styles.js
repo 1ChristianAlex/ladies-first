@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { Colors } from 'styles';
 
 export const TitleLogo = styled.h1`
   font-family: Pacifico, sans-serif;
   font-size: 80px;
   font-weight: normal;
-  color: white;
+  color: ${Colors.white};
   text-decoration: underline;
   text-align: center;
   padding-top: 20px;
