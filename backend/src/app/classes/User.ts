@@ -18,12 +18,13 @@ export class User {
     return date;
   }
   public TokenInfo() {
-    let { id, email, name, lastname } = this.User;
+    let { id, email, files, ...rest } = this.User;
     return {
       id,
       email,
-      name,
-      lastname
+      name: this.Name(),
+      profile_image: files,
+      ...rest
     };
   }
 }
