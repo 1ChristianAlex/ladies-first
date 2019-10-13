@@ -1,14 +1,16 @@
 import React from 'react';
 
-import { StyledInput } from './styles';
+import { Container, StyledInput } from './styles';
 
 const Input = ({ type, value, onChange, placeholder }) => (
-  <StyledInput
-    type={type}
-    value={value}
-    onChange={e => onChange(e)}
-    placeholder={placeholder}
-  />
+  <Container>
+    <StyledInput
+      type={type}
+      value={value}
+      onChange={e => onChange(e)}
+      placeholder={placeholder}
+    />
+  </Container>
 );
 
 Input.defaultProps = {
