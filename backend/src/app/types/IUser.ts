@@ -1,3 +1,5 @@
+import { IFIle } from './IFile';
+
 export interface IUser {
   id?: string;
   name?: string;
@@ -11,6 +13,7 @@ export interface IUser {
   description?: string;
   personal_link?: string;
   tel?: string;
+  files?: [IFIle];
   education?: [IEducation];
   skill?: [ISkills];
   create_at?: string;

@@ -1,6 +1,6 @@
 import PostFeedModel from '../../models/postFeed';
 import { IPostType } from '../../types/IPostType';
-import { FileController } from './FileController';
+import { FileController } from '../FileController';
 import { IFIle } from '../../types/IFile';
 
 export class PostController {
@@ -22,7 +22,7 @@ export class PostController {
     try {
       let { image, ...postContent } = post;
 
-      await this.FileC.UpdateImage(image.id, image);
+      await this.FileC.UpdateImage(image, null, postContent.id);
 
       let postQuery = await PostFeedModel.update(post, {
         where: { id }

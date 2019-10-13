@@ -1,17 +1,20 @@
 import multer from 'multer';
 import path from 'path';
-import fs from 'fs';
+import { FileSystem } from '../resources/FileSystem';
 
 export default class MulterFile {
-  constructor(private Dirname) {
-    if (!fs.existsSync(this.PublicPath)) {
-      fs.mkdirSync(this.PublicPath);
-    }
-  }
+  private Fs = new FileSystem();
 
-  private PublicPath = `${path.resolve()}/src/public/${this.Dirname}`;
+  constructor(private Dirname) {}
+
+  private PublicPath = `${path.resolve()}/src/uploads/${this.Dirname}`;
+
   private Storage = multer.diskStorage({
     destination: (req, file, cb) => {
+      if (!this.Fs.FolderExists(this.PublicPath)) {
+        this.Fs.CreateFolder(this.PublicPath);
+      }
+
       cb(null, this.PublicPath);
     },
     filename: (req, file, cb) => {

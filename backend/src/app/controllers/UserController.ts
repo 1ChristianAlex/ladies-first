@@ -44,7 +44,7 @@ export default class UserController {
     }).then(result => result.toJSON());
 
     let userObj = new User(userQuery);
-    return userObj;
+    return userObj.TokenInfo();
   }
 
   public async DeleteUser(id: string) {
