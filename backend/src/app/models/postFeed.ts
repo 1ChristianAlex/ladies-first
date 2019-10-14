@@ -1,5 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
+import Imagens from './imagens';
 import Files from './files';
 
 export default class PostFeed extends Model {}
@@ -20,3 +21,4 @@ PostFeed.init(
 );
 
 PostFeed.hasMany(Files);
+PostFeed.hasMany(Imagens);
