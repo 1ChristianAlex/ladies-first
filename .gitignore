@@ -27,3 +27,4 @@ yarn-error.log*
 
 backend/src/public/*
 backend/src/uploads/*
+out/

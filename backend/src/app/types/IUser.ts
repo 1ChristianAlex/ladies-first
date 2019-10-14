@@ -14,6 +14,7 @@ export interface IUser {
   personal_link?: string;
   tel?: string;
   files?: [IFIle];
+  imagens?: [IFIle];
   education?: [IEducation];
   skill?: [ISkills];
   create_at?: string;

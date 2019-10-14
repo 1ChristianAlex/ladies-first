@@ -19,7 +19,7 @@ export default class MulterFile {
     },
     filename: (req, file, cb) => {
       let ext = file.mimetype.split('/')[1];
-      cb(null, `${file.fieldname}_${Date.now()}.${ext}`);
+      cb(null, `${Date.now()}.${ext}`);
     }
   });
 

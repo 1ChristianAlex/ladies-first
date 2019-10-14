@@ -1,8 +1,9 @@
 import UserModel from '../models/user';
-import FilesModel from '../models/files';
+import ImagesModel from '../models/imagens';
 import { IUser } from '../types/IUser';
 import Crypfy from '../resources/cryptfy';
 import { User } from '../classes/User';
+import { FollowPersonController } from './FriendshipController';
 
 export default class UserController {
   public async CreateUser(user: IUser) {
@@ -31,20 +32,23 @@ export default class UserController {
   }
 
   public async GetUser(id: string) {
-    let userQuery = await UserModel.findOne({
+    let follow = new FollowPersonController();
+    let folowList = await follow.GetFollowList(id);
+
+    let userQuery = UserModel.findOne({
       where: {
         id
       },
       include: [
         {
-          model: FilesModel,
+          model: ImagesModel,
           limit: 1
         }
       ]
     }).then(result => result.toJSON());
 
-    let userObj = new User(userQuery);
-    return userObj.TokenInfo();
+    let [user, follow_people] = await Promise.all([userQuery]);
+    return { ...user, follow_people };
   }
 
   public async DeleteUser(id: string) {

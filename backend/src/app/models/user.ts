@@ -6,6 +6,8 @@ import Jobs from './jobs';
 import Skills from './skills';
 import Company from './company';
 import Education from './education';
+import Imagens from './imagens';
+import FollowPerson from './followPerson';
 
 export default class User extends Model {}
 
@@ -50,10 +52,12 @@ User.init(
 
 User.hasMany(Posts);
 User.hasMany(Files);
+User.hasMany(Imagens);
 User.hasMany(Jobs);
 User.hasMany(Skills);
 User.hasMany(Company);
 User.hasMany(Education);
+User.hasMany(FollowPerson);
 
 // lista de educação
 // lista de skill
