@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import LoginControler from '../controllers/LoginControler';
+import LoginControler from '../controllers/User/LoginControler';
 
 // Função de verificação de token para o middleware
 

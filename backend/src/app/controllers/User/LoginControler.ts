@@ -1,8 +1,7 @@
-import UserModel from '../models/user';
-import { User } from '../classes/User';
-import Cryptfy from '../resources/cryptfy';
-import JsonToken from '../resources/JsonWebToken';
-import { IUser } from '../types/IUser';
+import { UserModel } from '../../models';
+import { User } from '../../classes/User';
+import Cryptfy from '../../resources/cryptfy';
+import JsonToken from '../../resources/JsonWebToken';
 
 export default class LoginController {
   private JsonToken = new JsonToken();

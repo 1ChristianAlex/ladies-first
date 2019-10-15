@@ -1,15 +1,13 @@
-import PostFeedModel from '../models/postFeed';
-import ImagesModel from '../models/imagens';
-import { IPostType } from '../types/IPostType';
-import { ImageController } from './ImageController';
-import { IFIle } from '../types/IFile';
+import { PostsModel, ImagesModel } from '../../models';
+import { IPostType } from '../../types/IPostType';
+import { ImageController } from '../Files/ImageController';
 
 export class PostController {
   private ImageCtrl = new ImageController();
 
   public async CreatePost(post: IPostType, userId: string) {
     try {
-      let postQuery = await PostFeedModel.create({ ...post, userId }).then(postResult => postResult.toJSON());
+      let postQuery = await PostsModel.create({ ...post, userId }).then(postResult => postResult.toJSON());
 
       return postQuery;
     } catch (error) {
@@ -22,7 +20,7 @@ export class PostController {
 
       await this.ImageCtrl.UpdateImage(image, null, postContent.id);
 
-      let postQuery = await PostFeedModel.update(post, {
+      let postQuery = await PostsModel.update(post, {
         where: { id }
       });
 
@@ -33,7 +31,7 @@ export class PostController {
   }
   public async DeletePost(id) {
     try {
-      let postQuery = await PostFeedModel.destroy({
+      let postQuery = await PostsModel.destroy({
         where: { id }
       });
 
@@ -45,7 +43,7 @@ export class PostController {
   public async GetPosts(userId, id = null) {
     try {
       if (id) {
-        let postQuery = await PostFeedModel.findOne({
+        let postQuery = await PostsModel.findOne({
           where: { id },
           include: [
             {
@@ -55,7 +53,7 @@ export class PostController {
         });
         return postQuery;
       } else {
-        let postQuery = await PostFeedModel.findAll({
+        let postQuery = await PostsModel.findAll({
           where: { userId: userId },
           include: [
             {

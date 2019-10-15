@@ -1,11 +1,11 @@
-import FollowPersonModel from '../models/followPerson';
-import UserModel from '../models/user';
-import { User } from '../classes/User';
+import { FollowModel } from '../../models';
+import UserModel from '../../models/user';
+import { User } from '../../classes/User';
 
 export class FollowPersonController {
   public async NewFollow(followId, userId) {
     try {
-      let followQuery = await FollowPersonModel.create({ followId, userId });
+      let followQuery = await FollowModel.create({ followId, userId });
       return followQuery;
     } catch (error) {
       return error;
@@ -14,7 +14,7 @@ export class FollowPersonController {
 
   public async RemoveFollow(followId, userId) {
     try {
-      let followQuery = await FollowPersonModel.destroy({
+      let followQuery = await FollowModel.destroy({
         where: { userId, followId }
       });
       return followQuery;
@@ -24,7 +24,7 @@ export class FollowPersonController {
   }
   public async GetFollowList(userId) {
     try {
-      let followListQuery = await FollowPersonModel.findAll({
+      let followListQuery = await FollowModel.findAll({
         where: { userId }
       }).map(follows => follows.toJSON());
 

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { FollowPersonController } from '../controllers/FollowerController';
+import { FollowPersonController } from '../controllers/User/FollowerController';
 
 export const FollowRouter = Router();
 const FollowRoutePath = '/api/follow/:id?';

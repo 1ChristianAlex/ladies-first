@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import MulterFile from '../middleware/MulterMiddleware';
 import { ImageSharp } from '../resources/imageSharp';
-import { ImageController } from '../controllers/ImageController';
+import { ImageController } from '../controllers/Files/ImageController';
 import { IUser } from '../types/IUser';
 import { IFIle } from '../types/IFile';
 

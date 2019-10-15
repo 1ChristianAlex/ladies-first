@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { PostController } from '../controllers/PostController';
+import { PostController } from '../controllers/Feed/PostController';
 
 export const PostRoute = Router();
 const PostFeedCtrl = new PostController();
