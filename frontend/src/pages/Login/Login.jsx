@@ -1,20 +1,24 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React from 'react';
+import { Button, Input, LoginForm, Title } from 'components';
+import { useLocation } from 'react-router-dom';
 
-import { Form } from "./styles";
+import { Container } from './styles';
 
 const Login = () => {
   // TODO: Criar um custom hook pra diminuir código
   const { state } = useLocation();
 
   return (
-    <Form>
-      {state && state.message}
-      <h1>Página de login</h1>
-      <input type="text" placeholder="Login" />
-      <input type="password" placeholder="Senha" />
-      <button>Efetuar Login</button>
-    </Form>
+    <Container>
+      <LoginForm>
+        {state && state.message}
+        <Title underlined text="Página de login" />
+        <Button text="Entrar" href="https://google.com" />
+        <Button text="Cadastrar" active href="https://google.com" />
+        <Input placeholder="E-Mail" type="email" />
+        <Input placeholder="Senha" type="password" />
+      </LoginForm>
+    </Container>
   );
 };
 
