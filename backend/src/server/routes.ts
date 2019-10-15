@@ -2,7 +2,7 @@ import { TokenVerify } from '../app/middleware/JsonWebTokenMiddle';
 import { UserRoute } from '../app/routes/UserRoute';
 import { PostRoute } from '../app/routes/PostRoute';
 import { ImageRoute } from '../app/routes/ImagesRoute';
-import { FollowRouter } from '../app/routes/FollowPersonRoute';
+import { FollowRouter } from '../app/routes/FollowerRoute';
 import { Router } from 'express';
 
 export const routes = Router();

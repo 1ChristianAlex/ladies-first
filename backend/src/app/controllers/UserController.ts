@@ -32,9 +32,6 @@ export default class UserController {
   }
 
   public async GetUser(id: string) {
-    let follow = new FollowPersonController();
-    let folowList = await follow.GetFollowList(id);
-
     let userQuery = UserModel.findOne({
       where: {
         id
@@ -47,8 +44,8 @@ export default class UserController {
       ]
     }).then(result => result.toJSON());
 
-    let [user, follow_people] = await Promise.all([userQuery]);
-    return { ...user, follow_people };
+    let user = await userQuery;
+    return { ...user };
   }
 
   public async DeleteUser(id: string) {

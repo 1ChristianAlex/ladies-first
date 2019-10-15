@@ -42,17 +42,29 @@ export class PostController {
       return { mensage: 'Error on post Delete' };
     }
   }
-  public async GetPosts(userId) {
+  public async GetPosts(userId, id = null) {
     try {
-      let postQuery = await PostFeedModel.findAll({
-        where: { id: userId },
-        include: [
-          {
-            model: ImagesModel
-          }
-        ]
-      });
-      return postQuery;
+      if (id) {
+        let postQuery = await PostFeedModel.findOne({
+          where: { id },
+          include: [
+            {
+              model: ImagesModel
+            }
+          ]
+        });
+        return postQuery;
+      } else {
+        let postQuery = await PostFeedModel.findAll({
+          where: { userId: userId },
+          include: [
+            {
+              model: ImagesModel
+            }
+          ]
+        });
+        return postQuery;
+      }
     } catch (error) {
       console.log(error);
     }

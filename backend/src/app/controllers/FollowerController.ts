@@ -1,5 +1,6 @@
 import FollowPersonModel from '../models/followPerson';
 import UserModel from '../models/user';
+import { User } from '../classes/User';
 
 export class FollowPersonController {
   public async NewFollow(followId, userId) {
@@ -23,17 +24,25 @@ export class FollowPersonController {
   }
   public async GetFollowList(userId) {
     try {
-      let followListQuery = await UserModel.findAll({
-        where: { id: userId },
-        include: [
-          {
-            model: FollowPersonModel
-          }
-        ]
-      }).then(async users => await users.map(async u => await u.toJSON()));
-      console.log(followListQuery.id);
+      let followListQuery = await FollowPersonModel.findAll({
+        where: { userId }
+      }).map(follows => follows.toJSON());
 
-      return followListQuery;
+      let userFollows = followListQuery.map(async (followUser: any) => {
+        if (followUser.followId) {
+          return UserModel.findByPk(followUser.followId).then(follower => {
+            if (follower) {
+              return new User(follower.toJSON()).SimpleInfo();
+            }
+          });
+        } else {
+          return false;
+        }
+      });
+      let listOfFollowers = await Promise.all(userFollows);
+      let filterList = listOfFollowers.filter(user => user != null);
+
+      return filterList;
     } catch (error) {
       return error;
     }
