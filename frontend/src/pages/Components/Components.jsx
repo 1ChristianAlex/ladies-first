@@ -1,5 +1,12 @@
 import React from 'react';
-import { Button, Input, LoginForm, Title, ContentWrapper } from 'components';
+import {
+  Button,
+  Input,
+  LoginForm,
+  Title,
+  ContentWrapper,
+  ImageCircle,
+} from 'components';
 
 const Components = () => {
   return (
@@ -13,6 +20,7 @@ const Components = () => {
       <Input placeholder="Senha" type="password" />
       <ContentWrapper title="Crie uma publicação:">
         <Button text="Entrar" href="https://google.com" />
+        <ImageCircle />
       </ContentWrapper>
     </LoginForm>
   )

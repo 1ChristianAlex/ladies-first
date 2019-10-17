@@ -4,8 +4,7 @@ import * as Fa from 'react-icons/fa';
 import { StyledButton, StyledIcon, Text } from './styles';
 
 const Button = ({ text, href, to, bigger, active, icon }) => {
-  const Icon = Fa[icon]
-  console.log(StyledButton)
+  const Icon = Fa[icon];
 
   return (
   <StyledButton
@@ -31,6 +30,6 @@ Button.propTypes = {
   bigger: PropTypes.bool,
   to: PropTypes.string,
   icon: PropTypes.string
-}
+};
 
 export default Button;
