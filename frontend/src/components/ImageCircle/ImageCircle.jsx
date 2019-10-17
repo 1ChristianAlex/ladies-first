@@ -1,24 +1,20 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-const ImageCircle = ({ src, width, height }) => {
-  return (
-    <Container imageSrc={src} width={width} height={height} />
-  );
+const ImageCircle = ({ src, size }) => {
+  return <Container imageSrc={src} width={size} height={size} />;
 };
 
 ImageCircle.defaultProps = {
-  width: 80,
-  height: 80,
+  size: 80,
   src: ''
 };
 
 ImageCircle.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
-  src: PropTypes.string,
+  size: PropTypes.number,
+  src: PropTypes.string
 };
 
 export default ImageCircle;
