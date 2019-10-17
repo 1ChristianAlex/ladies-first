@@ -4,7 +4,13 @@ export class User {
   constructor(private User: IUser) {}
 
   public Name() {
-    return `${this.User.name} ${this.User.lastname}`;
+    let [firstLetterName, ...restName] = this.User.name.replace(';', '').trimLeft();
+    let name = `${firstLetterName.toUpperCase()}${restName.join('')}`;
+
+    let [firstLetterLastname, ...restLastname] = this.User.lastname.replace(';', '').trimLeft();
+    let lastName = `${firstLetterLastname.toUpperCase()}${restLastname.join('')}`;
+
+    return `${name} ${lastName}`;
   }
   public FullInfo() {
     return {
@@ -27,5 +33,14 @@ export class User {
       password: 'Your pass hehe',
       profile_image: imagens
     };
+  }
+  public SimpleInfo() {
+    let { id, email } = this.User;
+    let simpleInfo = {
+      id,
+      email,
+      name: this.Name()
+    };
+    return simpleInfo;
   }
 }

@@ -1,6 +1,6 @@
-import UserController from '../controllers/UserController';
 import { Router } from 'express';
-import LoginController from '../controllers/LoginControler';
+import UserController from '../controllers/User/UserController';
+import LoginController from '../controllers/User/LoginControler';
 
 export const UserRoute = Router();
 

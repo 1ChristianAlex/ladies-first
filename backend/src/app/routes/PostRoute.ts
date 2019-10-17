@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { PostController } from '../controllers/PostController';
+import { PostController } from '../controllers/Feed/PostController';
 
 export const PostRoute = Router();
 const PostFeedCtrl = new PostController();
 
 const postCrudRoute = '/api/post/:id?';
+const UserPostRoute = '/api/user/post/:id?';
 
 PostRoute.route(postCrudRoute)
   .post(async (req, res, next) => {
@@ -23,11 +24,13 @@ PostRoute.route(postCrudRoute)
   })
   .get(async (req, res, next) => {
     try {
-      let { user } = req.body;
-
-      let postResponse = await PostFeedCtrl.GetPosts(user.id);
+      let postId = req.params.id;
+      let postResponse = await PostFeedCtrl.GetPosts(null, postId);
       res.json(postResponse);
     } catch (error) {
       console.log(error);
     }
   });
+// Rota para listagem de posts proprios
+
+PostRoute.route(UserPostRoute).get(async (req, res, next) => {});

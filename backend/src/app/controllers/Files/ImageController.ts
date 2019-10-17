@@ -1,8 +1,8 @@
 import { FileCrudController } from './FileCrudController';
-import Images from '../models/imagens';
+import { ImagesModel } from '../../models';
 
 export class ImageController extends FileCrudController {
   constructor() {
-    super(Images);
+    super(ImagesModel);
   }
 }
