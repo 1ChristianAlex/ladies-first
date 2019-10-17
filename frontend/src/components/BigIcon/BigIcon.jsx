@@ -1,29 +1,34 @@
-import React from "react";
-import PropTypes from "prop-types";
-import * as Fa from "react-icons/fa";
+import React from 'react';
+import PropTypes from 'prop-types';
+import * as Fa from 'react-icons/fa';
 
-import { Container, StyledIcon } from "./styles";
+import { Container, StyledIcon, Notifications } from './styles';
 
-const BigIcon = ({ icon, border, size }) => {
+const BigIcon = ({ icon, border, size, notifications }) => {
   const Icon = Fa[icon];
 
   return (
     <Container bordered={border}>
+      {!!notifications && notifications !== 0 && (
+        <Notifications>{notifications}</Notifications>
+      )}
       <StyledIcon size={size} as={Icon} />
     </Container>
   );
 };
 
 BigIcon.defaultProps = {
-  icon: "",
+  icon: '',
   border: true,
-  size: 50
+  size: 50,
+  notifications: 0
 };
 
 BigIcon.propTypes = {
   icon: PropTypes.string,
   border: PropTypes.bool,
-  size: PropTypes.number
+  size: PropTypes.number,
+  notifications: PropTypes.number
 };
 
 export default BigIcon;
