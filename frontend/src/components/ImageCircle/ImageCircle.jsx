@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
@@ -11,7 +12,13 @@ const ImageCircle = ({ src, width, height }) => {
 ImageCircle.defaultProps = {
   width: 80,
   height: 80,
-  src: 'http://s2.glbimg.com/jsaPuF7nO23vRxQkuJ_V3WgouKA=/e.glbimg.com/og/ed/f/original/2014/06/10/461777879.jpg'
+  src: ''
+};
+
+ImageCircle.propTypes = {
+  width: PropTypes.number,
+  height: PropTypes.number,
+  src: PropTypes.string,
 };
 
 export default ImageCircle;
