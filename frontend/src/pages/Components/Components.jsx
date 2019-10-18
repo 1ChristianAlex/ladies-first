@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Button,
   Input,
@@ -6,8 +6,9 @@ import {
   Title,
   ContentWrapper,
   ImageCircle,
-  BigIcon
-} from "components";
+  BigIcon,
+  SearchBar
+} from 'components';
 
 const Components = () => {
   return (
@@ -23,6 +24,7 @@ const Components = () => {
         <Button text="Entrar" href="https://google.com" />
         <ImageCircle />
         <BigIcon icon="FaCogs" />
+        <SearchBar />
       </ContentWrapper>
     </LoginForm>
   );
