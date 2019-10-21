@@ -24,22 +24,21 @@ export class User {
     return date;
   }
   public TokenInfo() {
-    let { id, email, imagens, ...rest } = this.User;
+    let { id, email, password } = this.User;
     return {
       id,
       email,
       name: this.Name(),
-      ...rest,
-      password: 'Your pass hehe',
-      profile_image: imagens
+      password
     };
   }
   public SimpleInfo() {
-    let { id, email } = this.User;
+    let { id, email, imagens } = this.User;
     let simpleInfo = {
       id,
       email,
-      name: this.Name()
+      name: this.Name(),
+      profile_image: imagens
     };
     return simpleInfo;
   }

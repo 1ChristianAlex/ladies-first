@@ -1,6 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
-import jobs from './jobs';
 
 export default class Company extends Model {}
 

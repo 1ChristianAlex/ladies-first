@@ -7,7 +7,7 @@ export default class JsonWebToken {
 
   public CreateToken(user: any) {
     let token = JsonToken.sign(user, this.Secret);
-    return { token };
+    return token;
   }
   public VerifyToken(token) {
     try {

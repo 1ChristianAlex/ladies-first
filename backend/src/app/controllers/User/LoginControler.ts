@@ -1,4 +1,4 @@
-import { UserModel } from '../../models';
+import { UserModel, ImagesModel } from '../../models';
 import { User } from '../../classes/User';
 import Cryptfy from '../../resources/cryptfy';
 import JsonToken from '../../resources/JsonWebToken';
@@ -16,11 +16,18 @@ export default class LoginController {
         where: {
           email,
           password: cryptfyPassword
-        }
+        },
+        include: [
+          {
+            model: ImagesModel,
+            limit: 1
+          }
+        ]
       }).then(result => (result ? new User(result.toJSON()) : false));
       if (queryResult) {
         let token = this.JsonToken.CreateToken(queryResult.TokenInfo());
-        return token;
+        let user = queryResult.SimpleInfo();
+        return { token, user };
       }
       return false;
     } catch (error) {

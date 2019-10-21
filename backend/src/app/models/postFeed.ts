@@ -7,6 +7,9 @@ export default class PostFeed extends Model {}
 
 PostFeed.init(
   {
+    title: {
+      type: DataTypes.STRING
+    },
     content: {
       type: DataTypes.STRING
     },

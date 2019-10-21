@@ -1,6 +1,7 @@
 import { PostsModel, ImagesModel } from '../../models';
 import { IPostType } from '../../types/IPostType';
 import { ImageController } from '../Files/ImageController';
+import { Op } from 'sequelize';
 
 export class PostController {
   private ImageCtrl = new ImageController();
@@ -40,29 +41,35 @@ export class PostController {
       return { mensage: 'Error on post Delete' };
     }
   }
-  public async GetPosts(userId, id = null) {
+  public async GetPosts(id = null) {
     try {
+      let postQuery;
       if (id) {
-        let postQuery = await PostsModel.findOne({
-          where: { id },
-          include: [
-            {
-              model: ImagesModel
-            }
-          ]
+        postQuery = await PostsModel.findAll({
+          include: [ImagesModel],
+          where: {
+            [Op.or]: [
+              { id },
+              {
+                title: {
+                  [Op.like]: `%${id}%`
+                }
+              },
+              {
+                content: {
+                  [Op.like]: `%${id}%`
+                }
+              }
+            ]
+          }
         });
-        return postQuery;
       } else {
-        let postQuery = await PostsModel.findAll({
-          where: { userId: userId },
-          include: [
-            {
-              model: ImagesModel
-            }
-          ]
+        postQuery = await PostsModel.findAll({
+          include: [ImagesModel],
+          order: [['createdAt', 'DESC']]
         });
-        return postQuery;
       }
+      return postQuery;
     } catch (error) {
       console.log(error);
     }

@@ -7,9 +7,6 @@ Imagens.init(
     fieldname: {
       type: DataTypes.STRING
     },
-    originalname: {
-      type: DataTypes.STRING
-    },
     mimetype: {
       type: DataTypes.STRING
     },

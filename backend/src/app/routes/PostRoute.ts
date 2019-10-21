@@ -5,7 +5,6 @@ export const PostRoute = Router();
 const PostFeedCtrl = new PostController();
 
 const postCrudRoute = '/api/post/:id?';
-const UserPostRoute = '/api/user/post/:id?';
 
 PostRoute.route(postCrudRoute)
   .post(async (req, res, next) => {
@@ -25,12 +24,9 @@ PostRoute.route(postCrudRoute)
   .get(async (req, res, next) => {
     try {
       let postId = req.params.id;
-      let postResponse = await PostFeedCtrl.GetPosts(null, postId);
+      let postResponse = await PostFeedCtrl.GetPosts(postId);
       res.json(postResponse);
     } catch (error) {
       console.log(error);
     }
   });
-// Rota para listagem de posts proprios
-
-PostRoute.route(UserPostRoute).get(async (req, res, next) => {});
