@@ -12,7 +12,7 @@ export class FileCrudController {
       let fileQuery = await this.Model.create({ ...file, userId: user_id.toString(), postId: post_id }).then(fileResult => fileResult.toJSON());
       return fileQuery;
     } catch (error) {
-      return { mensage: 'Error on Save file' };
+      throw error;
     }
   }
 
@@ -39,14 +39,18 @@ export class FileCrudController {
 
       return { fileUpdateQuery, newFile };
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
 
   public async FindFile(id: string) {
-    let fileQuery: IFIle = await this.Model.findByPk(id).then(file => file.toJSON());
+    try {
+      let fileQuery: IFIle = await this.Model.findByPk(id).then(file => file.toJSON());
 
-    return fileQuery;
+      return fileQuery;
+    } catch (error) {
+      throw error;
+    }
   }
   public async DeleteFile(id: string) {
     try {
@@ -65,10 +69,7 @@ export class FileCrudController {
         return { mensage };
       }
     } catch (error) {
-      console.log(error);
-      let mensage = `Error on delete image`;
-
-      return { mensage };
+      throw error;
     }
   }
 }

@@ -27,6 +27,6 @@ PostRoute.route(postCrudRoute)
       let postResponse = await PostFeedCtrl.GetPosts(postId);
       res.json(postResponse);
     } catch (error) {
-      console.log(error);
+      res.status(302).json({ mensage: 'Error on get posts' });
     }
   });

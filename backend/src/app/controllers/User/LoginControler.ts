@@ -31,7 +31,7 @@ export default class LoginController {
       }
       return false;
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
   IsLoged(token: string) {

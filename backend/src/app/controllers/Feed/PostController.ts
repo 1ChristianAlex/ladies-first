@@ -12,7 +12,7 @@ export class PostController {
 
       return postQuery;
     } catch (error) {
-      return { mensage: 'Error on post Creation' };
+      throw error;
     }
   }
   public async UpdatePost(id: string, post: IPostType) {
@@ -27,7 +27,7 @@ export class PostController {
 
       return postQuery;
     } catch (error) {
-      return { mensage: 'Error on post Update' };
+      throw error;
     }
   }
   public async DeletePost(id) {
@@ -38,7 +38,7 @@ export class PostController {
 
       return postQuery;
     } catch (error) {
-      return { mensage: 'Error on post Delete' };
+      throw error;
     }
   }
   public async GetPosts(id = null) {
@@ -71,7 +71,7 @@ export class PostController {
       }
       return postQuery;
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
 }

@@ -91,11 +91,15 @@ ImageRoute.route(PostImageRouterPath)
     res.json(returnImages);
   })
   .delete(async (req, res, next) => {
-    let { id } = req.params;
+    try {
+      let { id } = req.params;
 
-    let deleteImage = await FileCtrl.DeleteFile(id);
+      let deleteImage = await FileCtrl.DeleteFile(id);
 
-    res.json(deleteImage);
+      res.json(deleteImage);
+    } catch (error) {
+      res.status(400).json({ mensage: 'Error on delete image' });
+    }
   })
   .get(async (req, res, next) => {
     try {

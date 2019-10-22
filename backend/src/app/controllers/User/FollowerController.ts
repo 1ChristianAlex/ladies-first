@@ -44,7 +44,7 @@ export class FollowPersonController {
 
       return filterList;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 }
