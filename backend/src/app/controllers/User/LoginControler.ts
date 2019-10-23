@@ -20,7 +20,8 @@ export default class LoginController {
         include: [
           {
             model: ImagesModel,
-            limit: 1
+            limit: 1,
+            attributes: ['path', 'updatedAt']
           }
         ]
       }).then(result => (result ? new User(result.toJSON()) : false));

@@ -1,32 +1,38 @@
 import { UserModel, ImagesModel } from '../../models';
 import { IUser } from '../../types/IUser';
 import Crypfy from '../../resources/cryptfy';
+import { ImageController } from '../Files/ImageController';
+import { IFIle } from '../../types/IFile';
 
-export default class UserController {
-  public async CreateUser(user: IUser) {
+export default class UserController extends ImageController {
+  public async CreateUser(user: IUser, file: IFIle) {
     try {
       let { password } = user;
       let crypfyPassword = new Crypfy(password);
 
-      let queryResult = await UserModel.create({ ...user, password: crypfyPassword.CreateHash() }).then(result => result.toJSON());
-      return queryResult;
+      let queryResult: IUser = await UserModel.create({ ...user, password: crypfyPassword.CreateHash() }).then(result => result.toJSON());
+      let imageQuery = await this.SaveFile(file, queryResult.id);
+      return { queryResult, imageQuery };
     } catch (error) {
       throw error;
     }
   }
 
-  public async UpdateUser(id, userNewInfo, oldUser) {
+  public async UpdateUser(id, userNewInfo, profile: IFIle = null) {
     try {
-      let updateResult = await UserModel.update(
-        { ...oldUser, userNewInfo },
+      let updateResult = UserModel.update(
+        { ...userNewInfo },
         {
           where: {
             id
           }
         }
       );
-
-      return updateResult;
+      if (profile) {
+        let updateProfileImage = this.UpdateImage(profile, id);
+        return await Promise.resolve([updateResult, updateProfileImage]);
+      }
+      return await updateResult;
     } catch (error) {
       throw error;
     }

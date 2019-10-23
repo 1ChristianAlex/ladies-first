@@ -13,11 +13,6 @@ class Server {
   }
   private Middleware() {
     this.Express.use(express.json());
-    this.Express.use(
-      express.urlencoded({
-        extended: true
-      })
-    );
     this.Express.use(cors());
     this.Express.use(routes);
   }

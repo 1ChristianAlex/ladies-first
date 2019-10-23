@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import UserController from '../controllers/User/UserController';
 import LoginController from '../controllers/User/LoginControler';
+import MulterFile from '../middleware/MulterMiddleware';
 
 export const UserRoute = Router();
 
@@ -12,6 +13,11 @@ const registerRouterPath = '/register';
 
 const UserC = new UserController();
 const UserLogin = new LoginController();
+
+const MulterProfile = new MulterFile('avatar');
+
+const UserStore = MulterProfile.MulterEng;
+const UserStoreTypeSingle = UserStore.any();
 
 // CRUD de usuário
 
@@ -25,15 +31,29 @@ UserRoute.route(userRouterPath)
       res.status(404).json({ mensage: 'Not Found' });
     }
   })
-  .patch(async (req, res, next) => {
-    try {
-      let { id, newUser, user } = req.body;
-      let update = await UserC.UpdateUser(id, newUser, user);
-      res.json(update);
-    } catch (error) {
-      res.status(406).json({ mensage: 'Fail on update' });
+  .patch(
+    (req, res, next) => {
+      req.headers.user = req.body.user;
+      next();
+    },
+
+    UserStoreTypeSingle,
+    async (req, res, next) => {
+      try {
+        let {
+          user: { id }
+        }: any = req.headers;
+        let { updateInfo } = req.body;
+        let [file]: any = req.files;
+        let userInfoUpdate = JSON.parse(updateInfo);
+
+        let update = await UserC.UpdateUser(id, userInfoUpdate, file);
+        res.json(update);
+      } catch (error) {
+        res.status(406).json({ mensage: 'Fail on update' });
+      }
     }
-  })
+  )
   .delete(async (req, res, next) => {
     try {
       let { id } = req.body;
@@ -44,14 +64,16 @@ UserRoute.route(userRouterPath)
     }
   });
 // Rota de registro
-UserRoute.post(registerRouterPath, async (req, res, next) => {
+UserRoute.post(registerRouterPath, UserStoreTypeSingle, async (req, res, next) => {
   try {
     let { user } = req.body;
-    let result = await UserC.CreateUser(user);
-    res.status(200).json(result);
+    let [files]: any = req.files;
+
+    let result = await UserC.CreateUser(JSON.parse(user), files);
+    res.status(202).json(result);
     next();
   } catch (error) {
-    res.status(400).json({ mensage: 'Bad Request' });
+    res.status(400).json({ mensage: 'Bad Request', error });
   }
 });
 

@@ -22,7 +22,7 @@ export class FileCrudController {
 
       let oldFile: IFIle = await this.Model.findOne({
         where: { ...condition }
-      }).toJSON();
+      }).then(oldF => oldF.toJSON());
 
       let fileUpdateQuery = await this.Model.update(
         { ...file, userId: user_id, postId: post_id },
@@ -33,7 +33,7 @@ export class FileCrudController {
 
       let newFile: IFIle = await this.Model.findOne({
         where: { ...condition }
-      }).toJSON();
+      }).then(newF => newF.toJSON());
 
       this.Fs.DeleteFile(oldFile.path);
 
