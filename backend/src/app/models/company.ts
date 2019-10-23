@@ -6,34 +6,29 @@ export default class Company extends Model {}
 Company.init(
   {
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(25)
     },
     lastname: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(25)
     },
     email: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(50)
     },
-    password: {
-      type: DataTypes.STRING
-    },
-    birthday: {
-      type: DataTypes.STRING
-    },
+
     cnpj: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(20)
     },
     short_description: {
       type: DataTypes.STRING
     },
     description: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     personal_link: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(50)
     },
     tel: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(20)
     }
   },
   {

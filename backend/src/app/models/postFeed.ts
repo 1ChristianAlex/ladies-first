@@ -8,10 +8,10 @@ export default class PostFeed extends Model {}
 PostFeed.init(
   {
     title: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(150)
     },
     content: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     likes: {
       type: DataTypes.INTEGER

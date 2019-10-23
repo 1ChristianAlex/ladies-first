@@ -6,25 +6,22 @@ export default class Jobs extends Model {}
 Jobs.init(
   {
     title: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(50)
     },
     description: {
       type: DataTypes.STRING
     },
     job_type: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(50)
     },
     industry: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(25)
     },
-    funciton: {
-      type: DataTypes.STRING
-    },
-    image: {
-      type: DataTypes.STRING
+    function: {
+      type: DataTypes.STRING(25)
     },
     categorie: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING(25)
     }
   },
   {
