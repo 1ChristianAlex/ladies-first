@@ -37,7 +37,7 @@ export class FileCrudController {
 
       this.Fs.DeleteFile(oldFile.path);
 
-      return { fileUpdateQuery, newFile };
+      return { status: fileUpdateQuery, newFile };
     } catch (error) {
       throw error;
     }

@@ -11,8 +11,9 @@ export default class UserController extends ImageController {
       let crypfyPassword = new Crypfy(password);
 
       let queryResult: IUser = await UserModel.create({ ...user, password: crypfyPassword.CreateHash() }).then(result => result.toJSON());
-      let imageQuery = await this.SaveFile(file, queryResult.id);
-      return { queryResult, imageQuery };
+      await this.SaveFile(file, queryResult.id);
+
+      return { mesage: `Successfully created user ${queryResult.name}` };
     } catch (error) {
       throw error;
     }
@@ -30,7 +31,7 @@ export default class UserController extends ImageController {
       );
       if (profile) {
         let updateProfileImage = this.UpdateImage(profile, id);
-        return await Promise.resolve([updateResult, updateProfileImage]);
+        return await Promise.all([updateResult, updateProfileImage]);
       }
       return await updateResult;
     } catch (error) {

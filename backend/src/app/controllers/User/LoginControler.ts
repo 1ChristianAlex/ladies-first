@@ -30,7 +30,7 @@ export default class LoginController {
         let user = queryResult.SimpleInfo();
         return { token, user };
       }
-      return false;
+      throw new Error();
     } catch (error) {
       throw error;
     }

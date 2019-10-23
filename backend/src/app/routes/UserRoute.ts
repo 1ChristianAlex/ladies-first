@@ -86,6 +86,6 @@ UserRoute.post(loginRouterPath, async (req, res, next) => {
 
     next();
   } catch (error) {
-    res.status(400).json({ mensage: 'Bad Request' });
+    res.status(400).json({ mensage: 'User not found' });
   }
 });

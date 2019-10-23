@@ -33,11 +33,11 @@ export class User {
     };
   }
   public SimpleInfo() {
-    let { id, email, imagens } = this.User;
+    let { password, name, id, lastname, imagens, ...rest } = this.User;
     let simpleInfo = {
       id,
-      email,
       name: this.Name(),
+      ...rest,
       profile_image: imagens
     };
     return simpleInfo;
