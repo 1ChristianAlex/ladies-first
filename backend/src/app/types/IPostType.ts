@@ -2,9 +2,9 @@ import { IFIle } from './IFile';
 
 export interface IPostType {
   id?: string;
-  image?: IFIle;
+  title?: string;
+  category?: string;
   content?: string;
-  likes?: number;
-  shares?: number;
-  user_id: number;
+  likes?: string;
+  shares?: string;
 }

@@ -1,6 +1,6 @@
 import { FollowModel } from '../../models';
 import UserModel from '../../models/user';
-import { User } from '../../classes/User';
+import { User } from '../../classes/';
 
 export class FollowPersonController {
   public async NewFollow(followId, userId) {

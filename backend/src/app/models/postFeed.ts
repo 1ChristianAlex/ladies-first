@@ -10,6 +10,9 @@ PostFeed.init(
     title: {
       type: DataTypes.STRING(150)
     },
+    category: {
+      type: DataTypes.STRING(150)
+    },
     content: {
       type: DataTypes.TEXT
     },

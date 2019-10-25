@@ -1,5 +1,6 @@
 import { UserModel, ImagesModel } from '../../models';
 import { IUser } from '../../types/IUser';
+import { DateParser } from '../../classes';
 import Crypfy from '../../resources/cryptfy';
 import { ImageController } from '../Files/ImageController';
 import { IFIle } from '../../types/IFile';
@@ -7,22 +8,28 @@ import { IFIle } from '../../types/IFile';
 export default class UserController extends ImageController {
   public async CreateUser(user: IUser, file: IFIle) {
     try {
-      let { password } = user;
+      let { password, birthday } = user;
       let crypfyPassword = new Crypfy(password);
+      let data = new DateParser(birthday).ParseDate();
 
-      let queryResult: IUser = await UserModel.create({ ...user, password: crypfyPassword.CreateHash() }).then(result => result.toJSON());
+      let queryResult: IUser = await UserModel.create({ ...user, birthday: data, password: crypfyPassword.CreateHash() }).then(result =>
+        result.toJSON()
+      );
       await this.SaveFile(file, queryResult.id);
 
-      return { mesage: `Successfully created user ${queryResult.name}` };
+      return { mesage: `Successfully user created ${queryResult.name}`, user: queryResult };
     } catch (error) {
       throw error;
     }
   }
 
-  public async UpdateUser(id, userNewInfo, profile: IFIle = null) {
+  public async UpdateUser(id, userNewInfo: IUser, profile: IFIle = null) {
     try {
+      let { birthday } = userNewInfo;
+      let newDate = birthday ? (birthday = new DateParser(birthday).ParseDate()) : userNewInfo.birthday;
+
       let updateResult = UserModel.update(
-        { ...userNewInfo },
+        { ...userNewInfo, birthday: newDate },
         {
           where: {
             id
@@ -30,10 +37,10 @@ export default class UserController extends ImageController {
         }
       );
       if (profile) {
-        let updateProfileImage = this.UpdateImage(profile, id);
-        return await Promise.all([updateResult, updateProfileImage]);
+        this.UpdateImage(profile, id);
+        return { mensage: 'User successfully updated' };
       }
-      return await updateResult;
+      return { mensage: 'User successfully updated' };
     } catch (error) {
       throw error;
     }

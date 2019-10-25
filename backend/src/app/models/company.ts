@@ -14,9 +14,9 @@ Company.init(
     email: {
       type: DataTypes.STRING(50)
     },
-
     cnpj: {
-      type: DataTypes.STRING(20)
+      type: DataTypes.STRING(20),
+      unique: true
     },
     short_description: {
       type: DataTypes.STRING

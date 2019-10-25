@@ -14,7 +14,8 @@ User.init(
       type: DataTypes.STRING(25)
     },
     email: {
-      type: DataTypes.STRING(50)
+      type: DataTypes.STRING(50),
+      unique: true
     },
     password: {
       type: DataTypes.STRING
@@ -23,7 +24,8 @@ User.init(
       type: DataTypes.DATE
     },
     cpf: {
-      type: DataTypes.STRING(15)
+      type: DataTypes.STRING(15),
+      unique: true
     },
     current_company: {
       type: DataTypes.STRING(50)

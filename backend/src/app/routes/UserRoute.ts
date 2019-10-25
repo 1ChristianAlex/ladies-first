@@ -73,7 +73,10 @@ UserRoute.post(registerRouterPath, UserStoreTypeSingle, async (req, res, next) =
     res.status(202).json(result);
     next();
   } catch (error) {
-    res.status(400).json({ mensage: 'Bad Request', error });
+    let {
+      errors: [mensage]
+    } = error;
+    res.status(400).json({ mensage: 'Bad Request', ErroMensage: mensage.message });
   }
 });
 

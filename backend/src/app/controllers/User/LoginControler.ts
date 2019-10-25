@@ -1,5 +1,5 @@
 import { UserModel, ImagesModel } from '../../models';
-import { User } from '../../classes/User';
+import { User } from '../../classes/';
 import Cryptfy from '../../resources/cryptfy';
 import JsonToken from '../../resources/JsonWebToken';
 

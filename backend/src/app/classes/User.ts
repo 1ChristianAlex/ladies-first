@@ -1,6 +1,6 @@
 import { IUser } from '../types/IUser';
 
-export class User {
+export default class User {
   constructor(private User: IUser) {}
 
   public Name() {
