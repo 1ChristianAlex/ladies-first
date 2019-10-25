@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import UserController from '../controllers/User/UserController';
-import LoginController from '../controllers/User/LoginControler';
+import LoginController from '../controllers/User/LoginController';
 import MulterFile from '../middleware/MulterMiddleware';
 
 export const UserRoute = Router();
