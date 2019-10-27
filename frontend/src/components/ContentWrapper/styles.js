@@ -10,7 +10,11 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: 25px 20px;
+  padding: 25px 0px;
+  > * {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 export const Header = styled.div`
