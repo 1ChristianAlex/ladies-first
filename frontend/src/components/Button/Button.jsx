@@ -24,6 +24,7 @@ const Button = ({ text, href, to, onClick, bigger, active, icon, padding }) => {
       as={Component()}
       href={href}
       to={to}
+      onClick={onClick}
       bigger={bigger ? 1 : 0}
       active={active ? 1 : 0}
       padding={padding}
