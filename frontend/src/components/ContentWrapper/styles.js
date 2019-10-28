@@ -7,10 +7,11 @@ export const Container = styled.div`
   border-radius: 30px;
   border: 3px solid ${Colors.primary};
   overflow: hidden;
+  width: ${({ width }) => width || `100%`};
 `;
 
 export const Content = styled.div`
-  padding-top: 25px;
+  padding-top: 15px;
 
   > * {
     margin-left: 20px;
