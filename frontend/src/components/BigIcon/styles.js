@@ -2,12 +2,14 @@ import styled, { css } from 'styled-components';
 import { Colors } from 'styles';
 
 export const Container = styled.div`
-  width: 80px;
-  height: 80px;
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
   background-position: center;
   background-size: cover;
+  background: ${Colors.white};
   border-radius: 50%;
   position: relative;
+  cursor: pointer;
   ${({ bordered }) =>
     bordered &&
     css`
