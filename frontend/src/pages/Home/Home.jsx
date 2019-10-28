@@ -1,11 +1,11 @@
 import React from 'react';
 import { Logo } from 'components';
-import { Container } from './styles';
+import { Layout } from 'containers';
 
 const Home = () => (
-  <Container>
+  <Layout>
     <Logo />
-  </Container>
+  </Layout>
 );
 
 export default Home;
