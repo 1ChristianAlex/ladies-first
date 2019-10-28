@@ -4,6 +4,7 @@ import { Colors } from 'styles';
 export const Container = styled.div`
   position: relative;
   display: inline-block;
+  width: 100%;
 
   ::after {
     content: '';
@@ -24,4 +25,5 @@ export const StyledInput = styled.input`
   border: 3px solid ${Colors.primary};
   font-size: 18px;
   position: relative;
+  width: 100%;
 `;
