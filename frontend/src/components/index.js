@@ -7,4 +7,5 @@ export { default as ContentWrapper } from './ContentWrapper/ContentWrapper';
 export { default as ImageCircle } from './ImageCircle/ImageCircle';
 export { default as BigIcon } from './BigIcon/BigIcon';
 export { default as SearchBar } from './SearchBar/SearchBar';
+export { default as Post } from './Post/Post';
 export { default as Comment } from './Comment/Comment';

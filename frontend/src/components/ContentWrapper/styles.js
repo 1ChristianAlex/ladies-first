@@ -10,7 +10,9 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: 25px 0px;
+  padding-top: 25px;
+   {/* padding: 25px 0px; */}
+
   > * {
     margin-left: 20px;
     margin-right: 20px;
