@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 import { Colors } from 'styles';
 
-export const StyledButton = styled(Link)`
+export const StyledButton = styled.a`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -17,6 +16,7 @@ export const StyledButton = styled(Link)`
   position: relative;
   transition: opacity 0.2s ease-in-out;
   text-decoration: none;
+  cursor: pointer;
 
   :hover {
     opacity: 0.7;
@@ -42,6 +42,7 @@ export const StyledButton = styled(Link)`
         transform: translateX(-50%);
       }
     `}
+  ${props => !!props.padding && css`padding: ${props.padding};`}
 `;
 
 export const StyledIcon = styled.svg`
