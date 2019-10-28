@@ -16,6 +16,7 @@ export const Input = styled.input`
   padding-left: 50px;
   ::placeholder {
     color: ${Colors.primary};
+    opacity: 0.6;
   }
 `;
 

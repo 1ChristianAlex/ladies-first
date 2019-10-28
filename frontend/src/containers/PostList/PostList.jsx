@@ -4,6 +4,7 @@ import { ContentWrapper, ImageCircle, Input, Button } from 'components';
 
 import { Content, SendWrapper } from './styles';
 
+// TODO: passar component input para text area
 const PostList = ({ postContent, changePostContent, onSubmit }) => {
   return (
     <ContentWrapper title="Crie uma publicação:" width="50%">
