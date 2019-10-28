@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 import { Colors } from 'styles';
 
-export const Container = styled.span`
+export const Container = styled.div`
   position: relative;
+  display: inline-block;
 
   ::after {
     content: '';
     position: absolute;
     width: 88%;
     border-bottom: 1px solid ${Colors.lightGray};
-    bottom: 0px;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
   }
