@@ -2,6 +2,7 @@ import { UserModel, ImagesModel } from '../../models';
 import { IUser } from '../../types/IUser';
 import { DateParser } from '../../classes';
 import Crypfy from '../../resources/cryptfy';
+import { FileSystem } from '../../resources/FileSystem';
 import { ImageController } from '../Files/ImageController';
 import { IFIle } from '../../types/IFile';
 
@@ -19,6 +20,8 @@ export default class UserController extends ImageController {
 
       return { mesage: `Successfully user created ${queryResult.name}`, user: queryResult };
     } catch (error) {
+      await new FileSystem().DeleteFile(file.path);
+
       throw error;
     }
   }

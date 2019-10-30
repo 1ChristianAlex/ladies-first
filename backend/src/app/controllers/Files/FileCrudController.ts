@@ -62,8 +62,7 @@ export class FileCrudController {
       let [fileQuery, hasDelete] = await Promise.all([fileQueryR, fileDestroy]);
 
       if (hasDelete) {
-        // this.Fs.DeleteFile(path);
-        let mensage = `Imagem deleta com sucesso`;
+        let mensage = `Imagem deletada com sucesso`;
         console.log(mensage, fileQuery);
 
         return { mensage };

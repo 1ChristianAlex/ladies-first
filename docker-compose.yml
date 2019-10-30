@@ -4,7 +4,7 @@ services:
   social_woman_db:
     image: mysql:5.7
     environment:
-      MYSQL_DATABASE: 'diana'
       MYSQL_ROOT_PASSWORD: 'social_woman_4_woman'
+      MYSQL_DATABASE: 'diana'
     ports:
       - '3306:3306'
