@@ -7,3 +7,4 @@ export { default as JobsModel } from './jobs';
 export { default as PostsModel } from './postFeed';
 export { default as SkillsModel } from './skills';
 export { default as UserModel } from './user';
+export { default as JobSub } from './jobsSubscription';

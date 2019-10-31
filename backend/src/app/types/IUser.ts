@@ -1,6 +1,6 @@
-import { IFIle } from './IFile';
+import { IFile } from './';
 
-export interface IUser {
+export default interface IUser {
   id?: string;
   name?: string;
   lastname?: string;
@@ -13,8 +13,8 @@ export interface IUser {
   description?: string;
   personal_link?: string;
   tel?: string;
-  files?: [IFIle];
-  imagens?: [IFIle];
+  files?: [IFile];
+  imagens?: [IFile];
   education?: [IEducation];
   skill?: [ISkills];
   create_at?: string;

@@ -1,7 +1,17 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../config/database';
 
-import { PostsModel, FilesModel, ImagesModel, JobsModel, SkillsModel, CompanyModel, EducationModel, FollowModel } from '../models';
+import {
+  PostsModel,
+  FilesModel,
+  ImagesModel,
+  JobsModel,
+  SkillsModel,
+  CompanyModel,
+  EducationModel,
+  FollowModel,
+  JobSub
+} from '../models';
 
 export default class User extends Model {}
 
@@ -54,6 +64,7 @@ User.hasMany(SkillsModel);
 User.hasMany(CompanyModel);
 User.hasMany(EducationModel);
 User.hasMany(FollowModel);
+User.hasMany(JobSub);
 
 // lista de educação
 // lista de skill

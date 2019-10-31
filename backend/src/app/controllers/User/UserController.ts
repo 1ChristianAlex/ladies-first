@@ -1,13 +1,12 @@
 import { UserModel, ImagesModel } from '../../models';
-import { IUser } from '../../types/IUser';
+import { IUser, IFile } from '../../types/';
 import { DateParser } from '../../classes';
 import Crypfy from '../../resources/cryptfy';
 import { FileSystem } from '../../resources/FileSystem';
 import { ImageController } from '../Files/ImageController';
-import { IFIle } from '../../types/IFile';
 
 export default class UserController extends ImageController {
-  public async CreateUser(user: IUser, file: IFIle) {
+  public async CreateUser(user: IUser, file: IFile) {
     try {
       let { password, birthday } = user;
       let crypfyPassword = new Crypfy(password);
@@ -26,7 +25,7 @@ export default class UserController extends ImageController {
     }
   }
 
-  public async UpdateUser(id, userNewInfo: IUser, profile: IFIle = null) {
+  public async UpdateUser(id, userNewInfo: IUser, profile: IFile = null) {
     try {
       let { birthday } = userNewInfo;
       let newDate = birthday ? (birthday = new DateParser(birthday).ParseDate()) : userNewInfo.birthday;

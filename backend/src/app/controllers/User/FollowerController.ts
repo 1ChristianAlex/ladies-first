@@ -1,10 +1,15 @@
 import { FollowModel } from '../../models';
 import UserModel from '../../models/user';
 import { User } from '../../classes/';
+import { IUser } from '../../types/';
 
 export class FollowPersonController {
   public async NewFollow(followId, userId) {
     try {
+      let hasUser = await UserModel.findByPk(followId);
+
+      if (hasUser == null) throw { error: 'User not found' };
+
       let followQuery = await FollowModel.create({ followId, userId });
       return followQuery;
     } catch (error) {
@@ -30,7 +35,7 @@ export class FollowPersonController {
 
       let userFollows = followListQuery.map(async (followUser: any) => {
         if (followUser.followId) {
-          return UserModel.findByPk(followUser.followId).then(follower => {
+          return await UserModel.findByPk(followUser.followId).then(follower => {
             if (follower) {
               return new User(follower.toJSON()).SimpleInfo();
             }
@@ -39,6 +44,7 @@ export class FollowPersonController {
           return false;
         }
       });
+
       let listOfFollowers = await Promise.all(userFollows);
       let filterList = listOfFollowers.filter(user => user != null);
 
