@@ -1,15 +1,16 @@
 import { PostsModel, ImagesModel } from '../../models';
-import { IPostType } from '../../types/IPostType';
-import { IFIle } from '../../types/IFile';
+import { IPostType, IFile } from '../../types/';
 import { ImageController } from '../Files/ImageController';
 import { Op } from 'sequelize';
 
 export class PostController {
   private ImageCtrl = new ImageController();
 
-  public async CreatePost(post: IPostType, userId: string, files: IFIle[]) {
+  public async CreatePost(post: IPostType, userId: string, files: IFile[]) {
     try {
-      let postQuery: IPostType = await PostsModel.create({ ...post, userId }).then(postResult => postResult.toJSON());
+      let postQuery: IPostType = await PostsModel.create({ ...post, userId }).then(postResult =>
+        postResult.toJSON()
+      );
       if (files.length > 0) {
         files.map(file => {
           this.ImageCtrl.SaveFile(file, userId, postQuery.id);
@@ -20,7 +21,7 @@ export class PostController {
       throw error;
     }
   }
-  public async UpdatePost(post: IPostType, userId: string, files: IFIle[]) {
+  public async UpdatePost(post: IPostType, userId: string, files: IFile[]) {
     try {
       let postQuery = await PostsModel.update(
         { ...post },

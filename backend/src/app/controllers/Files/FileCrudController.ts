@@ -1,4 +1,4 @@
-import { IFIle } from '../../types/IFile';
+import { IFile } from '../../types/';
 import { FileSystem } from '../../resources/FileSystem';
 import { ModelCtor } from 'sequelize/types';
 
@@ -7,20 +7,24 @@ export class FileCrudController {
 
   constructor(private Model: ModelCtor<any>) {}
 
-  public async SaveFile(file: IFIle, user_id = null, post_id = null) {
+  public async SaveFile(file: IFile, user_id = null, post_id = null) {
     try {
-      let fileQuery = await this.Model.create({ ...file, userId: user_id.toString(), postId: post_id }).then(fileResult => fileResult.toJSON());
+      let fileQuery = await this.Model.create({
+        ...file,
+        userId: user_id.toString(),
+        postId: post_id
+      }).then(fileResult => fileResult.toJSON());
       return fileQuery;
     } catch (error) {
       throw error;
     }
   }
 
-  public async UpdateImage(file: IFIle, user_id = null, post_id = null) {
+  public async UpdateImage(file: IFile, user_id = null, post_id = null) {
     try {
       let condition = { userId: user_id } || { postId: post_id };
 
-      let oldFile: IFIle = await this.Model.findOne({
+      let oldFile: IFile = await this.Model.findOne({
         where: { ...condition }
       }).then(oldF => oldF.toJSON());
 
@@ -31,7 +35,7 @@ export class FileCrudController {
         }
       );
 
-      let newFile: IFIle = await this.Model.findOne({
+      let newFile: IFile = await this.Model.findOne({
         where: { ...condition }
       }).then(newF => newF.toJSON());
 
@@ -45,7 +49,7 @@ export class FileCrudController {
 
   public async FindFile(id: string) {
     try {
-      let fileQuery: IFIle = await this.Model.findByPk(id).then(file => file.toJSON());
+      let fileQuery: IFile = await this.Model.findByPk(id).then(file => file.toJSON());
 
       return fileQuery;
     } catch (error) {
@@ -62,8 +66,7 @@ export class FileCrudController {
       let [fileQuery, hasDelete] = await Promise.all([fileQueryR, fileDestroy]);
 
       if (hasDelete) {
-        // this.Fs.DeleteFile(path);
-        let mensage = `Imagem deleta com sucesso`;
+        let mensage = `Imagem deletada com sucesso`;
         console.log(mensage, fileQuery);
 
         return { mensage };

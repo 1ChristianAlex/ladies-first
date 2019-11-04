@@ -1,4 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
+import { JobsModel } from '../models';
 import sequelize from '../../config/database';
 
 export default class Company extends Model {}
@@ -37,3 +38,5 @@ Company.init(
     modelName: 'companys'
   }
 );
+
+Company.hasMany(JobsModel);

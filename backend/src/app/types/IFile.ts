@@ -1,4 +1,4 @@
-export interface IFIle {
+export default interface IFIle {
   id?: string;
   fieldname?: string;
   originalname?: string;

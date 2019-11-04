@@ -1,6 +1,4 @@
-import { IFIle } from './IFile';
-
-export interface IPostType {
+export default interface IPostType {
   id?: string;
   title?: string;
   category?: string;

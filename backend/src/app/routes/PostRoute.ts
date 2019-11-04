@@ -23,7 +23,6 @@ PostRoute.route(postCrudRoute)
         let { id }: any = req.headers.user;
         let content = JSON.parse(req.body.content);
         let postSave = await PostFeedCtrl.CreatePost(content, id, files);
-        console.log(content);
 
         res.json(postSave);
       } catch (error) {

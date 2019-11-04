@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Button,
-  Input,
-  LoginForm,
-  Title,
-  ContentWrapper,
-  ImageCircle,
-  BigIcon,
-  SearchBar
-} from 'components';
+import { Button, Input, LoginForm, Title, ContentWrapper, ImageCircle, BigIcon, SearchBar } from 'components';
 
 const Components = () => {
   return (

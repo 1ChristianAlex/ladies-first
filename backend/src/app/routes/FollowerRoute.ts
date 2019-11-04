@@ -13,9 +13,10 @@ FollowRouter.route(FollowRoutePath)
         followId
       } = req.body;
       let follow = await FollowCtrl.NewFollow(followId, id);
+      if (follow.error) throw follow.error;
       res.json({ follow });
     } catch (error) {
-      res.status(500).json({ mensage: 'Error on post follow list' });
+      res.status(404).json({ mensage: 'Error on post follow list' });
     }
   })
   .get(async (req, res, next) => {
