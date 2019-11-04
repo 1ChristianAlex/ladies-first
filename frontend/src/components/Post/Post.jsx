@@ -14,7 +14,7 @@ import {
   CommentContainer
 } from './styles';
 
-// TODO: Quebrar componente em outros menores 
+// TODO: Quebrar componente em outros menores
 const Post = ({
   title,
   local,
@@ -24,7 +24,8 @@ const Post = ({
   liked,
   commented,
   shared,
-  comments
+  comments,
+  smaller
 }) => (
   <ContentWrapper>
     <Header>
@@ -32,7 +33,7 @@ const Post = ({
       <HeaderContent>
         <HeaderRow>
           <Title>{title}</Title>
-          <Small>Está em</Small>
+          {!smaller && <Small>Está em</Small>}
           <Title>{local}</Title>
         </HeaderRow>
         <HeaderRow>
@@ -41,27 +42,31 @@ const Post = ({
       </HeaderContent>
     </Header>
     {!!text && <PostText>{text}</PostText>}
-    {!!image && <PostImage src={image} />}
-    <ButtonsContainer>
-      <Button
-        text={liked ? 'Curtiu' : 'Curtir'}
-        active={!liked}
-        icon="FaThumbsUp"
-      />
-      <Button
-        text={commented ? 'Comentou' : 'Comentar'}
-        active={!commented}
-        icon="FaComments"
-      />
-      <Button
-        text={shared ? 'Compartilhou' : 'Compartilhar'}
-        active={!shared}
-        icon="FaShare"
-      />
-    </ButtonsContainer>
-    <CommentContainer>
-      {!!comments && comments.map(comment => <Comment />)}
-    </CommentContainer>
+    {!smaller && (
+      <>
+        {!!image && <PostImage src={image} />}
+        <ButtonsContainer>
+          <Button
+            text={liked ? 'Curtiu' : 'Curtir'}
+            active={!liked}
+            icon="FaThumbsUp"
+          />
+          <Button
+            text={commented ? 'Comentou' : 'Comentar'}
+            active={!commented}
+            icon="FaComments"
+          />
+          <Button
+            text={shared ? 'Compartilhou' : 'Compartilhar'}
+            active={!shared}
+            icon="FaShare"
+          />
+        </ButtonsContainer>
+        <CommentContainer>
+          {!!comments && comments.map(comment => <Comment />)}
+        </CommentContainer>
+      </>
+    )}
   </ContentWrapper>
 );
 
@@ -69,7 +74,8 @@ Post.defaultProps = {
   liked: false,
   commented: false,
   shared: false,
-  comments: null
+  comments: null,
+  smaller: false
 };
 
 Post.propTypes = {
@@ -82,6 +88,7 @@ Post.propTypes = {
   liked: PropTypes.bool,
   commented: PropTypes.bool,
   shared: PropTypes.bool,
-}
+  smaller: PropTypes.bool
+};
 
 export default Post;

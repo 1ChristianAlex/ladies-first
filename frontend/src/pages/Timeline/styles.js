@@ -19,18 +19,18 @@ export const Container = styled.div`
 
 export const SideMenu = styled.div`
   position: fixed;
-  left: 10vw;
+  left: 5vw;
 `;
 
 export const Search = styled.div`
   position: fixed;
-  left: 70vw;
+  left: 64vw;
 `;
 
 export const Posts = styled.main`
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 16vw;
-  width: 53vw;
+  left: 12vw;
+  width: 50vw;
 `;

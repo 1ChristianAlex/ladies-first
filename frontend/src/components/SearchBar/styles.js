@@ -3,9 +3,11 @@ import { Colors } from 'styles';
 
 export const Container = styled.div`
   position: relative;
+  width: 100%;
 `;
 
 export const Input = styled.input`
+  width: 100%;
   background: ${Colors.white};
   color: ${Colors.dark};
   padding: 12px 15px;
