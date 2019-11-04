@@ -13,3 +13,15 @@ export const Content = styled.div`
 export const SendWrapper = styled.div`
   margin-left: auto;
 `;
+
+export const Container = styled.div`
+  width: 50%;
+  margin-left: 240px;
+`;
+
+export const PostWrapper = styled.div`
+  margin-top: 20px;
+  > * {
+    margin-bottom: 10px;
+  }
+`;
