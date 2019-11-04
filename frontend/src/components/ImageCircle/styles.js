@@ -13,4 +13,5 @@ export const Container = styled.div`
   border-radius: 50%;
   border: 3px solid ${Colors.primary};
   cursor: pointer;
+  flex-shrink: 0;
 `;

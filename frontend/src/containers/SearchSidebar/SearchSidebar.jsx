@@ -3,15 +3,9 @@ import PropTypes from 'prop-types';
 import { SearchBar } from 'components';
 import { images } from 'assets';
 
-import { Container } from './styles';
+import {} from './styles';
 
-const SearchSidebar = ({}) => {
-  return (
-    <Container>
-      <SearchBar />
-    </Container>
-  )
-};
+const SearchSidebar = ({}) => <SearchBar />
 
 SearchSidebar.defaultProps = {
 }

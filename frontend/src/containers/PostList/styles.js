@@ -15,8 +15,7 @@ export const SendWrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 50%;
-  margin-left: 240px;
+  width: 100%;
 `;
 
 export const PostWrapper = styled.div`
