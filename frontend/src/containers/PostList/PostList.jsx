@@ -1,11 +1,57 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { ContentWrapper, ImageCircle, Input, Button, Post } from 'components';
 
 import { Content, SendWrapper, Container, PostWrapper } from './styles';
 
 // TODO: passar component input para text area
-const PostList = ({ postContent, changePostContent, onSubmit, posts }) => {
+const PostList = () => {
+  const [fields, setFields] = useState({
+    post: ''
+  });
+
+  const [posts] = useState([
+    {
+      title: 'Beatriz Alvez',
+      time: 'Hoje às 09:30hrs',
+      local: 'UNA - Barreiro',
+      text:
+        'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
+      image: 'https://picsum.photos/550/300'
+    },
+    {
+      title: 'Beatriz Alvez',
+      time: 'Hoje às 09:30hrs',
+      local: 'UNA - Barreiro',
+      text:
+        'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
+      image: 'https://picsum.photos/550/300'
+    },
+    {
+      title: 'Beatriz Alvez',
+      time: 'Hoje às 09:30hrs',
+      local: 'UNA - Barreiro',
+      text:
+        'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
+      image: 'https://picsum.photos/550/300'
+    },
+    {
+      title: 'Beatriz Alvez',
+      time: 'Hoje às 09:30hrs',
+      local: 'UNA - Barreiro',
+      text:
+        'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
+      image: 'https://picsum.photos/550/300'
+    }
+  ]);
+
+  const handleSubmit = () => {
+    window.alert('Postou! ;)');
+  };
+
+  const handleChange = field => text => {
+    setFields({ ...fields, [field]: text });
+  };
+
   return (
     <Container>
       <ContentWrapper title="Crie uma publicação:">
@@ -16,8 +62,8 @@ const PostList = ({ postContent, changePostContent, onSubmit, posts }) => {
           />
           <Input
             placeholder="Conte-nos as novidades!"
-            value={postContent}
-            onChange={e => changePostContent(e.target.value)}
+            value={fields.post}
+            onChange={e => handleChange('post', e.target.value)}
           />
         </Content>
         <Content itemsMargin={8}>
@@ -29,35 +75,26 @@ const PostList = ({ postContent, changePostContent, onSubmit, posts }) => {
               text="Enviar"
               active
               padding="8px 30px"
-              onClick={onSubmit}
+              onClick={handleSubmit}
             />
           </SendWrapper>
         </Content>
       </ContentWrapper>
       <PostWrapper>
-      {posts.length ? posts.map(post => (
-        <Post
-          title={post.title}
-          time={post.time}
-          local={post.local}
-          text={post.text}
-          image={post.image}
-        />
-      )) : null}
+        {posts.length
+          ? posts.map(post => (
+              <Post
+                title={post.title}
+                time={post.time}
+                local={post.local}
+                text={post.text}
+                image={post.image}
+              />
+            ))
+          : null}
       </PostWrapper>
     </Container>
   );
-};
-
-PostList.defaultProps = {
-  posts: []
-};
-
-PostList.propTypes = {
-  postContent: PropTypes.string.isRequired,
-  changePostContent: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  posts: PropTypes.array,
 };
 
 export default PostList;

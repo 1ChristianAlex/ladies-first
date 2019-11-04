@@ -1,11 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { SearchBar, Post } from 'components';
-import { images } from 'assets';
 
 import { AdsWrapper } from './styles';
 
-const SearchSidebar = ({}) => {
+const SearchSidebar = () => {
   const ads = [
     {
       title: 'Arquitetura BH',
