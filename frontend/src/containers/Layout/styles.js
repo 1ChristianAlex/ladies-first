@@ -8,6 +8,7 @@ export const Container = styled.div`
   background-size: cover;
   background-position: center;
   position: relative;
+  overflow-y: scroll;
 
   :after {
     top: 0;
@@ -18,7 +19,8 @@ export const Container = styled.div`
     width: 100%;
     height: 100%;
     background-color: #fbfbfb60;
-    position: absolute;
+    position: fixed;
+    pointer-events: none;
   }
 
   > * {

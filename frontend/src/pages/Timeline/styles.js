@@ -5,7 +5,6 @@ export const Container = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   max-height: 100vh;
-  overflow-y: scroll;
   position: absolute;
   left: 0;
   right: 0;

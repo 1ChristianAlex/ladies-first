@@ -52,6 +52,7 @@ export const StyledIcon = styled.svg`
 `;
 
 export const Text = styled.span`
+  font-size: ${props => props.bigText ? 28 : 20}px;
   ${props => !!props.hasIcon && css`
     margin-left: 32px;
   `}
