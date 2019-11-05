@@ -3,7 +3,14 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 
-import { Home, Login, Perfil, Components, Timeline } from '../pages';
+import {
+  Home,
+  Login,
+  Perfil,
+  Components,
+  Timeline,
+  FriendsProfile
+} from '../pages';
 
 const Routes = () => (
   <Router>
@@ -12,8 +19,9 @@ const Routes = () => (
       <PublicRoute path="/login" component={Login} />
       <PublicRoute path="/components" component={Components} />
 
-      <PrivateRoute path="/perfil" component={Perfil} />
+      <PublicRoute path="/perfil" component={Perfil} />
       <PublicRoute path="/timeline" component={Timeline} />
+      <PublicRoute path="/friends-profile" component={FriendsProfile} />
     </Switch>
   </Router>
 );
