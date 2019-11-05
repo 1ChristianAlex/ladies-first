@@ -9,3 +9,5 @@ export { default as BigIcon } from './BigIcon/BigIcon';
 export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as Post } from './Post/Post';
 export { default as Comment } from './Comment/Comment';
+export { default as ProfileBio } from './ProfileBio/ProfileBio';
+export { default as ProfileCover } from './ProfileCover/ProfileCover';
