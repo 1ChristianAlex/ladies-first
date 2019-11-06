@@ -12,3 +12,4 @@ export { default as Comment } from './Comment/Comment';
 export { default as ProfileBio } from './ProfileBio/ProfileBio';
 export { default as ProfileCover } from './ProfileCover/ProfileCover';
 export { default as BigProfileBio } from './BigProfileBio/BigProfileBio';
+export { default as FormInput } from './FormInput/FormInput';
