@@ -1,8 +1,8 @@
 import React from 'react';
 import { ProfileCover } from 'components';
-import { Layout, ProfilePostList, SearchSidebar } from 'containers';
+import { Layout, ProfileEdit } from 'containers';
 import { images } from 'assets';
-import { Container, Search, Posts } from './styles';
+import { Container, Posts } from './styles';
 
 // TODO: Refazer layout sem position absolute/fixed
 const Profile = () => {
@@ -11,7 +11,7 @@ const Profile = () => {
       <ProfileCover imageSrc={images.cover} />
       <Container>
         <Posts>
-          <ProfilePostList />
+          <ProfileEdit />
         </Posts>
       </Container>
     </Layout>

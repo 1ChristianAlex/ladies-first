@@ -11,15 +11,9 @@ export const Container = styled.div`
   margin-top: 20px;
 `;
 
-export const Search = styled.div`
-  position: absolute;
-  left: 63vw;
-`;
-
 export const Posts = styled.main`
-  position: absolute;
+  position: relative;
   top: 0;
   bottom: 0;
-  left: 9vw;
-  width: 50vw;
+  width: 100%;
 `;
