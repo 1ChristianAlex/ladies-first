@@ -6,7 +6,7 @@ import PrivateRoute from './PrivateRoute';
 import {
   Home,
   Login,
-  Perfil,
+  Profile,
   Components,
   Timeline,
   FriendsProfile
@@ -19,7 +19,7 @@ const Routes = () => (
       <PublicRoute path="/login" component={Login} />
       <PublicRoute path="/components" component={Components} />
 
-      <PublicRoute path="/perfil" component={Perfil} />
+      <PublicRoute path="/me" component={Profile} />
       <PublicRoute path="/timeline" component={Timeline} />
       <PublicRoute path="/friends-profile" component={FriendsProfile} />
     </Switch>
