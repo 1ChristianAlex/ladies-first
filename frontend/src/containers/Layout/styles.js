@@ -8,7 +8,7 @@ export const Container = styled.div`
   background-size: cover;
   background-position: center;
   position: relative;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   :after {
     top: 0;
