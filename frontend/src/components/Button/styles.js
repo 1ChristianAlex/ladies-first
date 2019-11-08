@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Colors } from 'styles';
 
-export const StyledButton = styled.a`
+export const StyledButton = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -22,10 +22,12 @@ export const StyledButton = styled.a`
     opacity: 0.7;
   }
 
-  ${props => !!props.active && css`
-    background-color: ${Colors.white};
-    color: ${Colors.primary};
-  `}
+  ${props =>
+    !!props.active &&
+    css`
+      background-color: ${Colors.white};
+      color: ${Colors.primary};
+    `}
 
   ${props =>
     !!props.bigger &&
@@ -42,7 +44,11 @@ export const StyledButton = styled.a`
         transform: translateX(-50%);
       }
     `}
-  ${props => !!props.padding && css`padding: ${props.padding};`}
+  ${props =>
+    !!props.padding &&
+    css`
+      padding: ${props.padding};
+    `}
 `;
 
 export const StyledIcon = styled.svg`
@@ -52,8 +58,10 @@ export const StyledIcon = styled.svg`
 `;
 
 export const Text = styled.span`
-  font-size: ${props => props.bigText ? 28 : 20}px;
-  ${props => !!props.hasIcon && css`
-    margin-left: 32px;
-  `}
+  font-size: ${props => (props.bigText ? 28 : 20)}px;
+  ${props =>
+    !!props.hasIcon &&
+    css`
+      margin-left: 32px;
+    `}
 `;

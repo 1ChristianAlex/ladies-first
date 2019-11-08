@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { PostController } from '../controllers/Feed/PostController';
 import MulterMidle from '../middleware/MulterMiddleware';
-import { IFIle } from '../types/IFile';
+import { IFile } from '../types/';
 
 export const PostRoute = Router();
 const PostFeedCtrl = new PostController();
@@ -19,7 +19,7 @@ PostRoute.route(postCrudRoute)
     MulterHandler,
     async (req, res, next) => {
       try {
-        let files = req.files as Array<IFIle>;
+        let files = req.files as Array<IFile>;
         let { id }: any = req.headers.user;
         let content = JSON.parse(req.body.content);
         let postSave = await PostFeedCtrl.CreatePost(content, id, files);

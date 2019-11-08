@@ -9,20 +9,19 @@ const Button = ({ text, href, to, onClick, bigger, active, icon, padding, bigTex
 
   const Component = () => {
     if (href) {
-      return 'a'
+      return 'a';
     }
     if (to) {
-      return Link
+      return Link;
     }
     if (onClick) {
-      return 'button'
+      return 'button';
     }
-  }
+  };
 
   return (
     <StyledButton
       as={Component()}
-      href={href}
       to={to}
       onClick={onClick}
       bigger={bigger ? 1 : 0}
@@ -30,7 +29,9 @@ const Button = ({ text, href, to, onClick, bigger, active, icon, padding, bigTex
       padding={padding}
     >
       {icon && <StyledIcon as={Icon} size="28" />}
-      <Text hasIcon={!!icon} bigText>{text}</Text>
+      <Text hasIcon={!!icon} bigText>
+        {text}
+      </Text>
     </StyledButton>
   );
 };
@@ -52,7 +53,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   icon: PropTypes.string,
   padding: PropTypes.string,
-  bigText: PropTypes.bool,
+  bigText: PropTypes.bool
 };
 
 export default Button;

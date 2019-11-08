@@ -64,7 +64,7 @@ User.hasMany(SkillsModel);
 User.hasMany(CompanyModel);
 User.hasMany(EducationModel);
 User.hasMany(FollowModel);
-User.hasMany(JobSub);
+// User.hasMany(JobSub);
 
 // lista de educação
 // lista de skill

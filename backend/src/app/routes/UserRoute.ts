@@ -2,6 +2,7 @@ import { Router } from 'express';
 import UserController from '../controllers/User/UserController';
 import LoginController from '../controllers/User/LoginController';
 import MulterFile from '../middleware/MulterMiddleware';
+import { log } from 'util';
 
 export const UserRoute = Router();
 
@@ -84,6 +85,8 @@ UserRoute.post(registerRouterPath, UserStoreTypeSingle, async (req, res, next) =
 UserRoute.post(loginRouterPath, async (req, res, next) => {
   try {
     let { email, password } = req.body;
+    console.log(req.body);
+
     let loginResult = await UserLogin.Login(email, password);
     res.status(200).json(loginResult);
 

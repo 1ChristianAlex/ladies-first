@@ -2,14 +2,7 @@ import React from 'react';
 
 import { Container, StyledInput } from './styles';
 
-const Input = ({
-  type,
-  value,
-  onChange,
-  placeholder,
-  hasLine,
-  borderRadius
-}) => (
+const Input = ({ type, value, onChange, placeholder, hasLine, borderRadius, name }) => (
   <Container hasLine={hasLine}>
     <StyledInput
       type={type}
@@ -17,6 +10,7 @@ const Input = ({
       onChange={e => onChange(e)}
       placeholder={placeholder}
       borderRadius={borderRadius}
+      name={name}
     />
   </Container>
 );

@@ -39,4 +39,4 @@ Company.init(
   }
 );
 
-Company.hasMany(JobsModel);
+// Company.hasMany(JobsModel);

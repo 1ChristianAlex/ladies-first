@@ -6,8 +6,8 @@ import LoginControler from '../controllers/User/LoginController';
 export const TokenVerify = async (req: Request, res: Response, next: NextFunction) => {
   let loginControl = new LoginControler();
   let token;
-  if (req.headers['leaf-access-token']) {
-    token = req.headers['leaf-access-token'];
+  if (req.headers.authorization) {
+    token = req.headers.authorization;
   } else {
     res.status(401).json({ mensage: 'Invalid token, please loged again' });
     return false;
