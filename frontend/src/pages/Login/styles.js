@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { images } from 'assets';
 
 export const Form = styled.div`
   display: flex;
@@ -19,9 +18,6 @@ export const Form = styled.div`
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  background: url(${images.background});
-  background-size: cover;
-  background-position: center;
   position: relative;
 
   :after {
@@ -32,7 +28,6 @@ export const Container = styled.div`
     display: block;
     width: 100%;
     height: 100%;
-    background-color: #fbfbfb60;
     position: absolute;
   }
 

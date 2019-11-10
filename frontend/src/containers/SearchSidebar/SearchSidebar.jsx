@@ -8,43 +8,34 @@ const SearchSidebar = () => {
     {
       title: 'Arquitetura BH',
       time: 'Nova vaga disponível',
-      text:
-        '"Venha fazer parte do nosso time!!" :)',
+      text: '"Venha fazer parte do nosso time!!" :)'
     },
     {
       title: 'Beatriz Alves',
       time: 'Nova publicação',
-      text:
-        '"Belo dia pra reunião com elas...',
+      text: '"Belo dia pra reunião com elas...'
     },
     {
       title: 'Vagas pra você',
       time: 'Vagas recentes',
-      text:
-        '"Nós da Lilith Store buscamos...',
-    },
+      text: '"Nós da Lilith Store buscamos...'
+    }
   ];
 
   return (
-  <>
-    <SearchBar />
-    <AdsWrapper>
-      {ads.map(ad => (
-        <Post
-          smaller
-          title={ad.title}
-          time={ad.time}
-          text={ad.text}
-        />
-      ))}
-    </AdsWrapper>
-  </>
-)}
+    <>
+      <SearchBar />
+      <AdsWrapper>
+        {ads.map((ad, index) => (
+          <Post key={index} smaller title={ad.title} time={ad.time} text={ad.text} />
+        ))}
+      </AdsWrapper>
+    </>
+  );
+};
 
-SearchSidebar.defaultProps = {
-}
+SearchSidebar.defaultProps = {};
 
-SearchSidebar.propTypes = {
-}
+SearchSidebar.propTypes = {};
 
 export default SearchSidebar;

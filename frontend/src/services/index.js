@@ -1,1 +1,2 @@
-export { default as http } from './http';
+export { default as APIPublic } from './http/public';
+export { default as Auth } from './auth';

@@ -1,16 +1,14 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-
-// Até integração de função de checar se usuário está logado, retorna false
-const isUserLogged = () => false;
+import { Auth } from '../services/';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route {...rest}>
-      {!isUserLogged() ? (
+      {!Auth.isAuth() ? (
         <Redirect
           to={{
-            pathname: '/login',
+            pathname: '/',
             state: { message: 'Você tem que logar primeiro' }
           }}
         />

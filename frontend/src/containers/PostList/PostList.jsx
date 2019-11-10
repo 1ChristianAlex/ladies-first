@@ -71,19 +71,15 @@ const PostList = () => {
           <Button text="Pessoas" icon="FaUserTag" />
           <Button text="Locais" icon="FaTags" />
           <SendWrapper>
-            <Button
-              text="Enviar"
-              active
-              padding="8px 30px"
-              onClick={handleSubmit}
-            />
+            <Button text="Enviar" active padding="8px 30px" onClick={handleSubmit} />
           </SendWrapper>
         </Content>
       </ContentWrapper>
       <PostWrapper>
         {posts.length
-          ? posts.map(post => (
+          ? posts.map((post, index) => (
               <Post
+                key={index}
                 title={post.title}
                 time={post.time}
                 local={post.local}

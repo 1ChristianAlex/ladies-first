@@ -5,7 +5,6 @@ import { Container, SideMenu, Search, Posts } from './styles';
 
 // TODO: Refazer layout sem position absolute/fixed
 const Timeline = () => {
-
   return (
     <Layout>
       <Container>

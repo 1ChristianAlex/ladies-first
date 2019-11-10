@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as Fa from 'react-icons/fa';
 import { StyledButton, StyledIcon, Text } from './styles';
 
-const Button = ({ text, href, to, onClick, bigger, active, icon, padding, bigText }) => {
+const Button = ({ text, href, to, onClick, bigger, active, icon, padding, bigText, type }) => {
   const Icon = Fa[icon];
 
   const Component = () => {
@@ -27,6 +27,7 @@ const Button = ({ text, href, to, onClick, bigger, active, icon, padding, bigTex
       bigger={bigger ? 1 : 0}
       active={active ? 1 : 0}
       padding={padding}
+      type={type}
     >
       {icon && <StyledIcon as={Icon} size="28" />}
       <Text hasIcon={!!icon} bigText>
@@ -43,7 +44,8 @@ Button.defaultProps = {
   onClick: () => {},
   icon: '',
   padding: '',
-  bigText: false
+  bigText: false,
+  type: 'button'
 };
 
 Button.propTypes = {
@@ -53,7 +55,8 @@ Button.propTypes = {
   onClick: PropTypes.func,
   icon: PropTypes.string,
   padding: PropTypes.string,
-  bigText: PropTypes.bool
+  bigText: PropTypes.bool,
+  type: PropTypes.string
 };
 
 export default Button;

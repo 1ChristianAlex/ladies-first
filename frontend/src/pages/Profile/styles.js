@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   position: asbsolute;
   left: 0;
   right: 0;
@@ -15,5 +16,5 @@ export const Posts = styled.main`
   position: relative;
   top: 0;
   bottom: 0;
-  width: 100%;
+  width: 80%;
 `;

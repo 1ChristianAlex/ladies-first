@@ -2,38 +2,31 @@ import axios from 'axios';
 import { apiUrl } from '../../config';
 
 export default class APIRequest {
-  apiInstance = axios.create({
+  axios = axios.create({
     baseURL: apiUrl
   });
 
-  async getRequest(url) {
+  async Get(url) {
     try {
-      let request = await this.apiInstance.get(url);
+      let request = await this.axios.get(url);
       let { data, status } = request;
 
-      if (status == 200) {
-        console.log(data);
-
+      if (status === 200) {
         return data;
       }
     } catch (error) {
-      console.log(error);
+      throw error.response;
     }
   }
-  async postRequest(parm, body) {
+  async Post(parm, body) {
     try {
-      console.log(parm);
-
-      let request = await this.apiInstance.post(parm, body);
+      let request = await this.axios.post(parm, body);
       let { data, status } = request;
-
-      if (status == 200) {
-        console.log(data);
-
+      if (status === 200) {
         return data;
       }
     } catch (error) {
-      console.log(error);
+      throw error.response;
     }
   }
 }

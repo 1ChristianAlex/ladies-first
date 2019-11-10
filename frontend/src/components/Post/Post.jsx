@@ -25,9 +25,10 @@ const Post = ({
   commented,
   shared,
   comments,
-  smaller
+  smaller,
+  key
 }) => (
-  <ContentWrapper>
+  <ContentWrapper key={key}>
     <Header>
       <ImageCircle size={70} />
       <HeaderContent>
@@ -46,25 +47,15 @@ const Post = ({
       <>
         {!!image && <PostImage src={image} />}
         <ButtonsContainer>
-          <Button
-            text={liked ? 'Curtiu' : 'Curtir'}
-            active={!liked}
-            icon="FaThumbsUp"
-          />
+          <Button text={liked ? 'Curtiu' : 'Curtir'} active={!liked} icon="FaThumbsUp" />
           <Button
             text={commented ? 'Comentou' : 'Comentar'}
             active={!commented}
             icon="FaComments"
           />
-          <Button
-            text={shared ? 'Compartilhou' : 'Compartilhar'}
-            active={!shared}
-            icon="FaShare"
-          />
+          <Button text={shared ? 'Compartilhou' : 'Compartilhar'} active={!shared} icon="FaShare" />
         </ButtonsContainer>
-        <CommentContainer>
-          {!!comments && comments.map(comment => <Comment />)}
-        </CommentContainer>
+        <CommentContainer>{!!comments && comments.map(comment => <Comment />)}</CommentContainer>
       </>
     )}
   </ContentWrapper>
@@ -88,7 +79,8 @@ Post.propTypes = {
   liked: PropTypes.bool,
   commented: PropTypes.bool,
   shared: PropTypes.bool,
-  smaller: PropTypes.bool
+  smaller: PropTypes.bool,
+  key: PropTypes.any
 };
 
 export default Post;
