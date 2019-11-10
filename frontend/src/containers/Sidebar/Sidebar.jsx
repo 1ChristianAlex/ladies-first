@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { BigIcon, ImageCircle, LogoMenu } from 'components';
-
+import { StoreContext } from '../../context/store/';
 import { Container } from './styles';
 
 const Sidebar = ({ notifications }) => {
+  const {
+    store: { user }
+  } = useContext(StoreContext);
+
   return (
     <Container>
       <LogoMenu />
-      <ImageCircle size={60} src="https://avatars0.githubusercontent.com/u/12896082?s=460&v=4" />
+      <ImageCircle size={60} src={user.url} />
       <BigIcon size={40} icon="FaBell" notifications={notifications} />
       <BigIcon size={40} icon="FaPen" />
       <BigIcon size={40} icon="FaCogs" />

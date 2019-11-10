@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { Auth } from '../services/';
+import { StoreContext } from '../context/store';
+import { updateUser } from '../context/actions/user';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+  const { dispatch } = useContext(StoreContext);
+
+  const getCurrentUser = () => {
+    const auth = new Auth();
+    auth.GetCurrentUser().then(user => {
+      dispatch(updateUser(user));
+    });
+  };
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
+
   return (
     <Route {...rest}>
       {!Auth.isAuth() ? (

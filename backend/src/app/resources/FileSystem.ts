@@ -1,5 +1,5 @@
 import fs from 'fs';
-
+import path from 'path';
 export default class FileSystem {
   public async CreateFolder(path: string) {
     try {
@@ -21,5 +21,8 @@ export default class FileSystem {
     } catch (error) {
       console.log('Error on Folder Exists', error);
     }
+  }
+  public PathResolve(ph: string) {
+    return path.resolve(ph);
   }
 }

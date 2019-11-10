@@ -61,10 +61,19 @@ export default class UserController extends ImageController {
         include: [
           {
             model: ImagesModel,
-            limit: 1
+            limit: 1,
+            attributes: ['url']
           }
         ]
-      }).then(result => result.toJSON());
+      }).then(result => {
+        let res: any = result.toJSON();
+        let [url] = res.imagens;
+        delete res.imagens;
+        return {
+          ...res,
+          ...url
+        };
+      });
 
       let user = await userQuery;
       return { ...user };
@@ -75,7 +84,8 @@ export default class UserController extends ImageController {
   public async GetCurrentUser(token: string) {
     try {
       const jwt = new JsonWebToken();
-      let user = jwt.VerifyToken(token);
+      let tkJson: any = jwt.VerifyToken(token);
+      let user = await this.GetUser(tkJson.id);
       return user;
     } catch (error) {
       throw error;

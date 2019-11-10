@@ -1,6 +1,8 @@
 import { IFile } from '../../types/';
 import { FileSystem } from '../../resources/';
 import { ModelCtor } from 'sequelize/types';
+import envs from '../../../config/local';
+import { Op } from 'sequelize';
 
 export class FileCrudController {
   private Fs = new FileSystem();
@@ -9,8 +11,10 @@ export class FileCrudController {
 
   public async SaveFile(file: IFile, user_id = null, post_id = null) {
     try {
+      let url = `http://${envs.HOSTNAME}:${envs.BACK_END_PORT}/media`;
       let fileQuery = await this.Model.create({
         ...file,
+        url: `${url}/${file.filename}`,
         userId: user_id.toString(),
         postId: post_id
       }).then(fileResult => fileResult.toJSON());
@@ -47,10 +51,22 @@ export class FileCrudController {
     }
   }
 
-  public async FindFile(id: string) {
+  public async FindFile(id: string = '') {
     try {
-      let fileQuery: IFile = await this.Model.findByPk(id).then(file => file.toJSON());
-
+      let fileQuery: IFile = await this.Model.findOne({
+        where: {
+          [Op.or]: [
+            {
+              id
+            },
+            {
+              filename: {
+                [Op.like]: `%${id}%`
+              }
+            }
+          ]
+        }
+      }).then(file => file.toJSON());
       return fileQuery;
     } catch (error) {
       throw error;
@@ -74,5 +90,10 @@ export class FileCrudController {
     } catch (error) {
       throw error;
     }
+  }
+  public SendFile(path: string) {
+    try {
+      let pathResolved = this.Fs.PathResolve(path);
+    } catch (error) {}
   }
 }

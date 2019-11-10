@@ -24,6 +24,9 @@ File.init(
     },
     size: {
       type: DataTypes.INTEGER
+    },
+    url: {
+      type: DataTypes.STRING
     }
   },
   { sequelize, underscored: true, modelName: 'files' }

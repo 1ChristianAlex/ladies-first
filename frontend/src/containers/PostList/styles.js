@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Content = styled.div`
   display: flex;
-  align-items: center;
+  flex-flow: row;
   margin-bottom: 10px;
 
   > *:not(:last-child) {
@@ -12,6 +12,7 @@ export const Content = styled.div`
 
 export const SendWrapper = styled.div`
   margin-left: auto;
+  flex: 1;
 `;
 
 export const Container = styled.div`

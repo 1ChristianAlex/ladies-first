@@ -11,6 +11,8 @@ export default class Auth {
       localStorage.setItem(this.TokenName, JSON.stringify(token));
       return user;
     } catch (error) {
+      console.log(error);
+
       throw error;
     }
   }
@@ -24,9 +26,9 @@ export default class Auth {
   }
   async GetCurrentUser() {
     try {
-      let token = localStorage.getItem(this.TokenName);
+      let token = this.ApiPrivate.Token();
       if (token) {
-        let urlParm = `/api/current/${token}`;
+        let urlParm = `/current/${token}`;
         let currentUser = await this.ApiPrivate.Get(urlParm);
         return currentUser;
       }

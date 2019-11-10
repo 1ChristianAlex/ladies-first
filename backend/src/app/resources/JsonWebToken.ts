@@ -8,12 +8,13 @@ export default class JsonWebToken {
     let token = JsonToken.sign(user, this.Secret);
     return token;
   }
-  public VerifyToken(token) {
+  public VerifyToken(token: string) {
     try {
-      let verifyResult = JsonToken.verify(token, this.Secret);
+      let tk = token.replace('Bearer ', '');
+      let verifyResult = JsonToken.verify(tk, this.Secret);
       return verifyResult;
     } catch (error) {
-      return { mensage: 'JWT Error' };
+      throw { mensage: 'JWT Error' };
     }
   }
 }

@@ -2,12 +2,17 @@ import axios from 'axios';
 import { apiUrl } from '../../config';
 
 export default class APIPrivateRequest {
-  Token = `Bearer ${localStorage.getItem('TOKEN_APP')}`;
+  TokenName = 'TOKEN_APP';
+  Token() {
+    return localStorage.getItem(this.TokenName)
+      ? localStorage.getItem(this.TokenName).replace(/\"*/g, '')
+      : '';
+  }
 
   axios = axios.create({
-    baseURL: apiUrl,
+    baseURL: `${apiUrl}/api`,
     headers: {
-      Authorization: this.Token
+      Authorization: `Bearer ${this.Token()}`
     }
   });
 

@@ -1,7 +1,6 @@
 import { UserModel, ImagesModel } from '../../models';
 import { User } from '../../classes';
-import Cryptfy from '../../resources/cryptfy';
-import { JsonWebToken } from '../../resources/';
+import { JsonWebToken, Cryptfy } from '../../resources/';
 
 export default class LoginController {
   private JsonToken = new JsonWebToken();
@@ -25,18 +24,14 @@ export default class LoginController {
           }
         ]
       }).then(result => (result ? new User(result.toJSON()) : false));
+
       if (queryResult) {
-        let token = this.JsonToken.CreateToken(queryResult.TokenInfo());
         let user = queryResult.SimpleInfo();
+        let token = this.JsonToken.CreateToken(queryResult.TokenInfo());
         return { token, user };
       }
-      throw new Error();
     } catch (error) {
       throw error;
     }
-  }
-  IsLoged(token: string) {
-    let tokenVerify = this.JsonToken.VerifyToken(token);
-    return tokenVerify ? tokenVerify : false;
   }
 }

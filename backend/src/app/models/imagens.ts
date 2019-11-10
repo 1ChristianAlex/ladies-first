@@ -22,6 +22,9 @@ Imagens.init(
     smallImagePath: {
       type: DataTypes.STRING
     },
+    url: {
+      type: DataTypes.STRING
+    },
     size: {
       type: DataTypes.INTEGER
     }

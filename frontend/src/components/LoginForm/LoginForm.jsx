@@ -11,7 +11,7 @@ const LoginForm = () => {
   // TODO: Criar um custom hook pra diminuir código
   const { state } = useLocation();
   let history = useHistory();
-  let { store, dispatch } = useContext(StoreContext);
+  let { dispatch } = useContext(StoreContext);
 
   let [inputState, setInputState] = useState({});
   let [errorMensage, seterrorMensage] = useState('');
@@ -26,7 +26,9 @@ const LoginForm = () => {
 
       history.push('/timeline');
     } catch (error) {
-      // seterrorMensage(error.data.mensage);
+      console.log(error);
+
+      // seterrorMensage(error);
     }
   }
   function handleChange(e) {

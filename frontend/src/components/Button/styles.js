@@ -2,20 +2,13 @@ import styled, { css } from 'styled-components';
 import { Colors } from 'styles';
 
 export const StyledButton = styled.button`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: fit-content;
-  background-color: ${Colors.primary};
-  color: ${Colors.white};
-  border-radius: 50px;
-  padding: 8px 17px;
-  font-family: Roboto, sans-serif;
-  font-size: 18px;
-  border: 3px solid ${Colors.primary};
-  position: relative;
-  transition: opacity 0.2s ease-in-out;
-  text-decoration: none;
+    background-color: ${Colors.primary};
+    flex: 1;
+    position: relative;
+    border: 1px solid ${Colors.primary};
+    border-radius: 25px;
+    padding: 5px 10px;
+    color: white;
   cursor: pointer;
 
   :hover {

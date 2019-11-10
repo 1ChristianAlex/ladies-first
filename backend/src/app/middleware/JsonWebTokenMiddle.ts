@@ -1,29 +1,35 @@
 import { Request, Response, NextFunction } from 'express';
 import LoginControler from '../controllers/User/LoginController';
+import { JsonWebToken } from '../resources';
 
 // Função de verificação de token para o middleware
 
 export const TokenVerify = async (req: Request, res: Response, next: NextFunction) => {
-  let loginControl = new LoginControler();
-  let token;
-  if (req.headers.authorization) {
-    token = req.headers.authorization;
-  } else {
-    res.status(401).json({ mensage: 'Invalid token, please loged again' });
-    return false;
-  }
+  try {
+    let token;
+    const jwt = new JsonWebToken();
 
-  let bodyResponse = req.body;
+    if (req.headers.authorization) {
+      token = req.headers.authorization;
+    } else {
+      res.status(401).json({ mensage: 'Invalid token, please loged again' });
+      return false;
+    }
 
-  let userAuth = await loginControl.IsLoged(token);
+    let bodyResponse = req.body;
 
-  if (userAuth) {
-    req.body = {
-      user: userAuth,
-      ...bodyResponse
-    };
-    next();
-  } else {
+    let userAuth = await jwt.VerifyToken(token);
+
+    if (userAuth) {
+      req.body = {
+        user: userAuth,
+        ...bodyResponse
+      };
+      next();
+    } else {
+      res.status(401).json({ mensage: 'Invalid token, please loged again' });
+    }
+  } catch (error) {
     res.status(401).json({ mensage: 'Invalid token, please loged again' });
   }
 };

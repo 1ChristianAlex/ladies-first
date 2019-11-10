@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { ContentWrapper, ImageCircle, Input, Button, Post } from 'components';
+import { StoreContext } from '../../context/store/';
 
 import { Content, SendWrapper, Container, PostWrapper } from './styles';
 
@@ -8,6 +9,9 @@ const PostList = () => {
   const [fields, setFields] = useState({
     post: ''
   });
+  const {
+    store: { user }
+  } = useContext(StoreContext);
 
   const [posts] = useState([
     {
@@ -56,10 +60,7 @@ const PostList = () => {
     <Container>
       <ContentWrapper title="Crie uma publicação:">
         <Content>
-          <ImageCircle
-            size={60}
-            src="https://avatars0.githubusercontent.com/u/12896082?s=460&v=4"
-          />
+          <ImageCircle size={60} src={user.url} />
           <Input
             placeholder="Conte-nos as novidades!"
             value={fields.post}
