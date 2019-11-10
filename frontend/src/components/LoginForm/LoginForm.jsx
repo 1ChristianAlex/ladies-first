@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Input, Title } from 'components';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Auth } from '../../services/';
+import { StoreContext } from '../../context/store';
+import { updateUser } from '../../context/actions/user';
 
 import { Container, Form, Error, ButtonContainer } from './styles';
 
@@ -9,6 +11,7 @@ const LoginForm = () => {
   // TODO: Criar um custom hook pra diminuir código
   const { state } = useLocation();
   let history = useHistory();
+  let { store, dispatch } = useContext(StoreContext);
 
   let [inputState, setInputState] = useState({});
   let [errorMensage, seterrorMensage] = useState('');
@@ -17,10 +20,13 @@ const LoginForm = () => {
     try {
       e.preventDefault();
       const auth = new Auth();
-      await auth.Login(inputState);
+      let user = await auth.Login(inputState);
+
+      dispatch(updateUser(user));
+
       history.push('/timeline');
     } catch (error) {
-      seterrorMensage(error.data.mensage);
+      // seterrorMensage(error.data.mensage);
     }
   }
   function handleChange(e) {
