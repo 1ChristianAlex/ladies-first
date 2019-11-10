@@ -1,5 +1,5 @@
 import { IFile } from '../../types/';
-import { FileSystem } from '../../resources/FileSystem';
+import { FileSystem } from '../../resources/';
 import { ModelCtor } from 'sequelize/types';
 
 export class FileCrudController {

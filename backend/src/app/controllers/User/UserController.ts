@@ -2,7 +2,7 @@ import { UserModel, ImagesModel } from '../../models';
 import { IUser, IFile } from '../../types/';
 import { DateParser } from '../../classes';
 import Crypfy from '../../resources/cryptfy';
-import { FileSystem } from '../../resources/FileSystem';
+import { FileSystem, JsonWebToken } from '../../resources/';
 import { ImageController } from '../Files/ImageController';
 
 export default class UserController extends ImageController {
@@ -12,9 +12,11 @@ export default class UserController extends ImageController {
       let crypfyPassword = new Crypfy(password);
       let data = new DateParser(birthday).ParseDate();
 
-      let queryResult: IUser = await UserModel.create({ ...user, birthday: data, password: crypfyPassword.CreateHash() }).then(result =>
-        result.toJSON()
-      );
+      let queryResult: IUser = await UserModel.create({
+        ...user,
+        birthday: data,
+        password: crypfyPassword.CreateHash()
+      }).then(result => result.toJSON());
       await this.SaveFile(file, queryResult.id);
 
       return { mesage: `Successfully user created ${queryResult.name}`, user: queryResult };
@@ -28,7 +30,9 @@ export default class UserController extends ImageController {
   public async UpdateUser(id, userNewInfo: IUser, profile: IFile = null) {
     try {
       let { birthday } = userNewInfo;
-      let newDate = birthday ? (birthday = new DateParser(birthday).ParseDate()) : userNewInfo.birthday;
+      let newDate = birthday
+        ? (birthday = new DateParser(birthday).ParseDate())
+        : userNewInfo.birthday;
 
       let updateResult = UserModel.update(
         { ...userNewInfo, birthday: newDate },
@@ -68,7 +72,15 @@ export default class UserController extends ImageController {
       throw error;
     }
   }
-
+  public async GetCurrentUser(token: string) {
+    try {
+      const jwt = new JsonWebToken();
+      let user = jwt.VerifyToken(token);
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  }
   public async DeleteUser(id: string) {
     try {
       let deleteResult = UserModel.destroy({

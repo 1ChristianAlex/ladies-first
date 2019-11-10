@@ -1,4 +1,4 @@
-import { FileSystem } from '../resources/FileSystem';
+import { FileSystem } from '../resources/';
 
 let myFs = new FileSystem();
 

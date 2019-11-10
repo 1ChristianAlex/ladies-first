@@ -1,4 +1,4 @@
-import { IUser } from '../types/IUser';
+import { IUser } from '../types/';
 
 export default class User {
   constructor(private User: IUser) {}

@@ -1,10 +1,10 @@
 import { UserModel, ImagesModel } from '../../models';
 import { User } from '../../classes';
 import Cryptfy from '../../resources/cryptfy';
-import JsonToken from '../../resources/JsonWebToken';
+import { JsonWebToken } from '../../resources/';
 
 export default class LoginController {
-  private JsonToken = new JsonToken();
+  private JsonToken = new JsonWebToken();
 
   public async Login(email: string, password: string) {
     try {

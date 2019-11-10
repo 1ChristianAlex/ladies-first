@@ -1,5 +1,3 @@
-import { isDate } from 'util';
-
 export default class DateParser {
   constructor(private DateValue: string) {}
   private DateFormater(date: Date) {

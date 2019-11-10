@@ -1,6 +1,5 @@
 import JsonToken from 'jsonwebtoken';
 import localEnv from '../../config/local';
-import { IUser } from '../types/IUser';
 
 export default class JsonWebToken {
   private Secret = localEnv.SECRET;

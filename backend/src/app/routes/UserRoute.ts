@@ -9,6 +9,7 @@ export const UserRoute = Router();
 // Caminho de rotas de usuário em formato de constante
 
 const userRouterPath = '/api/user/:id?';
+const currentUserRouterPath = '/api/current/:token';
 const loginRouterPath = '/login';
 const registerRouterPath = '/register';
 
@@ -64,6 +65,16 @@ UserRoute.route(userRouterPath)
       res.status(406).json({ mensage: 'Not deleted' });
     }
   });
+UserRoute.get(currentUserRouterPath, async (req, res, next) => {
+  try {
+    let { token } = req.params;
+    let currentUser = await UserC.GetCurrentUser(token);
+    res.json(currentUser);
+    next();
+  } catch (error) {
+    res.status(403).json(error.mensage);
+  }
+});
 // Rota de registro
 UserRoute.post(registerRouterPath, UserStoreTypeSingle, async (req, res, next) => {
   try {

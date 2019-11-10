@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export class FileSystem {
+export default class FileSystem {
   public async CreateFolder(path: string) {
     try {
       fs.mkdirSync(path);

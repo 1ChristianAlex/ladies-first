@@ -1,6 +1,6 @@
 import multer from 'multer';
 import path from 'path';
-import { FileSystem } from '../resources/FileSystem';
+import { FileSystem } from '../resources/';
 
 export default class MulterFile {
   private Fs = new FileSystem();
