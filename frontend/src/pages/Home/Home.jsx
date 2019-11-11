@@ -1,11 +1,9 @@
 import React from 'react';
-import { Logo } from 'components';
 import { Layout } from 'containers';
-import { Login } from '../';
+import { Login } from 'pages';
 
 const Home = () => (
   <Layout>
-    <Logo />
     <Login />
   </Layout>
 );
