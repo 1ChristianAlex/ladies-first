@@ -14,3 +14,4 @@ export { default as ProfileCover } from './ProfileCover/ProfileCover';
 export { default as BigProfileBio } from './BigProfileBio/BigProfileBio';
 export { default as FormInput } from './FormInput/FormInput';
 export { default as LogoMenu } from './LogoMenu/LogoMenu';
+export { default as SignupForm } from './SignupForm/SignupForm';

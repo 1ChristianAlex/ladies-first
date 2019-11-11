@@ -7,7 +7,7 @@ import { updateUser } from '../../context/actions/user';
 
 import { Container, Form, Error, ButtonContainer } from './styles';
 
-const LoginForm = () => {
+const LoginForm = ({ onSignupPress }) => {
   // TODO: Criar um custom hook pra diminuir código
   const { state } = useLocation();
   let history = useHistory();
@@ -57,10 +57,12 @@ const LoginForm = () => {
           onChange={handleChange}
           required={true}
         />
-        {(errorMensage || state) && <Error>{errorMensage || state.message}</Error>}
+        {(errorMensage || state) && (
+          <Error>{errorMensage || state.message}</Error>
+        )}
         <ButtonContainer>
           <Button text="Entrar" type="submit" />
-          <Button text="Cadastrar" active />
+          <Button text="Cadastrar" active onClick={onSignupPress} />
         </ButtonContainer>
       </Form>
     </Container>
