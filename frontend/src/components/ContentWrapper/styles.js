@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Colors } from 'styles';
 
 export const Container = styled.div`
@@ -25,4 +25,12 @@ export const Header = styled.div`
   padding: 15px 45px;
   color: ${Colors.white};
   font-size: 20px;
+  ${props =>
+    props.styled &&
+    css`
+      font-family: Pacifico, sans-serif;
+      padding: 0px;
+      font-size: 33px;
+      text-align: center;
+    `}
 `;
