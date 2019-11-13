@@ -10,4 +10,5 @@ export default interface IFIle {
   size?: number;
   post_id?: number;
   user_id?: number;
+  url?: string;
 }

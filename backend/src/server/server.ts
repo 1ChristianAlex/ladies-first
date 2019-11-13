@@ -1,7 +1,7 @@
-import express from 'express';
-import cors from 'cors';
-import { routes } from './routes';
-import sequelize from '../config/database';
+import express from "express";
+import cors from "cors";
+import { routes } from "./routes";
+import sequelize from "../config/database";
 class Server {
   public Express: express.Application;
 
@@ -9,7 +9,9 @@ class Server {
     this.Init();
   }
   private Database() {
-    sequelize.sync();
+    sequelize.sync().then(() => {
+      console.log("Ready");
+    });
   }
   private Middleware() {
     this.Express.use(express.json());

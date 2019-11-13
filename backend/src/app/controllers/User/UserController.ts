@@ -1,29 +1,49 @@
-import { UserModel, ImagesModel } from '../../models';
-import { IUser, IFile } from '../../types/';
-import { DateParser } from '../../classes';
-import Crypfy from '../../resources/cryptfy';
-import { FileSystem, JsonWebToken } from '../../resources/';
-import { ImageController } from '../Files/ImageController';
+import { UserModel, ImagesModel } from "../../models";
+import { IUser, IFile } from "../../types/";
+import { DateParser } from "../../classes";
+import Crypfy from "../../resources/cryptfy";
+import { FileSystem, JsonWebToken } from "../../resources/";
+import { ImageController } from "../Files/ImageController";
+import { User } from "../../classes/";
+import { UniqueConstraintErrorOptions } from "sequelize";
 
 export default class UserController extends ImageController {
+  private JsonToken = new JsonWebToken();
+
   public async CreateUser(user: IUser, file: IFile) {
     try {
-      let { password, birthday } = user;
-      let crypfyPassword = new Crypfy(password);
-      let data = new DateParser(birthday).ParseDate();
+      const { password, birthday } = user;
+      const crypfyPassword = new Crypfy(password);
+      const data = new DateParser(birthday).ParseDate();
 
-      let queryResult: IUser = await UserModel.create({
+      const queryResult = await UserModel.create({
         ...user,
         birthday: data,
         password: crypfyPassword.CreateHash()
-      }).then(result => result.toJSON());
-      await this.SaveFile(file, queryResult.id);
+      }).then(result => new User(result.toJSON()));
 
-      return { mesage: `Successfully user created ${queryResult.name}`, user: queryResult };
+      const tokenUser = queryResult.TokenInfo();
+      const userInfo = queryResult.SimpleInfo();
+      let fileQuery: IFile;
+      if (file) {
+        try {
+          fileQuery = await this.SaveFile(file, tokenUser.id);
+        } catch (error) {
+          await new FileSystem().DeleteFile(file.path);
+          throw error;
+        }
+      }
+      const { url } = fileQuery;
+      const token = this.JsonToken.CreateToken({
+        ...tokenUser,
+        url
+      });
+      return {
+        user: { ...userInfo, url },
+        token
+      };
     } catch (error) {
-      await new FileSystem().DeleteFile(file.path);
-
-      throw error;
+      throw error.name;
     }
   }
 
@@ -44,9 +64,9 @@ export default class UserController extends ImageController {
       );
       if (profile) {
         this.UpdateImage(profile, id);
-        return { mensage: 'User successfully updated' };
+        return { mensage: "User successfully updated" };
       }
-      return { mensage: 'User successfully updated' };
+      return { mensage: "User successfully updated" };
     } catch (error) {
       throw error;
     }
@@ -62,7 +82,7 @@ export default class UserController extends ImageController {
           {
             model: ImagesModel,
             limit: 1,
-            attributes: ['url']
+            attributes: ["url"]
           }
         ]
       }).then(result => {
@@ -83,8 +103,7 @@ export default class UserController extends ImageController {
   }
   public async GetCurrentUser(token: string) {
     try {
-      const jwt = new JsonWebToken();
-      let tkJson: any = jwt.VerifyToken(token);
+      let tkJson: any = this.JsonToken.VerifyToken(token);
       let user = await this.GetUser(tkJson.id);
       return user;
     } catch (error) {

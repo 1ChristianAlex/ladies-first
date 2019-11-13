@@ -1,6 +1,6 @@
-import { UserModel, ImagesModel } from '../../models';
-import { User } from '../../classes';
-import { JsonWebToken, Cryptfy } from '../../resources/';
+import { UserModel, ImagesModel } from "../../models";
+import { User } from "../../classes";
+import { JsonWebToken, Cryptfy } from "../../resources/";
 
 export default class LoginController {
   private JsonToken = new JsonWebToken();
@@ -20,15 +20,25 @@ export default class LoginController {
           {
             model: ImagesModel,
             limit: 1,
-            attributes: ['path', 'updatedAt']
+            attributes: ["url"]
           }
         ]
-      }).then(result => (result ? new User(result.toJSON()) : false));
+      }).then((result: any) => {
+        let user = result.toJSON();
+        const [{ url }] = user.imagens;
+        delete user.imagens;
+        console.log(url);
+
+        return result ? new User({ url, ...user }) : false;
+      });
 
       if (queryResult) {
         let user = queryResult.SimpleInfo();
         let token = this.JsonToken.CreateToken(queryResult.TokenInfo());
+
         return { token, user };
+      } else {
+        throw { mensage: "User not found" };
       }
     } catch (error) {
       throw error;
