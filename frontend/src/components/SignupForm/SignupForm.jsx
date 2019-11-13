@@ -1,10 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { Button, Input, BigIcon, ContentWrapper } from 'components';
-import { useLocation, useHistory } from 'react-router-dom';
-import { Auth } from '../../services/';
-import { StoreContext } from '../../context/store';
-import { updateUser } from '../../context/actions/user';
-
+import React, { useState, useContext } from "react";
+import {
+  Button,
+  Input,
+  BigIcon,
+  ContentWrapper,
+  DatePicker,
+  InputZone
+} from "components";
+import { useLocation, useHistory } from "react-router-dom";
+import { Auth } from "../../services/";
+import { StoreContext } from "../../context/store";
+import { updateUser } from "../../context/actions/user";
 import {
   BackgroundClose,
   Container,
@@ -12,7 +18,7 @@ import {
   Error,
   ButtonContainer,
   CloseButton
-} from './styles';
+} from "./styles";
 
 const SignupForm = ({ onClose }) => {
   // TODO: Criar um custom hook pra diminuir código
@@ -21,11 +27,12 @@ const SignupForm = ({ onClose }) => {
   let { dispatch } = useContext(StoreContext);
 
   let [inputState, setInputState] = useState({});
-  let [errorMensage, seterrorMensage] = useState('');
+  let [errorMensage, seterrorMensage] = useState("");
 
   const checkPasswordConfirmation = () => {
     if (inputState.password !== inputState.password_confirm) {
-      alert('As senhas devem ser iguais!');
+      seterrorMensage("As senhas devem ser iguais!");
+
       return false;
     }
     return true;
@@ -44,7 +51,7 @@ const SignupForm = ({ onClose }) => {
 
       dispatch(updateUser(user));
 
-      history.push('/timeline');
+      history.push("/timeline");
     } catch (error) {
       console.log(error);
 
@@ -70,6 +77,7 @@ const SignupForm = ({ onClose }) => {
         </CloseButton>
         <ContentWrapper title="Cadastre-se" styledTitle>
           <Form onSubmit={handleLogin}>
+            <InputZone />
             <Input
               placeholder="Nome"
               name="name"
@@ -97,6 +105,7 @@ const SignupForm = ({ onClose }) => {
               onChange={handleChange}
               required={true}
             />
+            <DatePicker label="Data de nascimento" />
             {(errorMensage || state) && (
               <Error>{errorMensage || state.message}</Error>
             )}

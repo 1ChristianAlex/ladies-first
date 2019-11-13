@@ -27,7 +27,6 @@ export default class LoginController {
         let user = result.toJSON();
         const [{ url }] = user.imagens;
         delete user.imagens;
-        console.log(url);
 
         return result ? new User({ url, ...user }) : false;
       });

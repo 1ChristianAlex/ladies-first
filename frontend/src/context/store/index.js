@@ -1,7 +1,10 @@
-import { createContext } from 'react';
+import { createContext } from "react";
+import { images } from "assets";
 
 export const initialState = {
-  store: {},
+  store: {
+    user: { url: images.defaultUser }
+  },
   dispatch: () => {}
 };
 

@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { Button, Input, Title } from 'components';
-import { useLocation, useHistory } from 'react-router-dom';
-import { Auth } from '../../services/';
-import { StoreContext } from '../../context/store';
-import { updateUser } from '../../context/actions/user';
+import React, { useState, useContext } from "react";
+import { Button, Input, Title } from "components";
+import { useLocation, useHistory } from "react-router-dom";
+import { Auth } from "../../services/";
+import { StoreContext } from "../../context/store";
+import { updateUser } from "../../context/actions/user";
 
-import { Container, Form, Error, ButtonContainer } from './styles';
+import { Container, Form, Error, ButtonContainer } from "./styles";
 
 const LoginForm = ({ onSignupPress }) => {
   // TODO: Criar um custom hook pra diminuir código
@@ -14,7 +14,7 @@ const LoginForm = ({ onSignupPress }) => {
   let { dispatch } = useContext(StoreContext);
 
   let [inputState, setInputState] = useState({});
-  let [errorMensage, seterrorMensage] = useState('');
+  let [errorMensage, seterrorMensage] = useState("");
 
   async function handleLogin(e) {
     try {
@@ -24,7 +24,7 @@ const LoginForm = ({ onSignupPress }) => {
 
       dispatch(updateUser(user));
 
-      history.push('/timeline');
+      history.push("/timeline");
     } catch (error) {
       console.log(error);
 
