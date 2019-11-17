@@ -18,3 +18,4 @@ export { default as SignupForm } from "./SignupForm/SignupForm";
 export { default as ToastError } from "./Toastfy/Error";
 export { default as DatePicker } from "./DatePicker/DatePicker";
 export { default as InputZone } from "./DropZone/InputZone";
+export { default as Logout } from "./Logout/Logout";

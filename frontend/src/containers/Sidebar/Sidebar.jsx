@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { BigIcon, ImageCircle, LogoMenu } from 'components';
-import { StoreContext } from '../../context/store/';
-import { Container } from './styles';
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
+import { BigIcon, ImageCircle, LogoMenu, Logout } from "components";
+import { StoreContext } from "../../context/store/";
+import { Container } from "./styles";
 
 const Sidebar = ({ notifications }) => {
   const {
@@ -16,6 +16,7 @@ const Sidebar = ({ notifications }) => {
       <BigIcon size={40} icon="FaBell" notifications={notifications} />
       <BigIcon size={40} icon="FaPen" />
       <BigIcon size={40} icon="FaCogs" />
+      <Logout />
     </Container>
   );
 };

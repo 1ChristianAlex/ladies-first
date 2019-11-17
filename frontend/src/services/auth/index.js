@@ -1,13 +1,16 @@
-import { APIPublic, APIPrivate } from '../';
+import { APIPublic, APIPrivate } from "../";
 
 export default class Auth {
   ApiPublic = new APIPublic();
   ApiPrivate = new APIPrivate();
-  TokenName = 'TOKEN_APP';
+  TokenName = "TOKEN_APP";
 
   async Login({ email, password }) {
     try {
-      let { user, token } = await this.ApiPublic.Post('/login', { email, password });
+      let { user, token } = await this.ApiPublic.Post("/login", {
+        email,
+        password
+      });
       localStorage.setItem(this.TokenName, JSON.stringify(token));
       return user;
     } catch (error) {
@@ -17,7 +20,7 @@ export default class Auth {
     }
   }
   static isAuth() {
-    let token = localStorage.getItem('TOKEN_APP');
+    let token = localStorage.getItem("TOKEN_APP");
 
     if (token) {
       return true;
@@ -35,5 +38,8 @@ export default class Auth {
     } catch (error) {
       throw error;
     }
+  }
+  async LogOut() {
+    localStorage.removeItem(this.TokenName);
   }
 }
