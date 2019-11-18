@@ -17,7 +17,7 @@ export const signReducer = (state = initialState, action) => {
       };
     case DELETE_SIGN:
       return {
-        ...initialState
+        ...state
       };
 
     default:
