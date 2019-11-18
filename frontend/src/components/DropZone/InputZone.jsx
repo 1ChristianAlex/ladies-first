@@ -1,22 +1,35 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { useDropzone } from "react-dropzone";
+import { DropContainer, Error } from "./styled";
+import { Image } from "services";
+
+import { StoreContext } from "context/store";
+import { updateSign } from "context/actions/signup";
 
 function DropInput() {
-  const onDrop = useCallback(acceptedFiles => {
-    // Do something with the files
-    console.log(acceptedFiles);
+  const { dispatch } = useContext(StoreContext);
+  const onDrop = useCallback(async fileInput => {
+    const [file] = fileInput;
+
+    const ImageService = new Image();
+
+    const imageUrl = await ImageService.Reader(file);
+
+    dispatch(updateSign({ url: imageUrl }));
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      {isDragActive ? (
-        <p>Drop the files here ...</p>
-      ) : (
-        <p>Drag 'n' drop some files here, or click to select files</p>
-      )}
-    </div>
+    <>
+      <DropContainer {...getRootProps()}>
+        <input {...getInputProps()} />
+        {isDragActive ? (
+          <p>Largue o arquivo aqui</p>
+        ) : (
+          <p>Puxe e arraste algum arquivo ou clique para selecionar arquivos</p>
+        )}
+      </DropContainer>
+    </>
   );
 }
 export default DropInput;

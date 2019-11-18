@@ -1,9 +1,9 @@
 import { createContext } from "react";
-import { images } from "assets";
 
 export const initialState = {
   store: {
-    user: { url: images.defaultUser }
+    user: {},
+    sign: {}
   },
   dispatch: () => {}
 };

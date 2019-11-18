@@ -1,8 +1,12 @@
+import { images } from "assets";
+
 export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
 
 export const initialState = {
-  user: {}
+  user: {
+    url: images.defaultUser
+  }
 };
 
 export const userReducer = (state = initialState, action) => {

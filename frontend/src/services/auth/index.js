@@ -19,6 +19,28 @@ export default class Auth {
       throw error;
     }
   }
+  async Register({ email, password, name, lastname, birthday, cpf, image }) {
+    try {
+      let formData = new FormData();
+      let user = {
+        email,
+        password,
+        name,
+        lastname,
+        birthday,
+        cpf
+      };
+      formData.append("user", JSON.stringify(...user));
+      if (image) {
+        formData.append("file", image);
+      }
+
+      let register = await this.ApiPrivate.Post("/register", formData);
+      console.log(register);
+    } catch (error) {
+      throw error;
+    }
+  }
   static isAuth() {
     let token = localStorage.getItem("TOKEN_APP");
 

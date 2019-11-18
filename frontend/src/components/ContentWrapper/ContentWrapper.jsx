@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import { Container, Header, Content } from './styles';
+import { Container, Header, Content } from "./styles";
 
-const ContentWrapper = ({ children, title, width, styledTitle }) => {
+const ContentWrapper = ({ children, title, width, styledTitle, overflow }) => {
   return (
-    <Container width={width}>
+    <Container width={width} overflow={overflow}>
       {title && <Header styled={styledTitle}>{title}</Header>}
       <Content>{children}</Content>
     </Container>

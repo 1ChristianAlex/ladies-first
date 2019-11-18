@@ -1,12 +1,12 @@
-import styled, { css } from 'styled-components';
-import { Colors } from 'styles';
+import styled, { css } from "styled-components";
+import { Colors } from "styles";
 
 export const Container = styled.div`
   background: ${Colors.white};
   color: ${Colors.dark};
   border-radius: 30px;
   border: 3px solid ${Colors.primary};
-  overflow: hidden;
+  overflow: ${props => props.overflow || "hidden"};
   width: ${({ width }) => width || `100%`};
 `;
 

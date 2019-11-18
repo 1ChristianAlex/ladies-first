@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
+import UserValidation from "services/auth/validate";
 import {
   Button,
   Input,
   BigIcon,
   ContentWrapper,
   DatePicker,
-  InputZone
+  FileSelector
 } from "components";
 import { useLocation, useHistory } from "react-router-dom";
 import { Auth } from "../../services/";
@@ -24,32 +25,47 @@ const SignupForm = ({ onClose }) => {
   // TODO: Criar um custom hook pra diminuir código
   const { state } = useLocation();
   let history = useHistory();
-  let { dispatch } = useContext(StoreContext);
+  let {
+    store: { sign },
+    dispatch
+  } = useContext(StoreContext);
 
   let [inputState, setInputState] = useState({});
   let [errorMensage, seterrorMensage] = useState("");
 
   const checkPasswordConfirmation = () => {
-    if (inputState.password !== inputState.password_confirm) {
+    const validate = new UserValidation();
+    const val = validate.checkPasswordConfirmation(
+      inputState.password,
+      inputState.password_confirm
+    );
+    if (val) {
       seterrorMensage("As senhas devem ser iguais!");
-
       return false;
     }
     return true;
   };
 
-  async function handleLogin(e) {
+  async function handleRegister(e) {
     try {
       e.preventDefault();
 
       if (!checkPasswordConfirmation()) {
         return;
       }
+      let userInfo = {
+        ...inputState,
+        image: sign.url,
+        birthday: sign.birthday
+      };
+      console.log(sign);
 
       const auth = new Auth();
-      let user = await auth.Login(inputState);
+      let user = await auth.Register(inputState);
+      console.log(userInfo);
+      console.log(user);
 
-      dispatch(updateUser(user));
+      // dispatch(updateUser(user));
 
       history.push("/timeline");
     } catch (error) {
@@ -75,12 +91,18 @@ const SignupForm = ({ onClose }) => {
         <CloseButton>
           <BigIcon size={20} icon="FaTimes" onClick={onClose} />
         </CloseButton>
-        <ContentWrapper title="Cadastre-se" styledTitle>
-          <Form onSubmit={handleLogin}>
-            <InputZone />
+        <ContentWrapper title="Cadastre-se" styledTitle overflow={"unset"}>
+          <Form onSubmit={handleRegister}>
+            <FileSelector />
             <Input
               placeholder="Nome"
               name="name"
+              onChange={handleChange}
+              required={true}
+            />
+            <Input
+              placeholder="Sobrenome"
+              name="lastname"
               onChange={handleChange}
               required={true}
             />
@@ -102,6 +124,13 @@ const SignupForm = ({ onClose }) => {
               placeholder="Confirmar senha"
               type="password"
               name="password_confirm"
+              onChange={handleChange}
+              required={true}
+            />
+            <Input
+              placeholder="CPF"
+              type="text"
+              name="cpf"
               onChange={handleChange}
               required={true}
             />
