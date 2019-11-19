@@ -21,8 +21,10 @@ PostRoute.route(postCrudRoute)
       try {
         let files = req.files as Array<IFile>;
         let { id }: any = req.headers.user;
-        let content = req.body.content;
-        let postSave = await PostFeedCtrl.CreatePost(content, id, files);
+        let { content } = req.body;
+        const postContent = JSON.parse(content);
+
+        let postSave = await PostFeedCtrl.CreatePost(postContent, id, files);
 
         res.json(postSave);
       } catch (error) {

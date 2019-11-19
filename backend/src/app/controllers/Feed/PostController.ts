@@ -12,6 +12,7 @@ export class PostController {
         ...post,
         userId
       }).then(postResult => postResult.toJSON());
+
       if (files && files.length > 0) {
         files.map(file => {
           this.ImageCtrl.SaveFile(file, userId, postQuery.id);
