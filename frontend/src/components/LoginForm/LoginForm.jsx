@@ -19,8 +19,7 @@ const LoginForm = ({ onSignupPress }) => {
   async function handleLogin(e) {
     try {
       e.preventDefault();
-      const auth = new Auth();
-      let user = await auth.Login(inputState);
+      let user = await Auth.Login(inputState);
 
       dispatch(updateUser(user));
 

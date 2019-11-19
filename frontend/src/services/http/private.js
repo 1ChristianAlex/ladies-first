@@ -1,12 +1,12 @@
-import axios from 'axios';
-import { apiUrl } from '../../config';
+import axios from "axios";
+import { apiUrl } from "../../config";
 
-export default class APIPrivateRequest {
-  TokenName = 'TOKEN_APP';
+export class APIPrivateRequest {
+  TokenName = "TOKEN_APP";
   Token() {
     return localStorage.getItem(this.TokenName)
-      ? localStorage.getItem(this.TokenName).replace(/\"*/g, '')
-      : '';
+      ? localStorage.getItem(this.TokenName).replace(/\"*/g, "")
+      : "";
   }
 
   axios = axios.create({
@@ -40,3 +40,5 @@ export default class APIPrivateRequest {
     }
   }
 }
+
+export default new APIPrivateRequest();

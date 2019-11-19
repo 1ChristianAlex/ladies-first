@@ -34,8 +34,7 @@ const SignupForm = ({ onClose }) => {
   let [errorMensage, seterrorMensage] = useState("");
 
   const checkPasswordConfirmation = () => {
-    const validate = new UserValidation();
-    const val = validate.checkPasswordConfirmation(
+    const val = UserValidation.checkPasswordConfirmation(
       inputState.password,
       inputState.password_confirm
     );
@@ -60,8 +59,7 @@ const SignupForm = ({ onClose }) => {
       };
       console.log(sign);
 
-      const auth = new Auth();
-      let user = await auth.Register(inputState);
+      let user = await Auth.Register(inputState);
       console.log(userInfo);
       console.log(user);
 

@@ -1,6 +1,6 @@
-import File from "./files";
+import { File } from "./files";
 
-export default class Image extends File {
+export class Image extends File {
   _types = ["image/jpeg", "image/png"];
 
   VerifyType(type = "") {
@@ -10,3 +10,5 @@ export default class Image extends File {
     return { mensage: "Arquivo não permitido", status: false };
   }
 }
+
+export default new Image();

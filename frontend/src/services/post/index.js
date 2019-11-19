@@ -1,6 +1,6 @@
-import { APIPrivate } from "../";
+import { APIPrivateRequest } from "../http/private";
 
-class Posts extends APIPrivate {
+class Posts extends APIPrivateRequest {
   async FetchPosts() {
     try {
       const posts = await this.Get("/post");

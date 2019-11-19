@@ -21,7 +21,6 @@ if [ -d "./frontend" ]
 then
 	echo "$frontend found."
 	cd $frontend && npm run start 
-	wait 
 else
 	echo "$frontend not found."
 fi

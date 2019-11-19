@@ -1,4 +1,4 @@
-export default class UserValidation {
+export class UserValidation {
   checkPasswordConfirmation = (pass, confirm) => {
     if (pass !== confirm) {
       return false;
@@ -6,3 +6,4 @@ export default class UserValidation {
     return true;
   };
 }
+export default new UserValidation();

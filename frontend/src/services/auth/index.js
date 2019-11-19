@@ -1,6 +1,7 @@
-import { APIPublic, APIPrivate } from "../";
+import { APIRequest as APIPublic } from "../http/public";
+import { APIPrivateRequest as APIPrivate } from "../http/private";
 
-export default class Auth {
+export class Auth {
   ApiPublic = new APIPublic();
   ApiPrivate = new APIPrivate();
   TokenName = "TOKEN_APP";
@@ -41,7 +42,7 @@ export default class Auth {
       throw error;
     }
   }
-  static isAuth() {
+  isAuth() {
     let token = localStorage.getItem("TOKEN_APP");
 
     if (token) {
@@ -65,3 +66,5 @@ export default class Auth {
     localStorage.removeItem(this.TokenName);
   }
 }
+
+export default new Auth();

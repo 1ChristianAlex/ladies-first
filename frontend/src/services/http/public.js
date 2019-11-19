@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { apiUrl } from '../../config';
+import axios from "axios";
+import { apiUrl } from "../../config";
 
-export default class APIRequest {
+export class APIRequest {
   axios = axios.create({
     baseURL: apiUrl
   });
@@ -30,3 +30,4 @@ export default class APIRequest {
     }
   }
 }
+export default new APIRequest();
