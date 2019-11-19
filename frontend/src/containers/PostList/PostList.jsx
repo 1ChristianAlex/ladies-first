@@ -13,7 +13,10 @@ const PostList = () => {
   });
 
   const {
-    store: { user, posts },
+    store: {
+      user,
+      posts: { posts }
+    },
     dispatch
   } = useContext(StoreContext);
 
@@ -100,9 +103,9 @@ const PostList = () => {
               <Post
                 key={index}
                 title={post.title}
-                time={post.time}
+                time={post.createdAt}
                 local={post.local}
-                text={post.text}
+                text={post.content}
                 image={post.image}
               />
             ))
