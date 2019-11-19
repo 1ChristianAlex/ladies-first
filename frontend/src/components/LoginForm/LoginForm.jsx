@@ -25,9 +25,7 @@ const LoginForm = ({ onSignupPress }) => {
 
       history.push("/timeline");
     } catch (error) {
-      console.log(error);
-
-      // seterrorMensage(error);
+      seterrorMensage(error.data.mensage);
     }
   }
   function handleChange(e) {

@@ -15,8 +15,6 @@ export class Auth {
       localStorage.setItem(this.TokenName, JSON.stringify(token));
       return user;
     } catch (error) {
-      console.log(error);
-
       throw error;
     }
   }
@@ -29,21 +27,25 @@ export class Auth {
         name,
         lastname,
         birthday,
-        cpf
+        cpf,
+        image
       };
-      formData.append("user", JSON.stringify(...user));
+
+      formData.append("user", JSON.stringify(user));
       if (image) {
         formData.append("file", image);
       }
 
-      let register = await this.ApiPrivate.Post("/register", formData);
+      console.log(formData);
+
+      let register = await this.ApiPublic.Post("/register", formData);
       console.log(register);
     } catch (error) {
       throw error;
     }
   }
   isAuth() {
-    let token = localStorage.getItem("TOKEN_APP");
+    let token = localStorage.getItem(this.TokenName);
 
     if (token) {
       return true;

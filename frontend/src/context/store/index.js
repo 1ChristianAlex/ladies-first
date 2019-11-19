@@ -1,9 +1,9 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 
 export const initialState = {
   store: {
     user: {},
-    sign: {},
+    form: {},
     posts: {}
   },
   dispatch: () => {}

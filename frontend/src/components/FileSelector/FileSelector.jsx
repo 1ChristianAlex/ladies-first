@@ -6,13 +6,13 @@ import { ImageCircle, InputZone } from "components";
 
 const FileSelector = () => {
   const {
-    store: { sign }
+    store: { form }
   } = useContext(StoreContext);
 
   return (
     <InputContainer>
       <SelectorContainer>
-        {sign && <ImageCircle src={sign.url} size={110} />}
+        {form && <ImageCircle src={form.url} size={110} />}
       </SelectorContainer>
       <SelectorContainer>
         <InputZone />

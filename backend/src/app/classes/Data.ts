@@ -4,7 +4,7 @@ export default class DateParser {
     return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
   }
   public ParseDate() {
-    const regexDate = new RegExp(/^[1-9]{4}\/[0-12]{2}\/[0-12]{2}$/, 'ig');
+    const regexDate = new RegExp(/^[1-9]{4}\/[0-12]{2}\/[0-12]{2}$/, "ig");
 
     const dateString = regexDate.test(this.DateValue);
 
@@ -13,7 +13,7 @@ export default class DateParser {
 
       return this.DateFormater(date);
     } else {
-      let [day, month, year] = this.DateValue.split('/');
+      let [day, month, year] = this.DateValue.split("/");
 
       let date = new Date(`${year}/${month}/${day}`);
 

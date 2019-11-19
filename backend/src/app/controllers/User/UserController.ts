@@ -14,11 +14,11 @@ export default class UserController extends ImageController {
     try {
       const { password, birthday } = user;
       const crypfyPassword = new Crypfy(password);
-      const data = new DateParser(birthday).ParseDate();
+      // const data = new DateParser(birthday).ParseDate();
 
       const queryResult = await UserModel.create({
         ...user,
-        birthday: data,
+        birthday,
         password: crypfyPassword.CreateHash()
       }).then(result => new User(result.toJSON()));
 
@@ -33,6 +33,8 @@ export default class UserController extends ImageController {
           throw error;
         }
       }
+      console.log(file);
+
       const { url } = fileQuery;
       const token = this.JsonToken.CreateToken({
         ...tokenUser,
@@ -43,6 +45,8 @@ export default class UserController extends ImageController {
         token
       };
     } catch (error) {
+      console.log(error);
+
       throw error.name;
     }
   }

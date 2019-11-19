@@ -1,21 +1,19 @@
 import React, { useCallback, useContext } from "react";
 import { useDropzone } from "react-dropzone";
-import { DropContainer, Error } from "./styled";
+import { DropContainer } from "./styled";
 import { Image } from "services";
 
 import { StoreContext } from "context/store";
-import { updateSign } from "context/actions/signup";
+import { updateForm } from "context/actions/form";
 
 function DropInput() {
   const { dispatch } = useContext(StoreContext);
   const onDrop = useCallback(async fileInput => {
     const [file] = fileInput;
 
-    const ImageService = new Image();
+    const imageUrl = await Image.Reader(file);
 
-    const imageUrl = await ImageService.Reader(file);
-
-    dispatch(updateSign({ url: imageUrl }));
+    dispatch(updateForm({ url: imageUrl, file }));
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

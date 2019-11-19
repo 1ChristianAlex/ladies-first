@@ -1,5 +1,10 @@
 import React, { useState, useContext } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import UserValidation from "services/auth/validate";
+import { Auth } from "../../services/";
+import { StoreContext } from "../../context/store";
+import { updateUser } from "context/actions/user";
+
 import {
   Button,
   Input,
@@ -8,10 +13,7 @@ import {
   DatePicker,
   FileSelector
 } from "components";
-import { useLocation, useHistory } from "react-router-dom";
-import { Auth } from "../../services/";
-import { StoreContext } from "../../context/store";
-import { updateUser } from "../../context/actions/user";
+
 import {
   BackgroundClose,
   Container,
@@ -26,7 +28,7 @@ const SignupForm = ({ onClose }) => {
   const { state } = useLocation();
   let history = useHistory();
   let {
-    store: { sign },
+    store: { form },
     dispatch
   } = useContext(StoreContext);
 
@@ -38,7 +40,7 @@ const SignupForm = ({ onClose }) => {
       inputState.password,
       inputState.password_confirm
     );
-    if (val) {
+    if (!val) {
       seterrorMensage("As senhas devem ser iguais!");
       return false;
     }
@@ -54,22 +56,17 @@ const SignupForm = ({ onClose }) => {
       }
       let userInfo = {
         ...inputState,
-        image: sign.url,
-        birthday: sign.birthday
+        image: form.file,
+        birthday: form.birthday
       };
-      console.log(sign);
 
-      let user = await Auth.Register(inputState);
-      console.log(userInfo);
-      console.log(user);
+      let user = await Auth.Register(userInfo);
 
-      // dispatch(updateUser(user));
+      dispatch(updateUser(user));
 
       history.push("/timeline");
     } catch (error) {
       console.log(error);
-
-      // seterrorMensage(error);
     }
   }
 

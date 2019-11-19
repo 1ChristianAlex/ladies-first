@@ -1,26 +1,26 @@
-import React, { useReducer } from 'react';
-import { StoreContext } from '../store/';
-import { userReducer, initialState } from '../reducer/user';
-import { signReducer, initialState as singState } from '../reducer/signup';
+import React, { useReducer } from "react";
+import { StoreContext } from "../store/";
+import { userReducer, initialState } from "../reducer/user";
+import { formReducer, initialState as singState } from "../reducer/form";
 import {
   postReducer,
   initialState as postInitialState
-} from '../reducer/posts';
+} from "../reducer/posts";
 
 const Store = props => {
   const [userState, userDispatch] = useReducer(userReducer, initialState);
-  const [signState, signDispatch] = useReducer(signReducer, singState);
+  const [formState, formDispatch] = useReducer(formReducer, singState);
   const [postState, postDispatch] = useReducer(postReducer, postInitialState);
 
   const combinerReducer = {
     store: {
       ...userState,
-      ...signState,
+      ...formState,
       ...postState
     },
     dispatch: action => {
       userDispatch(action);
-      signDispatch(action);
+      formDispatch(action);
       postDispatch(action);
     }
   };

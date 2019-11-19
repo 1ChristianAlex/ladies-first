@@ -1,24 +1,24 @@
 import { images } from "assets";
 
-export const UPDATE_USER = "UPDATE_USER";
-export const DELETE_USER = "DELETE_USER";
+export const UPDATE_FORM = "UPDATE_FORM";
+export const DELETE_FORM = "DELETE_FORM";
 
 export const initialState = {
-  user: {
+  form: {
     url: images.defaultUser
   }
 };
 
-export const userReducer = (state = initialState, action) => {
+export const formReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_USER:
+    case UPDATE_FORM:
       return {
-        user: {
-          ...state.user,
+        form: {
+          ...state.form,
           ...action.payload
         }
       };
-    case DELETE_USER:
+    case DELETE_FORM:
       return {
         ...state
       };

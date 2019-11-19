@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { StoreContext } from "context/store";
-import { updateSign } from "context/actions/signup";
+import { updateForm } from "context/actions/form";
 
 import DatePicker from "react-date-picker";
 import { FaCalendar } from "react-icons/fa";
@@ -11,9 +11,18 @@ const DateInput = ({ label }) => {
   const currentDate = new Date();
   const [dateState, setDateState] = useState(currentDate);
   const { dispatch } = useContext(StoreContext);
+
   const handleChange = date => {
     setDateState(date);
-    dispatch(updateSign({ birthday: date }));
+    let Data = new Date(date);
+    console.log(Data);
+
+    dispatch(
+      updateForm({
+        birthday: `${Data.getMonth() +
+          1}/${Data.getDate()}/${Data.getFullYear()}`
+      })
+    );
   };
   return (
     <>

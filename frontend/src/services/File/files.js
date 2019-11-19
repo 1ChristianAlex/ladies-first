@@ -1,16 +1,16 @@
 export class File {
-  _Fr() {
-    const fileReader = new FileReader();
+  _Fr = new FileReader();
 
+  async Reader(file) {
     return new Promise((res, rej) => {
-      fileReader.onabort = () => console.log("file reading was aborted");
-      fileReader.onerror = () => {
+      this._Fr.onabort = () => console.log("file reading was aborted");
+      this._Fr.onerror = () => {
         rej({ mensage: "file reading has failed" });
         console.log("file reading has failed");
       };
       // Do whatever you want with the file contents
-      fileReader.onload = () => {
-        const binaryStr = fileReader.result;
+      this._Fr.onload = () => {
+        const binaryStr = this._Fr.result;
         const arrayBufferView = new Uint8Array(binaryStr);
         const blob = new Blob([arrayBufferView], { type: "image/jpeg" });
         const urlCreator = window.URL || window.webkitURL;
@@ -18,11 +18,8 @@ export class File {
 
         res(imageUrl);
       };
+      this._Fr.readAsArrayBuffer(file);
     });
-  }
-
-  async Reader(file) {
-    await this._Fr().readAsArrayBuffer(file);
   }
 }
 
