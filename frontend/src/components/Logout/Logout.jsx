@@ -7,8 +7,6 @@ import { Auth } from "services";
 const Logout = () => {
   const { store, dispatch } = useContext(StoreContext);
   const handleLogout = async () => {
-    console.log(store);
-
     dispatch(deleteUser());
     Auth.LogOut();
     console.log(store);

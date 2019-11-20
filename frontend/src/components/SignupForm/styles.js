@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const BackgroundClose = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: ${window.outerHeight}pt;
   background: #00000060;
 `;
 

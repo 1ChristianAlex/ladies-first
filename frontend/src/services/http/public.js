@@ -22,7 +22,7 @@ export class APIRequest {
     try {
       let request = await this.axios.post(parm, body);
       let { data, status } = request;
-      if (status === 200) {
+      if (status === 200 || 202) {
         return data;
       }
     } catch (error) {

@@ -56,15 +56,15 @@ const SignupForm = ({ onClose }) => {
       }
       let userInfo = {
         ...inputState,
-        image: form.file,
+        image: form.file || false,
         birthday: form.birthday
       };
 
       let user = await Auth.Register(userInfo);
-
-      dispatch(updateUser(user));
-
-      history.push("/timeline");
+      if (user) {
+        dispatch(updateUser(user));
+        history.push("/timeline");
+      }
     } catch (error) {
       console.log(error);
     }

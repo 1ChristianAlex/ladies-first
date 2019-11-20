@@ -12,16 +12,19 @@ export class Auth {
         email,
         password
       });
-      localStorage.setItem(this.TokenName, JSON.stringify(token));
+      this.SaveToken(token);
       return user;
     } catch (error) {
       throw error;
     }
   }
+  SaveToken(token) {
+    localStorage.setItem(this.TokenName, JSON.stringify(token));
+  }
   async Register({ email, password, name, lastname, birthday, cpf, image }) {
     try {
       let formData = new FormData();
-      let user = {
+      let userData = {
         email,
         password,
         name,
@@ -31,15 +34,14 @@ export class Auth {
         image
       };
 
-      formData.append("user", JSON.stringify(user));
+      formData.append("user", JSON.stringify(userData));
       if (image) {
         formData.append("file", image);
       }
 
-      console.log(formData);
-
-      let register = await this.ApiPublic.Post("/register", formData);
-      console.log(register);
+      let { user, token } = await this.ApiPublic.Post("/register", formData);
+      this.SaveToken(token);
+      return user;
     } catch (error) {
       throw error;
     }

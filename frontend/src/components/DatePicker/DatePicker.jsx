@@ -15,7 +15,6 @@ const DateInput = ({ label }) => {
   const handleChange = date => {
     setDateState(date);
     let Data = new Date(date);
-    console.log(Data);
 
     dispatch(
       updateForm({

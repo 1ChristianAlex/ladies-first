@@ -20,7 +20,9 @@ const LoginForm = ({ onSignupPress }) => {
     try {
       e.preventDefault();
       let user = await Auth.Login(inputState);
-
+      if (user.url == "") {
+        delete user.url;
+      }
       dispatch(updateUser(user));
 
       history.push("/timeline");
