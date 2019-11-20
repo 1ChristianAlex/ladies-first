@@ -1,5 +1,5 @@
-import { Model, DataTypes } from 'sequelize';
-import sequelize from '../../config/database';
+import { Model, DataTypes } from "sequelize";
+import sequelize from "../../config/database";
 
 import {
   PostsModel,
@@ -11,7 +11,7 @@ import {
   EducationModel,
   FollowModel,
   JobSub
-} from '../models';
+} from "../models";
 
 export default class User extends Model {}
 
@@ -53,7 +53,7 @@ User.init(
       type: DataTypes.STRING(20)
     }
   },
-  { sequelize, underscored: true, modelName: 'users' }
+  { sequelize, underscored: true, modelName: "users" }
 );
 
 User.hasMany(PostsModel);

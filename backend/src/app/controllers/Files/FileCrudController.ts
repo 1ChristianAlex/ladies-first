@@ -1,8 +1,8 @@
-import { IFile } from '../../types/';
-import { FileSystem } from '../../resources/';
-import { ModelCtor } from 'sequelize/types';
-import envs from '../../../config/local';
-import { Op } from 'sequelize';
+import { IFile } from "../../types/";
+import { FileSystem } from "../../resources/";
+import { ModelCtor } from "sequelize/types";
+import envs from "../../../config/local";
+import { Op } from "sequelize";
 
 export class FileCrudController {
   private Fs = new FileSystem();
@@ -51,7 +51,7 @@ export class FileCrudController {
     }
   }
 
-  public async FindFile(id: string = '') {
+  public async FindFile(id: string = "") {
     try {
       let fileQuery: IFile = await this.Model.findOne({
         where: {
@@ -83,7 +83,6 @@ export class FileCrudController {
 
       if (hasDelete) {
         let mensage = `Imagem deletada com sucesso`;
-        console.log(mensage, fileQuery);
 
         return { mensage };
       }

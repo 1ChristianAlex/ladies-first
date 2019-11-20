@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon ./app.ts",
     "refreshDb": "sucrase-node ./src/bin",
-    "debug": "node --inspect-brk -r sucrase/register ./app.ts"
+    "debug": "node --inspect-brk -r sucrase/register ./app.ts",
+    "seed:dev": "cd database/ && npx sequelize-cli db:seed:all"
   },
   "dependencies": {
     "@types/sharp": "^0.22.3",
@@ -18,6 +19,7 @@
     "multer": "^1.4.2",
     "mysql2": "^1.7.0",
     "sequelize": "^5.19.0",
+    "sequelize-cli": "^5.5.1",
     "sharp": "^0.23.1"
   },
   "devDependencies": {

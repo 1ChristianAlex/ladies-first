@@ -1,5 +1,5 @@
-import { Model, DataTypes } from 'sequelize';
-import sequelize from '../../config/database';
+import { Model, DataTypes } from "sequelize";
+import sequelize from "../../config/database";
 
 export default class Imagens extends Model {}
 Imagens.init(
@@ -19,7 +19,7 @@ Imagens.init(
     path: {
       type: DataTypes.STRING
     },
-    smallImagePath: {
+    small_image_path: {
       type: DataTypes.STRING
     },
     url: {
@@ -29,5 +29,5 @@ Imagens.init(
       type: DataTypes.INTEGER
     }
   },
-  { sequelize, underscored: true, modelName: 'imagens' }
+  { sequelize, underscored: true, modelName: "imagens" }
 );

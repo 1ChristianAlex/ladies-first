@@ -25,10 +25,14 @@ export default class LoginController {
         ]
       }).then((result: any) => {
         let user = result.toJSON();
-        const [{ url }] = user.imagens;
+        let link: string = "";
+        if (user.imagens.lenght > 0) {
+          const [{ url }] = user.imagens;
+          link = url;
+        }
         delete user.imagens;
 
-        return result ? new User({ url, ...user }) : false;
+        return result ? new User({ url: link, ...user }) : false;
       });
 
       if (queryResult) {
@@ -40,6 +44,8 @@ export default class LoginController {
         throw { mensage: "User not found" };
       }
     } catch (error) {
+      console.log(error);
+
       throw error;
     }
   }

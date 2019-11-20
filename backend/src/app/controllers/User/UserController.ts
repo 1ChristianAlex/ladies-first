@@ -33,7 +33,6 @@ export default class UserController extends ImageController {
           throw error;
         }
       }
-      console.log(file);
 
       const { url } = fileQuery;
       const token = this.JsonToken.CreateToken({
