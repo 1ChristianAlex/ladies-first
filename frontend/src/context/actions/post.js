@@ -1,8 +1,11 @@
-import { UPDATE_POSTS } from '../reducer/posts';
+import { CREATE_POST, UPDATE_POSTS } from "../reducer/posts";
 
-export const updatePosts = posts => {
-  return {
-    type: UPDATE_POSTS,
-    payload: posts
-  };
-};
+export const createPost = post => ({
+  type: CREATE_POST,
+  payload: post
+});
+
+export const updatePosts = posts => ({
+  type: UPDATE_POSTS,
+  payload: posts
+});

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { ContentWrapper, ImageCircle, Input, Button, Post } from "components";
 import { StoreContext } from "context/store";
-import { updatePosts } from "context/actions/post";
+import { updatePosts, createPost } from "context/actions/post";
 import { Posts } from "services";
 
 import { Content, SendWrapper, Container, PostWrapper } from "./styles";
@@ -26,8 +26,21 @@ const PostList = () => {
     fetchPosts();
   }, []);
 
-  const handleSubmit = () => {
-    window.alert("Postou! ;)");
+  const handleSubmit = async () => {
+    if (!fields.post) {
+      return;
+    }
+
+    const { name, lastname } = user;
+
+    const newPost = await Posts.CreatePost({
+      content: fields.post,
+      title: `${name} ${lastname}` // provisório até ter relacionamento
+    });
+
+    dispatch(createPost(newPost));
+
+    setFields(prev => ({ ...prev, post: "" }));
   };
 
   const handleChange = field => e => {
