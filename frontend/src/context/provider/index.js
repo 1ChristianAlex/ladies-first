@@ -10,6 +10,7 @@ import {
   friendReducer,
   initialState as friendInitialState
 } from "../reducer/friend";
+import { jobReducer, initialState as jobInitialState } from "../reducer/jobs";
 
 const Store = props => {
   const [userState, userDispatch] = useReducer(userReducer, userInitialState);
@@ -19,19 +20,22 @@ const Store = props => {
     friendReducer,
     friendInitialState
   );
+  const [jobState, jobDispatch] = useReducer(jobReducer, jobInitialState);
 
   const combinerReducer = {
     store: {
       ...userState,
       ...formState,
       ...postState,
-      ...friendState
+      ...friendState,
+      ...jobState
     },
     dispatch: action => {
       userDispatch(action);
       formDispatch(action);
       postDispatch(action);
       friendDispatch(action);
+      jobDispatch(action);
     }
   };
 
