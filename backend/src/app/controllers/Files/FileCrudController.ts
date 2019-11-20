@@ -9,7 +9,11 @@ export class FileCrudController {
 
   constructor(private Model: ModelCtor<any>) {}
 
-  public async SaveFile(file: IFile, user_id = null, post_id = null) {
+  public async SaveFile(
+    file: IFile,
+    user_id = null,
+    post_id = null
+  ): Promise<IFile> {
     try {
       let url = `http://${envs.HOSTNAME}:${envs.BACK_END_PORT}/media`;
       let fileQuery = await this.Model.create({

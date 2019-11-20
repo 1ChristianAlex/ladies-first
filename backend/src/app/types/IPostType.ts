@@ -1,3 +1,5 @@
+import { IFile } from "./";
+
 export default interface IPostType {
   id?: string;
   title?: string;
@@ -5,4 +7,5 @@ export default interface IPostType {
   content?: string;
   likes?: string;
   shares?: string;
+  imagens?: IFile[];
 }

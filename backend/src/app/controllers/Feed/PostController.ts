@@ -14,9 +14,11 @@ export class PostController {
       }).then(postResult => postResult.toJSON());
 
       if (files && files.length > 0) {
-        files.map(file => {
-          this.ImageCtrl.SaveFile(file, userId, postQuery.id);
-        });
+        postQuery.imagens = await Promise.all(
+          files.map(async file =>
+            this.ImageCtrl.SaveFile(file, userId, postQuery.id)
+          )
+        );
       }
       return postQuery;
     } catch (error) {
