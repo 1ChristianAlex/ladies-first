@@ -4,7 +4,7 @@ export const BackgroundClose = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: ${window.outerHeight}pt;
   background: #00000060;
 `;

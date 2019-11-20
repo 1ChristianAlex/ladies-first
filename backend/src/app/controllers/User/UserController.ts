@@ -24,7 +24,7 @@ export default class UserController extends ImageController {
 
       const tokenUser = queryResult.TokenInfo();
       const userInfo = queryResult.SimpleInfo();
-      let fileQuery: IFile;
+      let fileQuery: IFile = { url: "" };
       if (file) {
         try {
           fileQuery = await this.SaveFile(file, tokenUser.id);
