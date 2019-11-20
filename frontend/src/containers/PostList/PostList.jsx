@@ -11,52 +11,14 @@ const PostList = () => {
   const [fields, setFields] = useState({
     post: ""
   });
-
   const {
-    store: {
-      user,
-      posts: { posts }
-    },
+    store: { user, posts },
     dispatch
   } = useContext(StoreContext);
 
-  // const [posts] = useState([
-  //   {
-  //     title: 'Beatriz Alvez',
-  //     time: 'Hoje às 09:30hrs',
-  //     local: 'UNA - Barreiro',
-  //     text:
-  //       'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
-  //     image: 'https://picsum.photos/550/300'
-  //   },
-  //   {
-  //     title: 'Beatriz Alvez',
-  //     time: 'Hoje às 09:30hrs',
-  //     local: 'UNA - Barreiro',
-  //     text:
-  //       'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
-  //     image: 'https://picsum.photos/550/300'
-  //   },
-  //   {
-  //     title: 'Beatriz Alvez',
-  //     time: 'Hoje às 09:30hrs',
-  //     local: 'UNA - Barreiro',
-  //     text:
-  //       'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
-  //     image: 'https://picsum.photos/550/300'
-  //   },
-  //   {
-  //     title: 'Beatriz Alvez',
-  //     time: 'Hoje às 09:30hrs',
-  //     local: 'UNA - Barreiro',
-  //     text:
-  //       'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
-  //     image: 'https://picsum.photos/550/300'
-  //   }
-  // ]);
-
   const fetchPosts = async () => {
     const posts = await Posts.FetchPosts();
+
     dispatch(updatePosts(posts));
   };
 
@@ -98,18 +60,20 @@ const PostList = () => {
         </Content>
       </ContentWrapper>
       <PostWrapper>
-        {posts.length
-          ? posts.map((post, index) => (
-              <Post
-                key={index}
-                title={post.title}
-                time={post.createdAt}
-                local={post.local}
-                text={post.content}
-                image={post.image}
-              />
-            ))
-          : null}
+        {posts.length > 0
+          ? posts.map((post, index) => {
+              return (
+                <Post
+                  key={index}
+                  title={post.title}
+                  time={post.createdAt}
+                  local={post.local}
+                  text={post.content}
+                  imagens={post.imagens}
+                />
+              );
+            })
+          : "loadding"}
       </PostWrapper>
     </Container>
   );

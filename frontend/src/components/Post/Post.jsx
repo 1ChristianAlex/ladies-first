@@ -20,7 +20,7 @@ const Post = ({
   local,
   time,
   text,
-  image,
+  imagens,
   liked,
   commented,
   shared,
@@ -49,7 +49,10 @@ const Post = ({
     {!!text && <PostText>{text}</PostText>}
     {!smaller && (
       <>
-        {!!image && <PostImage src={image} />}
+        {!!imagens &&
+          imagens.map((img, imgIndex) => {
+            return <PostImage key={imgIndex} src={img.url} />;
+          })}
         <ButtonsContainer>
           <Button
             text={liked ? "Curtiu" : "Curtir"}
