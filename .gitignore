@@ -27,4 +27,5 @@ yarn-error.log*
 
 backend/src/public/*
 backend/src/uploads/*
+!backend/src/uploads/.gitkeep
 out/
