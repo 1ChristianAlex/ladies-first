@@ -1,20 +1,28 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { ContentWrapper, ImageCircle, Input, Button, Post } from "components";
 import { StoreContext } from "context/store";
 import { updatePosts, createPost } from "context/actions/post";
 import { Posts } from "services";
 
-import { Content, SendWrapper, Container, PostWrapper } from "./styles";
+import {
+  Content,
+  SendWrapper,
+  Container,
+  PostWrapper,
+  FileInput
+} from "./styles";
 
 // TODO: passar component input para text area
 const PostList = () => {
   const [fields, setFields] = useState({
-    post: ""
+    post: "",
+    image: null
   });
   const {
     store: { user, posts },
     dispatch
   } = useContext(StoreContext);
+  const inputRef = useRef(null);
 
   const fetchPosts = async () => {
     const posts = await Posts.FetchPosts();
@@ -35,12 +43,13 @@ const PostList = () => {
 
     const newPost = await Posts.CreatePost({
       content: fields.post,
-      title: `${name} ${lastname}` // provisório até ter relacionamento
+      title: `${name} ${lastname}`, // provisório até ter relacionamento
+      images: fields.image
     });
 
     dispatch(createPost(newPost));
 
-    setFields(prev => ({ ...prev, post: "" }));
+    setFields(prev => ({ ...prev, post: "", image: "" }));
   };
 
   const handleChange = field => e => {
@@ -59,7 +68,19 @@ const PostList = () => {
           />
         </Content>
         <Content itemsMargin={8}>
-          <Button text="Anexo" icon="FaPaperclip" />
+          <FileInput
+            ref={inputRef}
+            onChange={e => {
+              const inputImage = e.target.files[0];
+              setFields(prev => ({ ...prev, image: inputImage }));
+            }}
+          />
+          <Button
+            text="Anexo"
+            icon="FaPaperclip"
+            active={!!fields.image}
+            onClick={() => inputRef.current.click()}
+          />
           <Button text="Pessoas" icon="FaUserTag" />
           <Button text="Locais" icon="FaTags" />
           <SendWrapper>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Content = styled.div`
   display: flex;
@@ -24,4 +24,10 @@ export const PostWrapper = styled.div`
   > * {
     margin-bottom: 10px;
   }
+`;
+
+export const FileInput = styled.input.attrs({
+  type: "file"
+})`
+  display: none;
 `;

@@ -17,9 +17,10 @@ class Posts extends APIPrivateRequest {
     try {
       const formData = new FormData();
       formData.append("content", JSON.stringify(post));
-      const res = await this.Post("/post", formData);
+      formData.append("image", post.images);
+      const newPost = await this.Post("/post", formData);
 
-      return res;
+      return newPost;
     } catch (error) {}
   }
 
