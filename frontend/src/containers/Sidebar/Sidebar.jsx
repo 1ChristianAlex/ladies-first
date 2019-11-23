@@ -3,16 +3,22 @@ import PropTypes from "prop-types";
 import { BigIcon, ImageCircle, LogoMenu, Logout } from "components";
 import { StoreContext } from "../../context/store/";
 import { Container } from "./styles";
+import { useHistory } from "react-router-dom";
 
 const Sidebar = ({ notifications }) => {
   const {
     store: { user }
   } = useContext(StoreContext);
+  const history = useHistory();
 
   return (
     <Container>
       <LogoMenu />
-      <ImageCircle size={60} src={user.url} />
+      <ImageCircle
+        size={60}
+        src={user.url}
+        onClick={() => history.push("/me")}
+      />
       <BigIcon size={40} icon="FaBell" notifications={notifications} />
       <BigIcon size={40} icon="FaPen" />
       <BigIcon size={40} icon="FaCogs" />

@@ -3,6 +3,7 @@ import { ContentWrapper, ImageCircle, Input, Button, Post } from "components";
 import { StoreContext } from "context/store";
 import { updatePosts, createPost } from "context/actions/post";
 import { Posts } from "services";
+import { useHistory } from "react-router-dom";
 
 import {
   Content,
@@ -14,6 +15,7 @@ import {
 
 // TODO: passar component input para text area
 const PostList = () => {
+  const history = useHistory();
   const [fields, setFields] = useState({
     post: "",
     image: null
@@ -60,7 +62,11 @@ const PostList = () => {
     <Container>
       <ContentWrapper title="Crie uma publicação:">
         <Content>
-          <ImageCircle size={60} src={user.url} />
+          <ImageCircle
+            size={60}
+            src={user.url}
+            onClick={() => history.push("/me")}
+          />
           <Input
             placeholder="Conte-nos as novidades!"
             value={fields.post}
