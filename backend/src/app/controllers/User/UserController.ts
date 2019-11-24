@@ -5,10 +5,10 @@ import Crypfy from '../../resources/cryptfy';
 import { FileSystem, JsonWebToken } from '../../resources/';
 import { ImageController } from '../Files/ImageController';
 import { User } from '../../classes/';
-import { UniqueConstraintErrorOptions } from 'sequelize';
 
-export default class UserController extends ImageController {
+export default class UserController {
   private JsonToken = new JsonWebToken();
+  private ImageCrtl = new ImageController();
 
   public async CreateUser(user: IUser, file: IFile) {
     try {
@@ -27,7 +27,7 @@ export default class UserController extends ImageController {
       let fileQuery: IFile = { url: '' };
       if (file) {
         try {
-          fileQuery = await this.SaveFile(file, tokenUser.id);
+          fileQuery = await this.ImageCrtl.SaveFile(file, tokenUser.id);
         } catch (error) {
           await new FileSystem().DeleteFile(file.path);
           throw error;
@@ -66,7 +66,7 @@ export default class UserController extends ImageController {
         }
       );
       if (profile) {
-        this.UpdateImage(profile, id);
+        this.ImageCrtl.UpdateImage(profile, id);
         return { mensage: 'User successfully updated' };
       }
       return { mensage: 'User successfully updated' };
@@ -92,6 +92,7 @@ export default class UserController extends ImageController {
         let res: any = result.toJSON();
         let [url] = res.imagens;
         delete res.imagens;
+        delete res.password;
         return {
           ...res,
           ...url

@@ -1,10 +1,12 @@
 import { PostsModel, ImagesModel } from '../../models';
 import { IPostType, IFile } from '../../types/';
 import { ImageController } from '../Files/ImageController';
+import UserController from '../User/UserController';
 import { Op } from 'sequelize';
 
 export class PostController {
   private ImageCtrl = new ImageController();
+  private UserCtrl = new UserController();
 
   public async CreatePost(post: IPostType, userId: string, files: IFile[]) {
     try {
@@ -32,9 +34,7 @@ export class PostController {
         {
           where: {
             id: post.id,
-            [Op.and]: {
-              userId
-            }
+            userId
           }
         }
       );
@@ -60,8 +60,13 @@ export class PostController {
       throw error;
     }
   }
-  public async GetPosts(id = null) {
+  public async GetPosts(id = null, limit = 10, offset = 0) {
     try {
+      const options: object = {
+        limit,
+        offset,
+        order: [['createdAt', 'DESC']]
+      };
       let postQuery;
       if (id) {
         postQuery = await PostsModel.findAll({
@@ -72,15 +77,27 @@ export class PostController {
               { title: { [Op.like]: `%${id}%` } },
               { content: { [Op.like]: `%${id}%` } }
             ]
-          }
+          },
+          ...options
         });
       } else {
         postQuery = await PostsModel.findAll({
           include: [ImagesModel],
-          order: [['createdAt', 'DESC']]
+          ...options
         });
       }
-      return postQuery;
+
+      const postWithUser: Array<Promise<any>> = postQuery.map(async post => {
+        const postJson = await post.toJSON();
+
+        const postUser = await this.UserCtrl.GetUser(postJson.userId);
+        return {
+          ...postJson,
+          user: postUser
+        };
+      });
+
+      return await Promise.all([...postWithUser]);
     } catch (error) {
       throw error;
     }

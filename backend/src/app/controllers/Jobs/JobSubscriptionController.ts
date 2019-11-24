@@ -34,7 +34,8 @@ export default class JobSubs {
           {
             model: JobSubModel,
             where: {
-              userId
+              userId,
+              status: true
             }
           }
         ],
