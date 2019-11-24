@@ -1,15 +1,17 @@
 import { JobSub } from '../../models';
 
 export default class JobSubs {
-  public async MakeSub(jobId, userId) {
+  public async Subscription(jobId, userId) {
     try {
-      let make = await JobSub.create({ ...jobId, userId }).then(mak => mak.toJSON());
+      let make = await JobSub.create({ ...jobId, userId }).then(mak =>
+        mak.toJSON()
+      );
       return make;
     } catch (error) {
       return { mensage: 'Error on subscribe on Job', error };
     }
   }
-  public async RemoveSub(id) {
+  public async RemoveSubscription(id) {
     try {
       let removeble = await JobSub.destroy({
         where: {

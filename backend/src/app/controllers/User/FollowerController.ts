@@ -34,11 +34,13 @@ export class FollowPersonController {
 
       let userFollows = followListQuery.map(async (followUser: any) => {
         if (followUser.followId) {
-          return await UserModel.findByPk(followUser.followId).then(follower => {
-            if (follower) {
-              return new User(follower.toJSON()).SimpleInfo();
+          return await UserModel.findByPk(followUser.followId).then(
+            follower => {
+              if (follower) {
+                return new User(follower.toJSON()).SimpleInfo();
+              }
             }
-          });
+          );
         } else {
           return false;
         }

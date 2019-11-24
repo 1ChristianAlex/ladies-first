@@ -1,13 +1,13 @@
-import { Router } from "express";
-import { PostController } from "../controllers/Feed/PostController";
-import MulterMidle from "../middleware/MulterMiddleware";
-import { IFile } from "../types/";
+import { Router } from 'express';
+import { PostController } from '../controllers/Feed/PostController';
+import MulterMidle from '../middleware/MulterMiddleware';
+import { IFile } from '../types/';
 
 export const PostRoute = Router();
 const PostFeedCtrl = new PostController();
-const MulterMiddleware = new MulterMidle("posts").MulterEng;
+const MulterMiddleware = new MulterMidle('posts').MulterEng;
 const MulterHandler = MulterMiddleware.any();
-const postCrudRoute = "/api/post/:id?";
+const postCrudRoute = '/api/post/:id?';
 
 PostRoute.route(postCrudRoute)
   .post(
@@ -28,7 +28,7 @@ PostRoute.route(postCrudRoute)
 
         res.json(postSave);
       } catch (error) {
-        res.status(302).json({ mensage: "error" });
+        res.status(302).json({ mensage: 'error' });
       }
     }
   )
@@ -38,6 +38,6 @@ PostRoute.route(postCrudRoute)
       let postResponse = await PostFeedCtrl.GetPosts(postId);
       res.json(postResponse);
     } catch (error) {
-      res.status(302).json({ mensage: "Error on get posts" });
+      res.status(302).json({ mensage: 'Error on get posts' });
     }
   });

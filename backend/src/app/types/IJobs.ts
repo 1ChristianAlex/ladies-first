@@ -7,4 +7,5 @@ export default interface IJobs {
   funciton?: string;
   image?: string;
   categorie?: string;
+  qnty?: number;
 }

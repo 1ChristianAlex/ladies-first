@@ -1,7 +1,7 @@
-import { PostsModel, ImagesModel } from "../../models";
-import { IPostType, IFile } from "../../types/";
-import { ImageController } from "../Files/ImageController";
-import { Op } from "sequelize";
+import { PostsModel, ImagesModel } from '../../models';
+import { IPostType, IFile } from '../../types/';
+import { ImageController } from '../Files/ImageController';
+import { Op } from 'sequelize';
 
 export class PostController {
   private ImageCtrl = new ImageController();
@@ -69,23 +69,15 @@ export class PostController {
           where: {
             [Op.or]: [
               { id },
-              {
-                title: {
-                  [Op.like]: `%${id}%`
-                }
-              },
-              {
-                content: {
-                  [Op.like]: `%${id}%`
-                }
-              }
+              { title: { [Op.like]: `%${id}%` } },
+              { content: { [Op.like]: `%${id}%` } }
             ]
           }
         });
       } else {
         postQuery = await PostsModel.findAll({
           include: [ImagesModel],
-          order: [["createdAt", "DESC"]]
+          order: [['createdAt', 'DESC']]
         });
       }
       return postQuery;

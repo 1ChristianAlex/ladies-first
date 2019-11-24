@@ -9,8 +9,7 @@ import {
   SkillsModel,
   CompanyModel,
   EducationModel,
-  FollowModel,
-  JobSub
+  FollowModel
 } from "../models";
 
 export default class User extends Model {}
@@ -64,7 +63,5 @@ User.hasMany(SkillsModel);
 User.hasMany(CompanyModel);
 User.hasMany(EducationModel);
 User.hasMany(FollowModel);
-// User.hasMany(JobSub);
-
 // lista de educação
 // lista de skill

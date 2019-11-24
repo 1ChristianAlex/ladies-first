@@ -1,11 +1,11 @@
-import { UserModel, ImagesModel } from "../../models";
-import { IUser, IFile } from "../../types/";
-import { DateParser } from "../../classes";
-import Crypfy from "../../resources/cryptfy";
-import { FileSystem, JsonWebToken } from "../../resources/";
-import { ImageController } from "../Files/ImageController";
-import { User } from "../../classes/";
-import { UniqueConstraintErrorOptions } from "sequelize";
+import { UserModel, ImagesModel } from '../../models';
+import { IUser, IFile } from '../../types/';
+import { DateParser } from '../../classes';
+import Crypfy from '../../resources/cryptfy';
+import { FileSystem, JsonWebToken } from '../../resources/';
+import { ImageController } from '../Files/ImageController';
+import { User } from '../../classes/';
+import { UniqueConstraintErrorOptions } from 'sequelize';
 
 export default class UserController extends ImageController {
   private JsonToken = new JsonWebToken();
@@ -24,7 +24,7 @@ export default class UserController extends ImageController {
 
       const tokenUser = queryResult.TokenInfo();
       const userInfo = queryResult.SimpleInfo();
-      let fileQuery: IFile = { url: "" };
+      let fileQuery: IFile = { url: '' };
       if (file) {
         try {
           fileQuery = await this.SaveFile(file, tokenUser.id);
@@ -67,9 +67,9 @@ export default class UserController extends ImageController {
       );
       if (profile) {
         this.UpdateImage(profile, id);
-        return { mensage: "User successfully updated" };
+        return { mensage: 'User successfully updated' };
       }
-      return { mensage: "User successfully updated" };
+      return { mensage: 'User successfully updated' };
     } catch (error) {
       throw error;
     }
@@ -85,7 +85,7 @@ export default class UserController extends ImageController {
           {
             model: ImagesModel,
             limit: 1,
-            attributes: ["url"]
+            attributes: ['url']
           }
         ]
       }).then(result => {

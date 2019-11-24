@@ -22,6 +22,13 @@ Jobs.init(
     },
     categorie: {
       type: DataTypes.STRING(25)
+    },
+    qnty: {
+      type: DataTypes.INTEGER
+    },
+    is_active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     }
   },
   {

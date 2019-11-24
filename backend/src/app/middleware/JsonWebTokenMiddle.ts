@@ -4,7 +4,11 @@ import { JsonWebToken } from '../resources';
 
 // Função de verificação de token para o middleware
 
-export const TokenVerify = async (req: Request, res: Response, next: NextFunction) => {
+export const TokenVerify = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     let token;
     const jwt = new JsonWebToken();

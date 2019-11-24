@@ -1,5 +1,6 @@
-import { Model, DataTypes } from 'sequelize';
-import sequelize from '../../config/database';
+import { Model, DataTypes } from "sequelize";
+import sequelize from "../../config/database";
+import { UserModel } from ".";
 
 export default class JobsSubscription extends Model {}
 JobsSubscription.init(
@@ -8,5 +9,6 @@ JobsSubscription.init(
       type: DataTypes.INTEGER
     }
   },
-  { sequelize, modelName: 'Jobs_Sub' }
+  { sequelize, underscored: true, modelName: "jobsSub" }
 );
+UserModel.hasMany(JobsSubscription);
