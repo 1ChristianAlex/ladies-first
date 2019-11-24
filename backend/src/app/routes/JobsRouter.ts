@@ -22,7 +22,10 @@ JobsRouter.route(JobsRouterPath)
   .get(async (req, res, next) => {
     try {
       const { query, limit, offset } = req.query;
-      const jobSearch = await JobsC.GetJobs(query, limit, offset);
+      const { id } = req.params;
+      const item = id || query;
+
+      const jobSearch = await JobsC.GetJobs(item, limit, offset);
 
       res.json(jobSearch);
       next();

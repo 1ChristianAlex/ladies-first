@@ -1,26 +1,52 @@
-import { JobSub } from '../../models';
+import { JobSubModel, JobsModel } from '../../models';
+import { Op } from 'sequelize';
 
 export default class JobSubs {
   public async Subscription(jobId, userId) {
     try {
-      let make = await JobSub.create({ ...jobId, userId }).then(mak =>
-        mak.toJSON()
-      );
-      return make;
+      await JobSubModel.create({
+        jobId,
+        userId
+      });
+
+      return { mensage: 'Success created' };
     } catch (error) {
-      return { mensage: 'Error on subscribe on Job', error };
+      return error;
     }
   }
-  public async RemoveSubscription(id) {
+  public async RemoveSubscription(jobId, userId) {
     try {
-      let removeble = await JobSub.destroy({
+      await JobSubModel.destroy({
         where: {
-          id
+          jobId,
+          userId
         }
       });
-      return removeble;
+      return { mensage: 'Subscription removed' };
     } catch (error) {
-      return { mensage: 'Error on remove from subscription', error };
+      return error;
+    }
+  }
+  public async GetSubscription(userId, limit = 10, offset = 0) {
+    try {
+      const subscription = await JobsModel.findAll({
+        include: [
+          {
+            model: JobSubModel,
+            where: {
+              userId
+            }
+          }
+        ],
+        limit,
+        offset
+      });
+
+      return subscription;
+    } catch (error) {
+      console.log(error);
+
+      return error;
     }
   }
 }
