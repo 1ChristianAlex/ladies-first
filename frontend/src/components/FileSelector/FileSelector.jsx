@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StoreContext } from "context/store";
 
 import { InputContainer, FileInput, SelectorContainer } from "./styled";
-import { ImageCircle, InputZone } from "components";
+import { ImageCircle, DropZone } from "components";
 
 const FileSelector = () => {
   const {
@@ -14,8 +14,8 @@ const FileSelector = () => {
       <SelectorContainer>
         {form && <ImageCircle src={form.url} size={110} />}
       </SelectorContainer>
-      <SelectorContainer>
-        <InputZone />
+      <SelectorContainer width={100}>
+        <DropZone />
       </SelectorContainer>
     </InputContainer>
   );

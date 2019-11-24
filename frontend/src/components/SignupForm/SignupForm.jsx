@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import UserValidation from "services/auth/validate";
-import { Auth } from "../../services/";
+import { Auth } from "../../services/auth";
 import { StoreContext } from "../../context/store";
 import { updateUser } from "context/actions/user";
 
@@ -59,8 +59,8 @@ const SignupForm = ({ onClose }) => {
         image: form.file || false,
         birthday: form.birthday
       };
-
-      let user = await Auth.Register(userInfo);
+      const auth = new Auth();
+      let user = await auth.Register(userInfo);
       if (user) {
         dispatch(updateUser(user));
         history.push("/timeline");

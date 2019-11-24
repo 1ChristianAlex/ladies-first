@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Button, Input, Title } from "components";
 import { useLocation, useHistory } from "react-router-dom";
-import { Auth } from "../../services/";
+import { Auth } from "../../services/auth";
 import { StoreContext } from "../../context/store";
 import { updateUser } from "../../context/actions/user";
 
@@ -19,7 +19,8 @@ const LoginForm = ({ onSignupPress }) => {
   async function handleLogin(e) {
     try {
       e.preventDefault();
-      let user = await Auth.Login(inputState);
+      const auth = new Auth();
+      let user = await auth.Login(inputState);
       if (user.url == "") {
         delete user.url;
       }

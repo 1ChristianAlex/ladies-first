@@ -4,6 +4,7 @@ import { StoreContext } from "context/store";
 import { updatePosts, createPost } from "context/actions/post";
 import { Posts } from "services";
 import { useHistory } from "react-router-dom";
+import { FaImage } from "react-icons/fa";
 
 import {
   Content,
@@ -81,12 +82,21 @@ const PostList = () => {
               setFields(prev => ({ ...prev, image: inputImage }));
             }}
           />
-          <Button
-            text="Anexo"
-            icon="FaPaperclip"
-            active={!!fields.image}
-            onClick={() => inputRef.current.click()}
-          />
+          {!fields.image ? (
+            <Button
+              text="Anexo"
+              icon="FaPaperclip"
+              active={!!fields.image}
+              onClick={() => inputRef.current.click()}
+            />
+          ) : (
+            <Button
+              text={<FaImage />}
+              icon="FaPaperclip"
+              active={!!fields.image}
+              onClick={() => inputRef.current.click()}
+            />
+          )}
           <Button text="Pessoas" icon="FaUserTag" />
           <Button text="Locais" icon="FaTags" />
           <SendWrapper>

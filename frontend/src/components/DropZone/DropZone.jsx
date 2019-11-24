@@ -1,4 +1,10 @@
-import React, { useCallback, useContext } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useRef,
+  useEffect,
+  useState
+} from "react";
 import { useDropzone } from "react-dropzone";
 import { DropContainer } from "./styled";
 import { Image } from "services";
@@ -8,6 +14,9 @@ import { updateForm } from "context/actions/form";
 
 function DropInput() {
   const { dispatch } = useContext(StoreContext);
+  const heighRef = useRef();
+  const [stateHeigh, setStateHeigh] = useState();
+
   const onDrop = useCallback(async fileInput => {
     const [file] = fileInput;
 
@@ -17,14 +26,20 @@ function DropInput() {
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
+  useEffect(() => {
+    setStateHeigh(heighRef.current.offsetHeight);
+  }, []);
+
   return (
     <>
       <DropContainer {...getRootProps()}>
         <input {...getInputProps()} />
         {isDragActive ? (
-          <p>Largue o arquivo aqui</p>
+          <p style={{ height: stateHeigh }}>Largue o arquivo aqui</p>
         ) : (
-          <p>Puxe e arraste algum arquivo ou clique para selecionar arquivos</p>
+          <p ref={heighRef}>
+            Puxe e arraste algum arquivo ou clique para selecionar arquivos
+          </p>
         )}
       </DropContainer>
     </>
