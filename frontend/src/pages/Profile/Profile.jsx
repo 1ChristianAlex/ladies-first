@@ -1,6 +1,6 @@
 import React from "react";
 import { ProfileCover } from "components";
-import { Layout, ProfileEdit } from "containers";
+import { Layout, ProfileContainer } from "containers";
 import { images } from "assets";
 import { Container, Posts } from "./styles";
 
@@ -11,7 +11,7 @@ const Profile = ({ match }) => {
       <ProfileCover imageSrc={images.cover} />
       <Container>
         <Posts>
-          <ProfileEdit match={match} />
+          <ProfileContainer match={match} />
         </Posts>
       </Container>
     </Layout>
