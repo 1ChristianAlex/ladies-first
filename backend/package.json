@@ -4,10 +4,12 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "dev": "nodemon ./app.ts",
+    "dev": "MODE_ENV='developer' nodemon ./app.ts",
     "refreshDb": "sucrase-node ./src/bin",
     "debug": "node --inspect-brk -r sucrase/register ./app.ts",
-    "seed:dev": "cd database/ && npx sequelize-cli db:seed:all"
+    "seed:dev": "cd database/ && npx sequelize-cli db:seed:all",
+    "build": "sucrase ../backend -d ../build/backend --transforms typescript,imports",
+    "production": "MODE_ENV='production' cd .. && node ./build/app.js"
   },
   "dependencies": {
     "@types/sharp": "^0.22.3",
