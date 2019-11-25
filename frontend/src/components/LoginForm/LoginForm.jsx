@@ -21,7 +21,7 @@ const LoginForm = ({ onSignupPress }) => {
       e.preventDefault();
       const auth = new Auth();
       let user = await auth.Login(inputState);
-      if (user.url == "") {
+      if (user.url === "") {
         delete user.url;
       }
       dispatch(updateUser(user));

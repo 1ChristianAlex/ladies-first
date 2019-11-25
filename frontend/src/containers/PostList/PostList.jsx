@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
 import { ContentWrapper, ImageCircle, Input, Button, Post } from "components";
@@ -27,14 +27,16 @@ const PostList = () => {
   const { user, posts, dispatch } = useStore();
   const inputRef = useRef(null);
 
-  const fetchPosts = async () => {
-    const posts = await postService.FetchPosts();
-
-    dispatch(updatePosts(posts));
-  };
+  const fetchPosts = React.useCallback(() => postService.FetchPosts(), [
+    postService
+  ]);
 
   useEffect(() => {
-    fetchPosts();
+    (async () => {
+      const posts = await fetchPosts();
+
+      dispatch(updatePosts(posts));
+    })();
   }, []);
 
   const handleSubmit = async () => {

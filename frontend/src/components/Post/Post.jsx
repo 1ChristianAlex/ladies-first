@@ -114,8 +114,7 @@ Post.propTypes = {
   liked: PropTypes.bool,
   commented: PropTypes.bool,
   shared: PropTypes.bool,
-  smaller: PropTypes.bool,
-  key: PropTypes.any
+  smaller: PropTypes.bool
 };
 
 export default Post;

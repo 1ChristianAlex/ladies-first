@@ -1,23 +1,14 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { images } from "assets";
 import { ImageCircle, Button, BigIcon } from "components";
 import { Container, ProfileContainer, Leafs } from "./styles";
 
-const ProfileBio = ({
-  userUrl,
-  text,
-  showLeafs,
-  leftMenu,
-  rightMenu,
-  active,
-  setActive
-}) => {
+const ProfileBio = ({ userUrl, text, showLeafs, leftMenu, rightMenu }) => {
   const history = useHistory();
-
-  const handleMenuClick = id => setActive(id);
+  const { pathname } = useLocation();
 
   return (
     <Fragment>
@@ -32,8 +23,8 @@ const ProfileBio = ({
           <Button
             text={menu.text}
             bigText
-            onClick={() => handleMenuClick(menu.id)}
-            active={active === menu.id}
+            onClick={() => history.push(menu.route)}
+            active={menu.route === pathname}
           />
         ))}
         <ImageCircle size={160} src={userUrl} />
@@ -41,8 +32,8 @@ const ProfileBio = ({
           <Button
             text={menu.text}
             bigText
-            onClick={() => handleMenuClick(menu.id)}
-            active={active === menu.id}
+            onClick={() => history.push(menu.route)}
+            active={menu.route === pathname}
           />
         ))}
         <BigIcon size={35} icon="FaCogs" />
@@ -56,8 +47,6 @@ const ProfileBio = ({
 ProfileBio.defaultProps = {
   text: "",
   showLeafs: false,
-  active: 0,
-  setActive: () => {},
   leftMenu: [],
   rightMenu: []
 };
@@ -66,8 +55,6 @@ ProfileBio.propTypes = {
   userUrl: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   showLeafs: PropTypes.bool,
-  active: PropTypes.number,
-  setActive: PropTypes.func,
   leftMenu: PropTypes.array,
   rightMenu: PropTypes.array
 };

@@ -6,19 +6,19 @@ import { useStore } from "context/store";
 import { Container } from "./styles";
 
 // TODO: passar component input para text area
-const leftMenus = [
-  { id: 0, text: "Perfil" },
-  { id: 1, text: "Currículo" }
-];
-
-const rightMenus = [
-  { id: 2, text: "Vagas" },
-  { id: 3, text: "Interesses" }
-];
 
 const ProfilePostList = ({ match, pageMenu }) => {
   const { user } = useStore();
   const [active, setActive] = useState(pageMenu);
+  const leftMenus = [
+    { id: 0, text: "Perfil", route: "/profile/me" },
+    { id: 1, text: "Currículo" }
+  ];
+
+  const rightMenus = [
+    { id: 2, text: "Vagas", route: "/profile/jobs" },
+    { id: 3, text: "Interesses" }
+  ];
 
   return (
     <Container>

@@ -3,14 +3,7 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import PublicRoute from "./PublicRoute";
 import PrivateRoute from "./PrivateRoute";
 
-import {
-  Home,
-  Profile,
-  Components,
-  Timeline,
-  FriendsProfile,
-  Jobs
-} from "../pages";
+import { Home, Profile, Components, Timeline, FriendsProfile } from "../pages";
 
 const Routes = () => (
   <Router>
