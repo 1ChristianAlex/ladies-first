@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AdsWrapper = styled.div`
   margin-top: 10px;
-  max-height: 600px;
+  padding-bottom: 130px;
+  max-height: 100vh;
   overflow: auto;
 
   > * {

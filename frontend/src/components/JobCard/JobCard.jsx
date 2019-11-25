@@ -1,5 +1,5 @@
-import React from 'react';
-import { ImageCircle } from 'components';
+import React from "react";
+import { ImageCircle } from "components";
 import {
   CardContainer,
   CardDescription,
@@ -7,7 +7,7 @@ import {
   CardTitleConteiner,
   CardTitle,
   CardImageContainer
-} from './styled';
+} from "./styled";
 
 const JobCard = ({
   id,
@@ -29,6 +29,7 @@ const JobCard = ({
     }
     return description;
   }
+
   return (
     <CardContainer>
       <CardImageContainer>
@@ -43,4 +44,5 @@ const JobCard = ({
     </CardContainer>
   );
 };
+
 export default JobCard;

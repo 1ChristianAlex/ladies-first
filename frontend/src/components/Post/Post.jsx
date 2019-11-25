@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
+
 import { ContentWrapper, ImageCircle, Button, Comment } from "components";
 import { distanceDate } from "helpers/time";
+import { StoreContext } from "context/store";
 
 import {
   Title,
@@ -27,14 +30,23 @@ const Post = ({
   shared,
   comments,
   smaller,
-  user,
-  key
+  user
 }) => {
+  const {
+    store: { user: userStore }
+  } = useContext(StoreContext);
+  const history = useHistory();
+
+  const handleUserProfile = () =>
+    user.id === userStore.id
+      ? history.push("/me")
+      : history.push(`/profile/${user.id}`);
+
   return (
-    <ContentWrapper key={key}>
+    <ContentWrapper>
       <Header>
         {user ? (
-          <ImageCircle size={70} src={user.url} />
+          <ImageCircle size={70} src={user.url} onClick={handleUserProfile} />
         ) : (
           <ImageCircle size={70} />
         )}
