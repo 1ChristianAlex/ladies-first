@@ -1,34 +1,26 @@
-import React from 'react';
-import { SearchBar, Post } from 'components';
-
+import React, { useState, useEffect } from 'react';
+import { SearchBar, JobCard } from 'components';
+import { Jobs } from 'services/jobs/jobs';
 import { AdsWrapper } from './styles';
 
 const SearchSidebar = () => {
-  const ads = [
-    {
-      title: 'Arquitetura BH',
-      time: 'Nova vaga disponível',
-      text: '"Venha fazer parte do nosso time!!" :)'
-    },
-    {
-      title: 'Beatriz Alves',
-      time: 'Nova publicação',
-      text: '"Belo dia pra reunião com elas...'
-    },
-    {
-      title: 'Vagas pra você',
-      time: 'Vagas recentes',
-      text: '"Nós da Lilith Store buscamos...'
-    }
-  ];
+  const jobsService = new Jobs();
+  const [jobs, setJobs] = useState([]);
 
+  useEffect(() => {
+    (async () => {
+      const jobsFetch = await jobsService.FetchJobs({});
+      setJobs(jobsFetch);
+      console.log(jobsFetch);
+    })();
+  }, []);
   return (
     <>
       <SearchBar />
       <AdsWrapper>
-        {ads.map((ad, index) => (
-          <Post key={index} smaller title={ad.title} time={ad.time} text={ad.text} />
-        ))}
+        {jobs.map(job => {
+          return <JobCard {...job} key={job.id} />;
+        })}
       </AdsWrapper>
     </>
   );

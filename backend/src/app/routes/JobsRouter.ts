@@ -24,6 +24,7 @@ JobsRouter.route(JobsRouterPath)
       const { query, limit, offset } = req.query;
       const { id } = req.params;
       const item = id || query;
+      console.log(query);
 
       const jobSearch = await JobsC.GetJobs(item, limit, offset);
 
@@ -46,5 +47,14 @@ JobsRouter.route(JobsRouterPath)
       next();
     } catch (error) {
       res.status(400).json({ mensage: 'Error on update job' });
+    }
+  })
+  .delete(async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      await JobsC.DeleteJob(parseInt(id));
+      res.json({ mensage: 'Job was deleted' });
+    } catch (error) {
+      res.status(400).json({ mensage: 'Job delete error' });
     }
   });

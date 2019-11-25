@@ -105,6 +105,7 @@ export default class UserController {
       throw error;
     }
   }
+
   public async GetCurrentUser(token: string) {
     try {
       let tkJson: any = this.JsonToken.VerifyToken(token);

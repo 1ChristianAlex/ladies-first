@@ -1,8 +1,10 @@
 import { JobsModel } from '../../models';
+import UserController from '../User/UserController';
 import { IJobs } from '../../types';
 import { Op } from 'sequelize';
 
 export default class JobsController {
+  private UserCtrl = new UserController();
   public async CreateJob(job: IJobs, userId) {
     try {
       let newJob = {
@@ -49,8 +51,14 @@ export default class JobsController {
 
   public async GetJobs(query: string = '', limit = 10, offset = 0) {
     try {
+      const options: object = {
+        limit,
+        offset,
+        order: [['createdAt', 'DESC']]
+      };
+      let jobQuery;
       if (query) {
-        const jobQuery = await JobsModel.findAll({
+        jobQuery = await JobsModel.findAll({
           where: {
             is_active: true,
             [Op.or]: [
@@ -63,14 +71,21 @@ export default class JobsController {
               { categorie: { [Op.like]: `%${query}%` } }
             ]
           },
-          limit,
-          offset
-        });
-        return jobQuery;
+          ...options
+        }).then(job => job.map(map => map.toJSON()));
       } else {
-        const jobQueryAll = await JobsModel.findAll({});
-        return jobQueryAll;
+        jobQuery = await JobsModel.findAll({ ...options }).then(job =>
+          job.map(map => map.toJSON())
+        );
       }
+      const jobWithUser = jobQuery.map(async job => {
+        const user = await this.UserCtrl.GetUser(job.userId);
+        return {
+          ...job,
+          user
+        };
+      });
+      return await Promise.all([...jobWithUser]);
     } catch (error) {
       return { mensage: 'Error on list Jobs', error };
     }

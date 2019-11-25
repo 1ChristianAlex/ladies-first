@@ -1,12 +1,12 @@
-import axios from "axios";
-import { apiUrl } from "../../config";
+import axios from 'axios';
+import { apiUrl } from '../../config';
 
 export class APIPrivateRequest {
-  TokenName = "TOKEN_APP";
+  TokenName = 'TOKEN_APP';
   Token() {
     return localStorage.getItem(this.TokenName)
-      ? localStorage.getItem(this.TokenName).replace(/\"*/g, "")
-      : "";
+      ? localStorage.getItem(this.TokenName).replace(/\"*/g, '')
+      : '';
   }
 
   axios = axios.create({
