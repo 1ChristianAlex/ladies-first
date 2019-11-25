@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Route } from "react-router-dom";
 
 import { BigProfileBio } from "components";
-import { JobsList } from "containers";
+import { JobsList, ProfileEdit } from "containers";
 import { useStore } from "context/store";
 import { Container } from "./styles";
 
@@ -30,7 +30,7 @@ const ProfilePostList = ({ match, pageMenu }) => {
         active={active}
         setActive={setActive}
       />
-      <Route path={`${match.url}/me`} component={() => <h1>Perfil</h1>} />
+      <Route path={`${match.url}/me`} component={ProfileEdit} />
       <Route path={`${match.url}/jobs`} component={JobsList} />
     </Container>
   );

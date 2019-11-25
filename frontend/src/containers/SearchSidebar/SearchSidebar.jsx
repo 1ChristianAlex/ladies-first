@@ -21,7 +21,7 @@ const SearchSidebar = () => {
     <>
       <SearchBar />
       <AdsWrapper>
-        {jobs.map(job => {
+        {jobs && jobs.map(job => {
           return <JobCard {...job} key={job.id} />;
         })}
       </AdsWrapper>

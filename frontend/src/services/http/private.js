@@ -39,6 +39,17 @@ export class APIPrivateRequest {
       throw error.response;
     }
   }
+  async Patch(parm, body) {
+    try {
+      let request = await this.axios.patch(parm, body);
+      let { data, status } = request;
+      if (status === 200 || 202) {
+        return data;
+      }
+    } catch (error) {
+      throw error.response;
+    }
+  }
 }
 
 export default new APIPrivateRequest();

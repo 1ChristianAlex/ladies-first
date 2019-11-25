@@ -18,9 +18,11 @@ export class Auth {
       throw error;
     }
   }
+
   SaveToken(token) {
     localStorage.setItem(this.TokenName, JSON.stringify(token));
   }
+
   async Register({ email, password, name, lastname, birthday, cpf, image }) {
     try {
       let formData = new FormData();
@@ -46,6 +48,33 @@ export class Auth {
       throw error;
     }
   }
+
+  async UpdateInfos({ email, password, name, lastname, birthday, cpf, image }) {
+    try {
+      let formData = new FormData();
+      let updateInfo = {
+        email,
+        password,
+        name,
+        lastname,
+        birthday,
+        cpf,
+        image
+      };
+
+      formData.append("updateInfo", JSON.stringify(updateInfo));
+      if (image) {
+        formData.append("file", image);
+      }
+
+      let { user, token } = await this.ApiPrivate.Patch("/user", formData);
+      this.SaveToken(token);
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   isAuth() {
     let token = localStorage.getItem(this.TokenName);
 
@@ -54,6 +83,7 @@ export class Auth {
     }
     return false;
   }
+
   async GetCurrentUser() {
     try {
       let token = this.ApiPrivate.Token();
@@ -66,6 +96,7 @@ export class Auth {
       throw error;
     }
   }
+
   async LogOut() {
     localStorage.removeItem(this.TokenName);
   }
