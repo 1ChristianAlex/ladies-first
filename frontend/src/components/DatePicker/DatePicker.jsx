@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { StoreContext } from "context/store";
+import React, { useState } from "react";
+import { useStore } from "context/store";
 import { updateForm } from "context/actions/form";
 
 import DatePicker from "react-date-picker";
@@ -10,7 +10,7 @@ import StyledDate, { DateContainer, DateInputLabel, DateItem } from "./styled";
 const DateInput = ({ label }) => {
   const currentDate = new Date();
   const [dateState, setDateState] = useState(currentDate);
-  const { dispatch } = useContext(StoreContext);
+  const { dispatch } = useStore();
 
   const handleChange = date => {
     setDateState(date);

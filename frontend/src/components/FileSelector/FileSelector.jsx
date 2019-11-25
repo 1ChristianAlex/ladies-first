@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-import { StoreContext } from "context/store";
+import React from "react";
+import { useStore } from "context/store";
 
-import { InputContainer, FileInput, SelectorContainer } from "./styled";
+import { InputContainer, SelectorContainer } from "./styled";
 import { ImageCircle, DropZone } from "components";
 
 const FileSelector = () => {
-  const {
-    store: { form }
-  } = useContext(StoreContext);
+  const { form } = useStore();
 
   return (
     <InputContainer>

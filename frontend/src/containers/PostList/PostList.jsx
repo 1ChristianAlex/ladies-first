@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
 import { ContentWrapper, ImageCircle, Input, Button, Post } from "components";
-import { StoreContext } from "context/store";
+import { useStore } from "context/store";
 import { updatePosts, createPost } from "context/actions/post";
 import { Posts } from "services/post";
 import { FaImage } from "react-icons/fa";
@@ -24,10 +24,7 @@ const PostList = () => {
     post: "",
     image: null
   });
-  const {
-    store: { user, posts },
-    dispatch
-  } = useContext(StoreContext);
+  const { user, posts, dispatch } = useStore();
   const inputRef = useRef(null);
 
   const fetchPosts = async () => {

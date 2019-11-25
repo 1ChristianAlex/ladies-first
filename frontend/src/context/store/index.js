@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 export const initialState = {
   store: {
@@ -13,3 +13,8 @@ export const initialState = {
 export const StoreContext = createContext(initialState);
 
 export default StoreContext;
+
+export const useStore = () => {
+  const data = useContext(StoreContext);
+  return { ...data.store, dispatch: data.dispatch };
+};

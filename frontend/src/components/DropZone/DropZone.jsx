@@ -1,19 +1,13 @@
-import React, {
-  useCallback,
-  useContext,
-  useRef,
-  useEffect,
-  useState
-} from "react";
+import React, { useCallback, useRef, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { DropContainer } from "./styled";
 import { Image } from "services";
 
-import { StoreContext } from "context/store";
+import { useStore } from "context/store";
 import { updateForm } from "context/actions/form";
 
 function DropInput() {
-  const { dispatch } = useContext(StoreContext);
+  const { dispatch } = useStore();
   const heighRef = useRef();
   const [stateHeigh, setStateHeigh] = useState();
 

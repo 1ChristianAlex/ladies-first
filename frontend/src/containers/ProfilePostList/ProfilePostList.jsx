@@ -1,18 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { Post, ProfileBio } from "components";
-import { StoreContext } from "context/store";
+import { useStore } from "context/store";
 import { updateFriend } from "context/actions/friend";
 import { Users } from "services/friend";
 import { Container, PostWrapper } from "./styles";
 
 // TODO: passar component input para text area
 const ProfilePostList = () => {
-  const {
-    store: { friend },
-    dispatch
-  } = useContext(StoreContext);
+  const { friend, dispatch } = useStore();
   const { userId } = useParams();
   const userService = new Users();
 

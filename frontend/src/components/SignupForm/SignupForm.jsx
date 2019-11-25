@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import UserValidation from "services/auth/validate";
 import { Auth } from "../../services/auth";
-import { StoreContext } from "../../context/store";
+import { useStore } from "../../context/store";
 import { updateUser } from "context/actions/user";
 
 import {
@@ -27,10 +27,7 @@ const SignupForm = ({ onClose }) => {
   // TODO: Criar um custom hook pra diminuir código
   const { state } = useLocation();
   let history = useHistory();
-  let {
-    store: { form },
-    dispatch
-  } = useContext(StoreContext);
+  let { form, dispatch } = useStore();
 
   let [inputState, setInputState] = useState({});
   let [errorMensage, seterrorMensage] = useState("");

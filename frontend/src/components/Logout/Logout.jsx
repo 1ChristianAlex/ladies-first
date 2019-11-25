@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BigIcon } from "components";
-import { StoreContext } from "../../context/store";
+import { useStore } from "../../context/store";
 import { deleteUser } from "../../context/actions/user";
 import { Auth } from "services";
 
 const Logout = () => {
-  const { store, dispatch } = useContext(StoreContext);
+  const { dispatch, ...store } = useStore();
   const handleLogout = async () => {
     dispatch(deleteUser());
     Auth.LogOut();

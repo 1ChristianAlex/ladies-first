@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 
 import { ContentWrapper, ImageCircle, Button, Comment } from "components";
 import { distanceDate } from "helpers/time";
-import { StoreContext } from "context/store";
+import { useStore } from "context/store";
 
 import {
   Title,
@@ -32,9 +32,7 @@ const Post = ({
   smaller,
   user
 }) => {
-  const {
-    store: { user: userStore }
-  } = useContext(StoreContext);
+  const { user: userStore } = useStore();
   const history = useHistory();
 
   const handleUserProfile = () =>
