@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import React, { useEffect } from "react";
 
 import { JobCard } from "components";
 import { useStore } from "context/store";
@@ -10,20 +9,20 @@ import { Container, JobWrapper } from "./styles";
 const JobsList = () => {
   const { jobs, dispatch } = useStore();
   const jobsService = new Jobs();
-  const fetchJobs = React.useCallback(() => jobsService.FetchJobs({}), []);
 
   useEffect(() => {
     (async () => {
-      const jobsFetched = await fetchJobs();
+      const jobsFetched = await jobsService.FetchJobs({});
       dispatch(updateJobs(jobsFetched));
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Container>
       {jobs.map(job => (
-        <JobWrapper>
-          <JobCard {...job} key={job.id} />
+        <JobWrapper key={job.id}>
+          <JobCard {...job} />
         </JobWrapper>
       ))}
     </Container>

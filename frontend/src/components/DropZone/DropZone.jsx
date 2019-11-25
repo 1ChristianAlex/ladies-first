@@ -17,6 +17,7 @@ function DropInput() {
     const imageUrl = await Image.Reader(file);
 
     dispatch(updateForm({ url: imageUrl, file }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

@@ -21,6 +21,7 @@ const ProfileBio = ({ userUrl, text, showLeafs, leftMenu, rightMenu }) => {
         />
         {leftMenu.map(menu => (
           <Button
+            key={menu.id}
             text={menu.text}
             bigText
             onClick={() => history.push(menu.route)}
@@ -30,6 +31,7 @@ const ProfileBio = ({ userUrl, text, showLeafs, leftMenu, rightMenu }) => {
         <ImageCircle size={160} src={userUrl} />
         {rightMenu.map(menu => (
           <Button
+            key={menu.id}
             text={menu.text}
             bigText
             onClick={() => history.push(menu.route)}
