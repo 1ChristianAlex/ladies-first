@@ -5,12 +5,6 @@ export const Container = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   max-height: 100vh;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-
   > * {
     margin-top: 30px;
   }
@@ -24,6 +18,7 @@ export const SideMenu = styled.div`
 export const Search = styled.div`
   position: fixed;
   left: 64vw;
+  width: 33vw;
 `;
 
 export const Posts = styled.main`
