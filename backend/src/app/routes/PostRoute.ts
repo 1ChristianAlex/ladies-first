@@ -21,6 +21,7 @@ PostRoute.route(postCrudRoute)
       try {
         let files = req.files as Array<IFile>;
         let { id }: any = req.headers.user;
+
         let { content } = req.body;
         const postContent = JSON.parse(content);
 

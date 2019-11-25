@@ -1,10 +1,13 @@
-import React, { useContext, useEffect } from "react";
-import { Route, Redirect } from "react-router-dom";
-import { Auth } from "../services/";
-import { StoreContext } from "../context/store";
-import { updateUser } from "../context/actions/user";
+import React, { useContext, useEffect } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+import { appName } from '../config/';
+import { Auth } from '../services/';
+import { StoreContext } from '../context/store';
+import { updateUser } from '../context/actions/user';
+
+const PrivateRoute = ({ component: Component, title, descripion, ...rest }) => {
   const { dispatch } = useContext(StoreContext);
 
   const getCurrentUser = () => {
@@ -17,18 +20,24 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   }, []);
 
   return (
-    <Route {...rest}>
-      {!Auth.isAuth() ? (
-        <Redirect
-          to={{
-            pathname: "/",
-            state: { message: "Você tem que logar primeiro" }
-          }}
-        />
-      ) : (
-        <Component />
-      )}
-    </Route>
+    <>
+      <Helmet>
+        <title>{`${title} / ${appName}`}</title>
+        <meta {...descripion} />
+      </Helmet>
+      <Route {...rest}>
+        {!Auth.isAuth() ? (
+          <Redirect
+            to={{
+              pathname: '/',
+              state: { message: 'Você tem que logar primeiro' }
+            }}
+          />
+        ) : (
+          <Component />
+        )}
+      </Route>
+    </>
   );
 };
 

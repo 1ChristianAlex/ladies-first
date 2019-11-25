@@ -24,7 +24,6 @@ const Store = props => {
       postDispatch(action);
     }
   };
-  console.log(combinerReducer);
 
   return (
     <StoreContext.Provider value={combinerReducer}>

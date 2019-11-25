@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { ContentWrapper, ImageCircle, Button, Comment } from "components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { ContentWrapper, ImageCircle, Button, Comment } from 'components';
 
 import {
   Title,
@@ -12,7 +12,7 @@ import {
   PostImage,
   ButtonsContainer,
   CommentContainer
-} from "./styles";
+} from './styles';
 
 // TODO: Quebrar componente em outros menores
 const Post = ({
@@ -26,57 +26,64 @@ const Post = ({
   shared,
   comments,
   smaller,
+  user,
   key
-}) => (
-  <ContentWrapper key={key}>
-    <Header>
-      <ImageCircle size={70} />
-      <HeaderContent>
-        <HeaderRow>
-          <Title>{title}</Title>
-          {!smaller && local && (
-            <>
-              <Small>Está em</Small>
-              <Title>{local}</Title>
-            </>
-          )}
-        </HeaderRow>
-        <HeaderRow>
-          <Small dark>{time}</Small>
-        </HeaderRow>
-      </HeaderContent>
-    </Header>
-    {!!text && <PostText>{text}</PostText>}
-    {!smaller && (
-      <>
-        {!!imagens &&
-          imagens.map((img, imgIndex) => {
-            return <PostImage key={imgIndex} src={img.url} />;
-          })}
-        <ButtonsContainer>
-          <Button
-            text={liked ? "Curtiu" : "Curtir"}
-            active={!liked}
-            icon="FaThumbsUp"
-          />
-          <Button
-            text={commented ? "Comentou" : "Comentar"}
-            active={!commented}
-            icon="FaComments"
-          />
-          <Button
-            text={shared ? "Compartilhou" : "Compartilhar"}
-            active={!shared}
-            icon="FaShare"
-          />
-        </ButtonsContainer>
-        <CommentContainer>
-          {!!comments && comments.map(comment => <Comment />)}
-        </CommentContainer>
-      </>
-    )}
-  </ContentWrapper>
-);
+}) => {
+  return (
+    <ContentWrapper key={key}>
+      <Header>
+        {user ? (
+          <ImageCircle size={70} src={user.url} />
+        ) : (
+          <ImageCircle size={70} />
+        )}
+        <HeaderContent>
+          <HeaderRow>
+            <Title>{title}</Title>
+            {!smaller && local && (
+              <>
+                <Small>Está em</Small>
+                <Title>{local}</Title>
+              </>
+            )}
+          </HeaderRow>
+          <HeaderRow>
+            <Small dark>{time}</Small>
+          </HeaderRow>
+        </HeaderContent>
+      </Header>
+      {!!text && <PostText>{text}</PostText>}
+      {!smaller && (
+        <>
+          {!!imagens &&
+            imagens.map((img, imgIndex) => {
+              return <PostImage key={imgIndex} src={img.url} />;
+            })}
+          <ButtonsContainer>
+            <Button
+              text={liked ? 'Curtiu' : 'Curtir'}
+              active={!liked}
+              icon="FaThumbsUp"
+            />
+            <Button
+              text={commented ? 'Comentou' : 'Comentar'}
+              active={!commented}
+              icon="FaComments"
+            />
+            <Button
+              text={shared ? 'Compartilhou' : 'Compartilhar'}
+              active={!shared}
+              icon="FaShare"
+            />
+          </ButtonsContainer>
+          <CommentContainer>
+            {!!comments && comments.map(comment => <Comment />)}
+          </CommentContainer>
+        </>
+      )}
+    </ContentWrapper>
+  );
+};
 
 Post.defaultProps = {
   liked: false,

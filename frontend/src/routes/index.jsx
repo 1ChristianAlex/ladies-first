@@ -8,12 +8,16 @@ import { Home, Profile, Components, Timeline, FriendsProfile } from '../pages';
 const Routes = () => (
   <Router>
     <Switch>
-      <PublicRoute path="/" exact component={Home} />
-      <PublicRoute path="/components" component={Components} />
+      <PublicRoute path="/" exact component={Home} title="Login" />
+      <PublicRoute path="/components" component={Components} title="Home" />
 
-      <PrivateRoute path="/me" component={Profile} />
-      <PrivateRoute path="/timeline" component={Timeline} />
-      <PrivateRoute path="/friends-profile" component={FriendsProfile} />
+      <PrivateRoute path="/me" component={Profile} title="Profile" />
+      <PrivateRoute path="/timeline" component={Timeline} title="Feed" />
+      <PrivateRoute
+        path="/friends-profile"
+        component={FriendsProfile}
+        title="Friend Profile"
+      />
     </Switch>
   </Router>
 );

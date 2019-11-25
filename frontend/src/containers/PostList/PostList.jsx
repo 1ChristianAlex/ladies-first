@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
-import { ContentWrapper, ImageCircle, Input, Button, Post } from "components";
-import { StoreContext } from "context/store";
-import { updatePosts, createPost } from "context/actions/post";
-import { Posts } from "services";
-import { useHistory } from "react-router-dom";
-import { FaImage } from "react-icons/fa";
+import React, { useState, useContext, useEffect, useRef } from 'react';
+import { ContentWrapper, ImageCircle, Input, Button, Post } from 'components';
+import { StoreContext } from 'context/store';
+import { updatePosts, createPost } from 'context/actions/post';
+import { Posts } from 'services/post';
+import { useHistory } from 'react-router-dom';
+import { FaImage } from 'react-icons/fa';
 
 import {
   Content,
@@ -12,13 +12,15 @@ import {
   Container,
   PostWrapper,
   FileInput
-} from "./styles";
+} from './styles';
 
 // TODO: passar component input para text area
 const PostList = () => {
+  const postService = new Posts();
+
   const history = useHistory();
   const [fields, setFields] = useState({
-    post: "",
+    post: '',
     image: null
   });
   const {
@@ -28,7 +30,7 @@ const PostList = () => {
   const inputRef = useRef(null);
 
   const fetchPosts = async () => {
-    const posts = await Posts.FetchPosts();
+    const posts = await postService.FetchPosts();
 
     dispatch(updatePosts(posts));
   };
@@ -43,8 +45,7 @@ const PostList = () => {
     }
 
     const { name, lastname } = user;
-
-    const newPost = await Posts.CreatePost({
+    const newPost = await postService.CreatePost({
       content: fields.post,
       title: `${name} ${lastname}`, // provisório até ter relacionamento
       images: fields.image
@@ -52,7 +53,7 @@ const PostList = () => {
 
     dispatch(createPost(newPost));
 
-    setFields(prev => ({ ...prev, post: "", image: "" }));
+    setFields(prev => ({ ...prev, post: '', image: '' }));
   };
 
   const handleChange = field => e => {
@@ -66,12 +67,12 @@ const PostList = () => {
           <ImageCircle
             size={60}
             src={user.url}
-            onClick={() => history.push("/me")}
+            onClick={() => history.push('/me')}
           />
           <Input
             placeholder="Conte-nos as novidades!"
             value={fields.post}
-            onChange={handleChange("post")}
+            onChange={handleChange('post')}
           />
         </Content>
         <Content itemsMargin={8}>
@@ -120,10 +121,11 @@ const PostList = () => {
                   local={post.local}
                   text={post.content}
                   imagens={post.imagens}
+                  user={post.user}
                 />
               );
             })
-          : "loadding"}
+          : 'loadding'}
       </PostWrapper>
     </Container>
   );
