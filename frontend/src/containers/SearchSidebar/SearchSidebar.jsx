@@ -6,6 +6,7 @@ import { AdsWrapper } from "./styles";
 const SearchSidebar = () => {
   const jobsService = new Jobs();
   const [jobs, setJobs] = useState([]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchJobs = React.useCallback(() => jobsService.FetchJobs({}), []);
 
   useEffect(() => {
@@ -13,6 +14,7 @@ const SearchSidebar = () => {
       const jobsFetch = await fetchJobs();
       setJobs(jobsFetch);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -17,6 +17,7 @@ const PrivateRoute = ({ component: Component, title, descripion, ...rest }) => {
   };
   useEffect(() => {
     getCurrentUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

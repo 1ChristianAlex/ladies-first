@@ -5,7 +5,7 @@ export class APIPrivateRequest {
   TokenName = 'TOKEN_APP';
   Token() {
     return localStorage.getItem(this.TokenName)
-      ? localStorage.getItem(this.TokenName).replace(/\"*/g, '')
+      ? localStorage.getItem(this.TokenName).replace(/"*/g, '')
       : '';
   }
 

@@ -1,4 +1,4 @@
-import React, { fragment } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 import { ImageCircle, Button, BigIcon, LogoMenu } from "components";
@@ -6,7 +6,7 @@ import { Container, ProfileContainer, Leafs } from "./styles";
 
 const ProfileBio = ({ userUrl, text, showLeafs }) => {
   return (
-    <fragment>
+    <Fragment>
       <ProfileContainer>
         <LogoMenu />
         <ImageCircle size={160} src={userUrl} />
@@ -16,7 +16,7 @@ const ProfileBio = ({ userUrl, text, showLeafs }) => {
       </ProfileContainer>
       {showLeafs && <Leafs>+374 leafs</Leafs>}
       {text && <Container>{text}</Container>}
-    </fragment>
+    </Fragment>
   );
 };
 

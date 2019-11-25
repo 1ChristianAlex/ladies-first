@@ -15,6 +15,7 @@ export class Jobs extends APIPrivateRequest {
             return `${name}=${value}&`;
           }
         }
+        return '';
       })
       .filter(Boolean);
     return query.join('');

@@ -8,7 +8,7 @@ const ProfileCover = ({ imageSrc }) => {
 };
 
 ProfileCover.propTypes = {
-  image: PropTypes.string.isRequired,
+  imageSrc: PropTypes.string.isRequired,
 };
 
 export default ProfileCover;

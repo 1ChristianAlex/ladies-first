@@ -5,7 +5,8 @@ export const initialState = {
     user: {},
     form: {},
     posts: [],
-    friend: { description: "", posts: [] }
+    friend: { description: "", posts: [] },
+    jobs: []
   },
   dispatch: () => {}
 };
