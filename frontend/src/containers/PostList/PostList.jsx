@@ -66,7 +66,7 @@ const PostList = () => {
           <ImageCircle
             size={60}
             src={user.url}
-            onClick={() => history.push("/me")}
+            onClick={() => history.push("/profile/me")}
           />
           <Input
             placeholder="Conte-nos as novidades!"

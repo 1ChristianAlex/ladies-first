@@ -6,8 +6,18 @@ import { images } from "assets";
 import { ImageCircle, Button, BigIcon } from "components";
 import { Container, ProfileContainer, Leafs } from "./styles";
 
-const ProfileBio = ({ userUrl, text, showLeafs }) => {
+const ProfileBio = ({
+  userUrl,
+  text,
+  showLeafs,
+  leftMenu,
+  rightMenu,
+  active,
+  setActive
+}) => {
   const history = useHistory();
+
+  const handleMenuClick = id => setActive(id);
 
   return (
     <Fragment>
@@ -18,11 +28,23 @@ const ProfileBio = ({ userUrl, text, showLeafs }) => {
           imageSize="auto"
           onClick={() => history.push("/")}
         />
-        <Button text="Perfil" bigText />
-        <Button text="Currículo" bigText />
+        {leftMenu.map(menu => (
+          <Button
+            text={menu.text}
+            bigText
+            onClick={() => handleMenuClick(menu.id)}
+            active={active === menu.id}
+          />
+        ))}
         <ImageCircle size={160} src={userUrl} />
-        <Button text="Mensagens" bigText />
-        <Button text="Interesses" bigText />
+        {rightMenu.map(menu => (
+          <Button
+            text={menu.text}
+            bigText
+            onClick={() => handleMenuClick(menu.id)}
+            active={active === menu.id}
+          />
+        ))}
         <BigIcon size={35} icon="FaCogs" />
       </ProfileContainer>
       {showLeafs && <Leafs>+374 leafs</Leafs>}
@@ -33,13 +55,21 @@ const ProfileBio = ({ userUrl, text, showLeafs }) => {
 
 ProfileBio.defaultProps = {
   text: "",
-  showLeafs: false
+  showLeafs: false,
+  active: 0,
+  setActive: () => {},
+  leftMenu: [],
+  rightMenu: []
 };
 
 ProfileBio.propTypes = {
   userUrl: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  showLeafs: PropTypes.bool
+  showLeafs: PropTypes.bool,
+  active: PropTypes.number,
+  setActive: PropTypes.func,
+  leftMenu: PropTypes.array,
+  rightMenu: PropTypes.array
 };
 
 export default ProfileBio;

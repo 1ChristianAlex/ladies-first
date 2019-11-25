@@ -37,7 +37,7 @@ const Post = ({
 
   const handleUserProfile = () =>
     user.id === userStore.id
-      ? history.push("/me")
+      ? history.push("/profile/me")
       : history.push(`/profile/${user.id}`);
 
   return (

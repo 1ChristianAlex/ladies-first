@@ -25,18 +25,16 @@ const PrivateRoute = ({ component: Component, title, descripion, ...rest }) => {
         <title>{`${title} / ${appName}`}</title>
         <meta {...descripion} />
       </Helmet>
-      <Route {...rest}>
-        {!Auth.isAuth() ? (
-          <Redirect
-            to={{
-              pathname: "/",
-              state: { message: "Você tem que logar primeiro" }
-            }}
-          />
-        ) : (
-          <Component />
-        )}
-      </Route>
+      {!Auth.isAuth() ? (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { message: "Você tem que logar primeiro" }
+          }}
+        />
+      ) : (
+        <Route {...rest} component={Component}></Route>
+      )}
     </>
   );
 };

@@ -15,7 +15,7 @@ const Sidebar = ({ notifications }) => {
       <ImageCircle
         size={60}
         src={user.url}
-        onClick={() => history.push("/me")}
+        onClick={() => history.push("/profile/me")}
       />
       <BigIcon size={40} icon="FaBell" notifications={notifications} />
       <BigIcon size={40} icon="FaPen" />
