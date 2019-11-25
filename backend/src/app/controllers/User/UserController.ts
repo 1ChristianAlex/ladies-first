@@ -1,10 +1,11 @@
-import { UserModel, ImagesModel } from '../../models';
-import { IUser, IFile } from '../../types/';
-import { DateParser } from '../../classes';
-import Crypfy from '../../resources/cryptfy';
-import { FileSystem, JsonWebToken } from '../../resources/';
-import { ImageController } from '../Files/ImageController';
-import { User } from '../../classes/';
+import { UserModel, ImagesModel } from "../../models";
+import { IUser, IFile } from "../../types/";
+import { DateParser } from "../../classes";
+import Crypfy from "../../resources/cryptfy";
+import { FileSystem, JsonWebToken } from "../../resources/";
+import { ImageController } from "../Files/ImageController";
+import { User } from "../../classes/";
+import PostFeed from "../../models/postFeed";
 
 export default class UserController {
   private JsonToken = new JsonWebToken();
@@ -24,7 +25,7 @@ export default class UserController {
 
       const tokenUser = queryResult.TokenInfo();
       const userInfo = queryResult.SimpleInfo();
-      let fileQuery: IFile = { url: '' };
+      let fileQuery: IFile = { url: "" };
       if (file) {
         try {
           fileQuery = await this.ImageCrtl.SaveFile(file, tokenUser.id);
@@ -67,9 +68,9 @@ export default class UserController {
       );
       if (profile) {
         this.ImageCrtl.UpdateImage(profile, id);
-        return { mensage: 'User successfully updated' };
+        return { mensage: "User successfully updated" };
       }
-      return { mensage: 'User successfully updated' };
+      return { mensage: "User successfully updated" };
     } catch (error) {
       throw error;
     }
@@ -85,9 +86,14 @@ export default class UserController {
           {
             model: ImagesModel,
             limit: 1,
-            attributes: ['url']
+            attributes: ["url"]
+          },
+          {
+            model: PostFeed,
+            include: [ImagesModel]
           }
-        ]
+        ],
+        order: [[PostFeed, "createdAt", "DESC"]]
       }).then(result => {
         let res: any = result.toJSON();
         let [url] = res.imagens;
