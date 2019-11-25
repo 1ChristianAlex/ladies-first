@@ -1,10 +1,11 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
-import { ContentWrapper, ImageCircle, Input, Button, Post } from 'components';
-import { StoreContext } from 'context/store';
-import { updatePosts, createPost } from 'context/actions/post';
-import { Posts } from 'services/post';
-import { useHistory } from 'react-router-dom';
-import { FaImage } from 'react-icons/fa';
+import React, { useState, useContext, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
+
+import { ContentWrapper, ImageCircle, Input, Button, Post } from "components";
+import { StoreContext } from "context/store";
+import { updatePosts, createPost } from "context/actions/post";
+import { Posts } from "services/post";
+import { FaImage } from "react-icons/fa";
 
 import {
   Content,
@@ -12,7 +13,7 @@ import {
   Container,
   PostWrapper,
   FileInput
-} from './styles';
+} from "./styles";
 
 // TODO: passar component input para text area
 const PostList = () => {
@@ -20,7 +21,7 @@ const PostList = () => {
 
   const history = useHistory();
   const [fields, setFields] = useState({
-    post: '',
+    post: "",
     image: null
   });
   const {
@@ -53,7 +54,7 @@ const PostList = () => {
 
     dispatch(createPost(newPost));
 
-    setFields(prev => ({ ...prev, post: '', image: '' }));
+    setFields(prev => ({ ...prev, post: "", image: "" }));
   };
 
   const handleChange = field => e => {
@@ -67,12 +68,12 @@ const PostList = () => {
           <ImageCircle
             size={60}
             src={user.url}
-            onClick={() => history.push('/me')}
+            onClick={() => history.push("/me")}
           />
           <Input
             placeholder="Conte-nos as novidades!"
             value={fields.post}
-            onChange={handleChange('post')}
+            onChange={handleChange("post")}
           />
         </Content>
         <Content itemsMargin={8}>
@@ -125,7 +126,7 @@ const PostList = () => {
                 />
               );
             })
-          : 'loadding'}
+          : "loadding"}
       </PostWrapper>
     </Container>
   );

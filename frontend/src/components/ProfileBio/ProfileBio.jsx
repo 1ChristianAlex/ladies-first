@@ -1,15 +1,15 @@
-import React, { fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { fragment } from "react";
+import PropTypes from "prop-types";
 
-import { ImageCircle, Button, BigIcon, LogoMenu } from 'components';
-import { Container, ProfileContainer, Leafs } from './styles';
+import { ImageCircle, Button, BigIcon, LogoMenu } from "components";
+import { Container, ProfileContainer, Leafs } from "./styles";
 
-const ProfileBio = ({ text, showLeafs }) => {
+const ProfileBio = ({ userUrl, text, showLeafs }) => {
   return (
     <fragment>
       <ProfileContainer>
         <LogoMenu />
-        <ImageCircle size={160} src="https://avatars0.githubusercontent.com/u/12896082?s=460&v=4" />
+        <ImageCircle size={160} src={userUrl} />
         <Button text="Seguir" bigText />
         <BigIcon size={35} icon="FaEnvelope" />
         <BigIcon size={35} icon="FaEllipsisH" />
@@ -21,12 +21,13 @@ const ProfileBio = ({ text, showLeafs }) => {
 };
 
 ProfileBio.defaultProps = {
-  text: '',
+  text: "",
   showLeafs: false
 };
 
 ProfileBio.propTypes = {
-  text: PropTypes.string.isRequired,
+  userUrl: PropTypes.string.isRequired,
+  text: PropTypes.string,
   showLeafs: PropTypes.bool
 };
 
