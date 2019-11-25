@@ -39,6 +39,7 @@ const PostList = () => {
 
   const handleSubmit = async () => {
     if (!fields.post) {
+      alert("Post em branco! 😢");
       return;
     }
 
@@ -49,7 +50,7 @@ const PostList = () => {
       images: fields.image
     });
 
-    dispatch(createPost(newPost));
+    dispatch(createPost({ ...newPost, user }));
 
     setFields(prev => ({ ...prev, post: "", image: "" }));
   };
