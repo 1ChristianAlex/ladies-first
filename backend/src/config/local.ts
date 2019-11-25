@@ -1,7 +1,12 @@
-import { config } from 'dotenv';
+import { config } from "dotenv";
+const Mode = process.env.MODE_ENV;
 
-config({ path: 'src/config/.env' }); // Here we need to pass the .env relative path folder
-
+if (Mode === "developer") {
+  config({ path: "src/config/.env" }); // Here we need to pass the .env relative path folder
+}
+if (Mode === "production") {
+  config({ path: "src/config/.env-production" }); // Here we need to pass the .env relative path folder
+}
 const envolvriment = {
   DB_PORT: process.env.DB_PORT,
   FRONTPORT: process.env.FRONT_PORT,
