@@ -4,7 +4,8 @@ export const initialState = {
   store: {
     user: {},
     form: {},
-    posts: []
+    posts: [],
+    friend: { description: "", posts: [] }
   },
   dispatch: () => {}
 };

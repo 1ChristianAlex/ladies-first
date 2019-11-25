@@ -1,57 +1,43 @@
-import React, { useState } from 'react';
-import { Post, ProfileBio } from 'components';
+import React, { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-import { Container, PostWrapper } from './styles';
+import { Post, ProfileBio } from "components";
+import { StoreContext } from "context/store";
+import { updateFriend } from "context/actions/friend";
+import { Users } from "services/friend";
+import { Container, PostWrapper } from "./styles";
 
 // TODO: passar component input para text area
 const ProfilePostList = () => {
-  const [posts] = useState([
-    {
-      title: 'Beatriz Alvez',
-      time: 'Hoje às 09:30hrs',
-      local: 'UNA - Barreiro',
-      text:
-        'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
-      image: 'https://picsum.photos/550/300'
-    },
-    {
-      title: 'Beatriz Alvez',
-      time: 'Hoje às 09:30hrs',
-      local: 'UNA - Barreiro',
-      text:
-        'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
-      image: 'https://picsum.photos/550/300'
-    },
-    {
-      title: 'Beatriz Alvez',
-      time: 'Hoje às 09:30hrs',
-      local: 'UNA - Barreiro',
-      text:
-        'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
-      image: 'https://picsum.photos/550/300'
-    },
-    {
-      title: 'Beatriz Alvez',
-      time: 'Hoje às 09:30hrs',
-      local: 'UNA - Barreiro',
-      text:
-        'Belo dia para uma reunião com elas! Em breve novidades sobre o curso de Arquitetura, fiquem Ligados :)',
-      image: 'https://picsum.photos/550/300'
-    }
-  ]);
+  const {
+    store: { friend },
+    dispatch
+  } = useContext(StoreContext);
+  const { userId } = useParams();
+  const userService = new Users();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const data = await userService.FetchUser(userId);
+      dispatch(updateFriend(data));
+    };
+    fetchUser();
+  }, []);
 
   return (
     <Container>
-      <ProfileBio text='"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium dolorum iure, odit beatae aliquid! Nulla blanditiis maxime possimus inventore! Ab autem nobis excepturi quod ducimus, qui soluta omnis exercitationem maiores!"' />
+      <ProfileBio userUrl={friend.url} text={friend.description || ""} />
       <PostWrapper>
-        {posts.length
-          ? posts.map(post => (
+        {friend.posts && friend.posts.length
+          ? friend.posts.map(post => (
               <Post
+                key={post.id}
                 title={post.title}
-                time={post.time}
+                time={post.createdAt}
                 local={post.local}
-                text={post.text}
-                image={post.image}
+                text={post.content}
+                imagens={post.imagens}
+                user={friend}
               />
             ))
           : null}

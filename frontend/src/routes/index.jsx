@@ -1,9 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import PublicRoute from './PublicRoute';
-import PrivateRoute from './PrivateRoute';
+import React from "react";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import PublicRoute from "./PublicRoute";
+import PrivateRoute from "./PrivateRoute";
 
-import { Home, Profile, Components, Timeline, FriendsProfile } from '../pages';
+import { Home, Profile, Components, Timeline, FriendsProfile } from "../pages";
 
 const Routes = () => (
   <Router>
@@ -14,7 +14,7 @@ const Routes = () => (
       <PrivateRoute path="/me" component={Profile} title="Profile" />
       <PrivateRoute path="/timeline" component={Timeline} title="Feed" />
       <PrivateRoute
-        path="/friends-profile"
+        path="/profile/:userId"
         component={FriendsProfile}
         title="Friend Profile"
       />
