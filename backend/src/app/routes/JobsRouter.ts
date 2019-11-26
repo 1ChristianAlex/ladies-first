@@ -24,7 +24,6 @@ JobsRouter.route(JobsRouterPath)
       const { query, limit, offset } = req.query;
       const { id } = req.params;
       const item = id || query;
-      console.log(query);
 
       const jobSearch = await JobsC.GetJobs(item, limit, offset);
 

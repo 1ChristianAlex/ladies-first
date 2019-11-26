@@ -1,5 +1,5 @@
-import app from "./src/server/server";
-import localEnv from "./src/config/local";
+import app from './server/server';
+import localEnv from './config/local';
 
 app.listen(parseInt(localEnv.BACK_END_PORT), localEnv.HOSTNAME, () => {
   console.log(

@@ -12,7 +12,6 @@ export default class JobsController {
         userId
       };
       let jobQuery = await JobsModel.create(newJob).then(jo => jo.toJSON());
-      console.log(jobQuery);
 
       return jobQuery;
     } catch (error) {

@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "dev": "MODE_ENV='developer' nodemon ./src/app.ts",
+    "dev": "nodemon ./src/app.ts",
     "refreshDb": "sucrase-node ./src/bin",
     "debug": "node --inspect-brk -r sucrase/register ./app.ts",
     "seed:dev": "cd database/ && npx sequelize-cli db:seed:all",

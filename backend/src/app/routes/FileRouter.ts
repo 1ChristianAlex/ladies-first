@@ -1,16 +1,22 @@
 import { Router } from 'express';
 import { ImageController } from '../controllers/Files/ImageController';
+import { FileSystem } from '../resources';
 
 export const FileRouter = Router();
 const FileRouterPath = '/media/:filename';
 
 const ImageC = new ImageController();
-
+const fileSys = new FileSystem();
 FileRouter.route(FileRouterPath).get(async (req, res, next) => {
   try {
     let { filename } = req.params;
-    let image = await ImageC.FindFile(filename);
-    res.sendFile(image.path);
+    const { path } = await ImageC.FindFile(filename);
+    const fileExists = fileSys.FolderExists(path);
+    if (fileExists) {
+      res.sendFile(path);
+    } else {
+      throw { mensage: 'File not exits' };
+    }
   } catch (error) {
     res.status(404);
   }
