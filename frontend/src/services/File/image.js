@@ -1,14 +1,17 @@
-import { File } from "./files";
+import { File } from './files';
 
 export class Image extends File {
-  _types = ["image/jpeg", "image/png"];
+  _types = ['image/jpeg', 'image/png'];
 
-  VerifyType(type = "") {
+  static getInstance() {
+    return new Image();
+  }
+  VerifyType(type = '') {
     if (this._types.includes(type)) {
-      return { mensage: "Arquivo permitido", status: true };
+      return { mensage: 'Arquivo permitido', status: true };
     }
-    return { mensage: "Arquivo não permitido", status: false };
+    return { mensage: 'Arquivo não permitido', status: false };
   }
 }
 
-export default new Image();
+export default Image.getInstance();

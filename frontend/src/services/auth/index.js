@@ -1,14 +1,18 @@
-import { APIRequest as APIPublic } from "../http/public";
-import { APIPrivateRequest as APIPrivate } from "../http/private";
+import { APIRequest as APIPublic } from '../http/public';
+import { APIPrivateRequest as APIPrivate } from '../http/private';
 
 export class Auth {
   ApiPublic = new APIPublic();
   ApiPrivate = new APIPrivate();
-  TokenName = "TOKEN_APP";
+  TokenName = 'TOKEN_APP';
+
+  static getInstance() {
+    return new Auth();
+  }
 
   async Login({ email, password }) {
     try {
-      let { user, token } = await this.ApiPublic.Post("/login", {
+      let { user, token } = await this.ApiPublic.Post('/login', {
         email,
         password
       });
@@ -36,12 +40,12 @@ export class Auth {
         image
       };
 
-      formData.append("user", JSON.stringify(userData));
+      formData.append('user', JSON.stringify(userData));
       if (image) {
-        formData.append("file", image);
+        formData.append('file', image);
       }
 
-      let { user, token } = await this.ApiPublic.Post("/register", formData);
+      let { user, token } = await this.ApiPublic.Post('/register', formData);
       this.SaveToken(token);
       return user;
     } catch (error) {
@@ -62,14 +66,11 @@ export class Auth {
         image
       };
 
-      formData.append("updateInfo", JSON.stringify(updateInfo));
+      formData.append('updateInfo', JSON.stringify(updateInfo));
       if (image) {
-        formData.append("file", image);
+        formData.append('file', image);
       }
-
-      let { user, token } = await this.ApiPrivate.Patch("/user", formData);
-      this.SaveToken(token);
-      return user;
+      await this.ApiPrivate.Patch('/user', formData);
     } catch (error) {
       throw error;
     }
@@ -87,6 +88,7 @@ export class Auth {
   async GetCurrentUser() {
     try {
       let token = this.ApiPrivate.Token();
+
       if (token) {
         let urlParm = `/current/${token}`;
         let currentUser = await this.ApiPrivate.Get(urlParm);
@@ -102,4 +104,4 @@ export class Auth {
   }
 }
 
-export default new Auth();
+export default Auth.getInstance();

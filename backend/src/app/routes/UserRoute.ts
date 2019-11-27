@@ -71,9 +71,7 @@ UserRoute.get(currentUserRouterPath, async (req, res, next) => {
     res.json(currentUser);
     next();
   } catch (error) {
-    console.log(error);
-
-    res.status(500).json(error.mensage);
+    res.status(404).json(error.mensage);
   }
 });
 // Rota de registro

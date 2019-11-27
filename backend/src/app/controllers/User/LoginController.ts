@@ -44,8 +44,6 @@ export default class LoginController {
         throw { mensage: 'User not found' };
       }
     } catch (error) {
-      console.log(error);
-
       throw error;
     }
   }

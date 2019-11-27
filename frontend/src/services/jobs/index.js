@@ -1,7 +1,12 @@
 import { APIPrivateRequest } from 'services/http/private';
 
 export class Jobs extends APIPrivateRequest {
+  static getInstance() {
+    return new Jobs();
+  }
+
   _jobsRoute = '/jobs/';
+
   _pushQuery([...item]) {
     const query = item
       .map((qry, index) => {
@@ -32,3 +37,4 @@ export class Jobs extends APIPrivateRequest {
     }
   }
 }
+export default Jobs.getInstance();

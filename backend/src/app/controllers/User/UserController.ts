@@ -1,11 +1,11 @@
-import { UserModel, ImagesModel } from "../../models";
-import { IUser, IFile } from "../../types/";
-import { DateParser } from "../../classes";
-import Crypfy from "../../resources/cryptfy";
-import { FileSystem, JsonWebToken } from "../../resources/";
-import { ImageController } from "../Files/ImageController";
-import { User } from "../../classes/";
-import PostFeed from "../../models/postFeed";
+import { UserModel, ImagesModel } from '../../models';
+import { IUser, IFile } from '../../types/';
+import { DateParser } from '../../classes';
+import Crypfy from '../../resources/cryptfy';
+import { FileSystem, JsonWebToken } from '../../resources/';
+import { ImageController } from '../Files/ImageController';
+import { User } from '../../classes/';
+import PostFeed from '../../models/postFeed';
 
 export default class UserController {
   private JsonToken = new JsonWebToken();
@@ -25,7 +25,7 @@ export default class UserController {
 
       const tokenUser = queryResult.TokenInfo();
       const userInfo = queryResult.SimpleInfo();
-      let fileQuery: IFile = { url: "" };
+      let fileQuery: IFile = { url: '' };
       if (file) {
         try {
           fileQuery = await this.ImageCrtl.SaveFile(file, tokenUser.id);
@@ -58,7 +58,7 @@ export default class UserController {
         ? (birthday = new DateParser(birthday).ParseDate())
         : userNewInfo.birthday;
 
-      let updateResult = UserModel.update(
+      await UserModel.update(
         { ...userNewInfo, birthday: newDate },
         {
           where: {
@@ -67,10 +67,10 @@ export default class UserController {
         }
       );
       if (profile) {
-        this.ImageCrtl.UpdateImage(profile, id);
-        return { mensage: "User successfully updated" };
+        await this.ImageCrtl.UpdateImage(profile, id);
       }
-      return { mensage: "User successfully updated" };
+      const user = await this.GetUser(id);
+      return { mensage: 'User successfully updated', user };
     } catch (error) {
       throw error;
     }
@@ -86,15 +86,16 @@ export default class UserController {
           {
             model: ImagesModel,
             limit: 1,
-            attributes: ["url"]
+            attributes: ['url']
           },
           {
             model: PostFeed,
             include: [ImagesModel]
           }
         ],
-        order: [[PostFeed, "createdAt", "DESC"]]
+        order: [[PostFeed, 'createdAt', 'DESC']]
       }).then(result => {
+        if (!result) throw { Error: 'error' };
         let res: any = result.toJSON();
         let [url] = res.imagens;
         delete res.imagens;
@@ -116,6 +117,7 @@ export default class UserController {
     try {
       let tkJson: any = this.JsonToken.VerifyToken(token);
       let user = await this.GetUser(tkJson.id);
+
       return user;
     } catch (error) {
       throw error;

@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { JobCard } from "components";
-import { useStore } from "context/store";
-import { updateJobs } from "context/actions/jobs"
-import { Jobs } from "services/jobs/jobs";
-import { Container, JobWrapper } from "./styles";
+import { JobCard } from 'components';
+import { useStore } from 'context/store';
+import { updateJobs } from 'context/actions/jobs';
+import { Jobs } from 'services/';
+import { Container, JobWrapper } from './styles';
 
 const JobsList = () => {
   const { jobs, dispatch } = useStore();
-  const jobsService = new Jobs();
 
   useEffect(() => {
     (async () => {
-      const jobsFetched = await jobsService.FetchJobs({});
+      const jobsFetched = await Jobs.FetchJobs({});
       dispatch(updateJobs(jobsFetched));
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps

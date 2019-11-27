@@ -1,21 +1,20 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { Post, ProfileBio } from "components";
-import { useStore } from "context/store";
-import { updateFriend } from "context/actions/friend";
-import { Users } from "services/friend";
-import { Container, PostWrapper } from "./styles";
+import { Post, ProfileBio } from 'components';
+import { useStore } from 'context/store';
+import { updateFriend } from 'context/actions/friend';
+import { Friends } from 'services';
+import { Container, PostWrapper } from './styles';
 
 // TODO: passar component input para text area
 const ProfilePostList = () => {
   const { friend, dispatch } = useStore();
   const { userId } = useParams();
-  const userService = new Users();
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = await userService.FetchUser(userId);
+      const data = await Friends.FetchUser(userId);
       dispatch(updateFriend(data));
     };
     fetchUser();
@@ -24,7 +23,7 @@ const ProfilePostList = () => {
 
   return (
     <Container>
-      <ProfileBio userUrl={friend.url} text={friend.description || ""} />
+      <ProfileBio userUrl={friend.url} text={friend.description || ''} />
       <PostWrapper>
         {friend.posts && friend.posts.length
           ? friend.posts.map(post => (

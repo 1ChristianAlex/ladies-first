@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { SearchBar, JobCard } from "components";
-import { Jobs } from "services/jobs/jobs";
-import { AdsWrapper } from "./styles";
+import React, { useState, useEffect } from 'react';
+import { SearchBar, JobCard } from 'components';
+import { Jobs } from 'services';
+import { AdsWrapper } from './styles';
 
 const SearchSidebar = () => {
-  const jobsService = new Jobs();
   const [jobs, setJobs] = useState([]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fetchJobs = React.useCallback(() => jobsService.FetchJobs({}), []);
+  const fetchJobs = React.useCallback(() => Jobs.FetchJobs({}), []);
 
   useEffect(() => {
     (async () => {
@@ -21,9 +20,10 @@ const SearchSidebar = () => {
     <>
       <SearchBar />
       <AdsWrapper>
-        {jobs && jobs.map(job => {
-          return <JobCard {...job} key={job.id} />;
-        })}
+        {jobs &&
+          jobs.map(job => {
+            return <JobCard {...job} key={job.id} />;
+          })}
       </AdsWrapper>
     </>
   );

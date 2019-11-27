@@ -12,12 +12,13 @@ FileRouter.route(FileRouterPath).get(async (req, res, next) => {
     let { filename } = req.params;
     const { path } = await ImageC.FindFile(filename);
     const fileExists = fileSys.FolderExists(path);
+
     if (fileExists) {
       res.sendFile(path);
     } else {
-      throw { mensage: 'File not exits' };
+      throw { error: 'Image not found' };
     }
   } catch (error) {
-    res.status(404);
+    res.status(404).json(error);
   }
 });

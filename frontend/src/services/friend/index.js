@@ -1,6 +1,9 @@
-import { APIPrivateRequest } from "../http/private";
+import { APIPrivateRequest } from '../http/private';
 
-export class Users extends APIPrivateRequest {
+export class Friends extends APIPrivateRequest {
+  static getInstance() {
+    return new Friends();
+  }
   async FetchUser(id) {
     try {
       const user = await this.Get(`/user/${id}`);
@@ -14,4 +17,4 @@ export class Users extends APIPrivateRequest {
   }
 }
 
-export default new Users();
+export default Friends.getInstance();
