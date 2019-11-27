@@ -31,13 +31,19 @@ export class FileCrudController {
   public async UpdateImage(file: IFile, user_id = null, post_id = null) {
     try {
       let condition = { userId: user_id } || { postId: post_id };
+      const url = `http://${envs.HOSTNAME}:${envs.BACK_END_PORT}/media`;
 
       let oldFile: IFile = await this.Model.findOne({
         where: { ...condition }
       }).then(oldF => oldF.toJSON());
 
       let fileUpdateQuery = await this.Model.update(
-        { ...file, userId: user_id, postId: post_id },
+        {
+          ...file,
+          userId: user_id,
+          postId: post_id,
+          url: `${url}/${file.filename}`
+        },
         { where: { ...condition } }
       );
 
