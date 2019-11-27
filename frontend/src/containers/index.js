@@ -6,3 +6,4 @@ export { default as ProfilePostList } from './ProfilePostList/ProfilePostList';
 export { default as ProfileContainer } from './ProfileContainer/ProfileContainer';
 export { default as JobsList } from './JobsList/JobsList';
 export { default as ProfileEdit } from './ProfileEdit/ProfileEdit';
+export { default as JobContainer } from './JobsContainer/JobContainer';

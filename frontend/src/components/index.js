@@ -21,3 +21,5 @@ export { default as DropZone } from './DropZone/DropZone';
 export { default as FileSelector } from './FileSelector/FileSelector';
 export { default as Logout } from './Logout/Logout';
 export { default as JobCard } from './JobCard/JobCard';
+export { default as JobsMenu } from './JobsMenu/JobsMenu';
+export { default as JobForm } from './JobForm/JobForm';

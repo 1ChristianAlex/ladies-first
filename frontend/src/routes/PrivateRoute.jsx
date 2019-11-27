@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { Route, Redirect } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import React, { useEffect } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
-import { appName } from "../config/";
-import { Auth } from "../services/";
-import { useStore } from "../context/store";
-import { updateUser } from "../context/actions/user";
+import { appName } from '../config/';
+import { Auth } from '../services/';
+import { useStore } from '../context/store';
+import { updateUser } from '../context/actions/user';
 
 const PrivateRoute = ({ component: Component, title, descripion, ...rest }) => {
   const { dispatch } = useStore();
@@ -29,8 +29,8 @@ const PrivateRoute = ({ component: Component, title, descripion, ...rest }) => {
       {!Auth.isAuth() ? (
         <Redirect
           to={{
-            pathname: "/",
-            state: { message: "Você tem que logar primeiro" }
+            pathname: '/',
+            state: { message: 'Você tem que logar primeiro' }
           }}
         />
       ) : (
