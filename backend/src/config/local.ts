@@ -10,7 +10,7 @@ if (Mode === 'production') {
 const envolvriment = {
   DB_PORT: process.env.DB_PORT,
   FRONTPORT: process.env.FRONT_PORT,
-  BACK_END_PORT: process.env.ENV || process.env.BACK_END_PORT,
+  BACK_END_PORT: process.env.PORT || process.env.BACK_END_PORT,
   HOSTNAME: process.env.HOSTPROJECT,
   DB_USER: process.env.DB_USER,
   DB_PW: process.env.DB_PW,
