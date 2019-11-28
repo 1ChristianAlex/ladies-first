@@ -23,3 +23,4 @@ export { default as Logout } from './Logout/Logout';
 export { default as JobCard } from './JobCard/JobCard';
 export { default as JobsMenu } from './JobsMenu/JobsMenu';
 export { default as JobForm } from './JobForm/JobForm';
+export { default as NewJobForm } from './NewJobForm/NewJobForm';

@@ -1,5 +1,5 @@
-import React from "react";
-import { ImageCircle } from "components";
+import React from 'react';
+import { ImageCircle } from 'components';
 import {
   CardContainer,
   CardDescription,
@@ -7,7 +7,7 @@ import {
   CardTitleConteiner,
   CardTitle,
   CardImageContainer
-} from "./styled";
+} from './styled';
 
 const JobCard = ({
   id,
@@ -24,7 +24,7 @@ const JobCard = ({
   user: { url }
 }) => {
   function descriptionLength(description) {
-    if (description.length > 100) {
+    if (description && description.length > 100) {
       return `${description.slice(0, 100)}...`;
     }
     return description;

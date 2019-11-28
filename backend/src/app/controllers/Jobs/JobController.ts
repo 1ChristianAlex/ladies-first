@@ -1,4 +1,4 @@
-import { JobsModel } from '../../models';
+import { JobsModel, UserModel } from '../../models';
 import UserController from '../User/UserController';
 import { IJobs } from '../../types';
 import { Op } from 'sequelize';
@@ -11,7 +11,9 @@ export default class JobsController {
         ...job,
         userId
       };
-      let jobQuery = await JobsModel.create(newJob).then(jo => jo.toJSON());
+      let jobQuery = await JobsModel.create(newJob, {
+        include: UserModel
+      }).then(jo => jo.toJSON());
 
       return jobQuery;
     } catch (error) {

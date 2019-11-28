@@ -36,5 +36,16 @@ export class Jobs extends APIPrivateRequest {
       console.log(error);
     }
   }
+
+  async CreateJob(job, userId) {
+    try {
+      const jobToCreate = { job };
+      const newJob = await this.Post(`/jobs/${userId}`, jobToCreate);
+
+      return newJob;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 export default Jobs.getInstance();
